@@ -1,0 +1,1015 @@
+/*---------------------------
+	Variables
+----------------------------*/
+h1, h2, h3, h4, h5, h6, p, label, a, span, ul, figure {
+  padding: 0 !important;
+  margin: 0 !important;
+  font-family: Satoshi-Regular;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: Satoshi-Bold;
+  color: #121212;
+}
+
+.para-text {
+  color: #161C2D;
+  opacity: 70%;
+}
+
+.common-input {
+  background-color: #F5F7FA !important;
+  border: none !important;
+  border-radius: 0.75rem !important;
+  padding: 0.875rem 1rem !important;
+}
+
+.white-space-nowrap {
+  white-space: nowrap;
+}
+
+.input-group {
+  margin-bottom: 1.2rem;
+}
+.input-group.attachment-input input {
+  position: absolute;
+  opacity: 0;
+  width: 100%;
+  top: 2rem;
+  cursor: pointer;
+}
+.input-group.attachment-input span.attachment-lable {
+  border: none !important;
+  border-radius: 0.75rem !important;
+  padding: 0.875rem 1rem !important;
+  text-align: center;
+  width: 100%;
+  cursor: pointer;
+}
+
+.input-with-icon {
+  width: 100%;
+}
+.input-with-icon input {
+  position: relative;
+}
+.input-with-icon span {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+}
+
+.bg-ash-grey {
+  background-color: rgba(187, 187, 187, 0.1);
+}
+
+.theme-btn {
+  background-color: #96FC04;
+  padding: 0.75rem 1rem !important;
+  border: none;
+  border-radius: 0.75rem;
+  font-family: Satoshi-Bold;
+}
+
+.theme-stroked-btn {
+  padding: 0.75rem 1rem !important;
+  border-radius: 0.75rem;
+  border: 1px solid #121212;
+  background-color: transparent;
+}
+.theme-stroked-btn.border-danger {
+  border-color: #dc3545;
+}
+
+a {
+  text-decoration: none !important;
+  color: #121212 !important;
+  font-family: Satoshi-Medium;
+}
+
+.highlight {
+  color: #96FC04;
+}
+
+.w-20 {
+  width: 20%;
+}
+
+.w-80 {
+  width: 80%;
+}
+
+.icon-with-input .icon {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translate(0px, -50%);
+}
+
+.bg-theme {
+  background-color: #96FC04;
+}
+
+.bg-dark {
+  background-color: #121212;
+}
+
+.bg-light-grey {
+  background-color: #F6F6F6;
+}
+
+.text-uppercase {
+  text-transform: uppercase;
+}
+
+/*---------------------------
+	Spacing Styling
+----------------------------*/
+.mt-48 {
+  margin-top: 2.5rem !important;
+}
+
+.common-section {
+  padding-left: 75px;
+  padding-right: 75px;
+}
+
+.common-top-bottom-spacing {
+  padding-top: 500px;
+  padding-bottom: 500px;
+}
+
+.main-wrapper .login-wrapper {
+  height: 100vh;
+}
+.main-wrapper .login-wrapper .form-box {
+  width: 500px;
+  margin-top: 2.5rem !important;
+  height: calc(100vh - 245px);
+}
+.main-wrapper .login-wrapper .form-box .action-box {
+  border: 1px solid #EDEDED;
+}
+.main-wrapper .login-wrapper .form-box .authentication-code .input-group {
+  width: 16%;
+}
+.main-wrapper .login-wrapper .form-box .authentication-code .input-group input {
+  width: 100%;
+}
+
+/*---------------------------
+	Header Styling
+----------------------------*/
+header {
+  padding: 2.5rem 4.688rem;
+  background-color: #212121;
+  margin: 0;
+}
+header .navbar ul li a {
+  color: #89939E !important;
+  font-weight: 400;
+  font-family: Satoshi-Regular;
+}
+header .navbar ul li a.active, header .navbar ul li a:hover {
+  color: #fff !important;
+}
+header .navbar button.singup-btn {
+  border-color: #fff;
+  padding: 0.75rem 2rem;
+  color: #fff;
+  font-family: Satoshi-Regular;
+  line-height: 1;
+}
+header .navbar button.navbar-toggler {
+  border-color: #fff;
+  color: #fff;
+}
+
+/*---------------------------
+	Home Page Styling
+----------------------------*/
+main {
+  padding-top: 120px;
+}
+main .section-main-heading {
+  display: inline-block;
+}
+main .section-main-heading span {
+  font-size: 4rem;
+  font-weight: 900;
+}
+main .section-main-heading::after {
+  content: "";
+  width: 50%;
+  height: 16px;
+  border-radius: 8px;
+  position: absolute;
+  left: 48%;
+  background-color: #96FC04;
+  bottom: 0;
+  transform: rotate(358deg);
+}
+main .hero-section {
+  background-image: url("../img/herr-banner.png");
+  padding: 150px 75px 0;
+  position: relative;
+  height: 100vh;
+}
+main .hero-section p.banner-title {
+  letter-spacing: 1rem;
+}
+main .hero-section h1 {
+  font-size: 5.5rem;
+  line-height: 105px;
+  color: #fff;
+  font-weight: 900;
+}
+main .hero-section button {
+  width: -moz-fit-content;
+  width: fit-content;
+}
+main .hero-section p {
+  line-height: 32px;
+  font-size: 1.2rem;
+}
+main .hero-section .banner-content-img {
+  margin-top: 4rem;
+}
+main .hero-section figure {
+  position: absolute;
+  width: 100%;
+  left: 50%;
+  max-width: 92%;
+  transform: translate(-50%, 10px);
+  padding: 10px !important;
+  border-radius: 12px;
+  background-color: #212121;
+}
+main .hero-section figure img {
+  border-radius: 12px;
+}
+main .interview-wrapper {
+  width: 80%;
+  margin: auto;
+}
+main .interview-wrapper .filter-div .input-group select {
+  background-color: #F8FBFF;
+  border-radius: 30px !important;
+  padding: 0.25rem 0.5rem;
+  border: 1px solid #DADDE2;
+  margin-right: 1rem;
+}
+main .interview-wrapper .filter-div .input-group select:focus-visible {
+  outline: none;
+}
+main .interview-wrapper .multiple-interview-featured .card {
+  background-color: #F7F8FA;
+}
+main .interview-wrapper .multiple-interview-featured .card .card-img::before {
+  content: "";
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.2);
+}
+main .interview-wrapper .multiple-interview-featured .card .card-img .play-icon {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0, 0.5);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+main .interview-wrapper .multiple-interview-featured .card .card-content .language-with-rating .langauge span {
+  padding: 0.25rem 0 !important;
+  display: inline-block;
+  border-radius: 30px;
+  margin-right: 0.5rem !important;
+  width: 90px;
+  text-align: center;
+}
+main .interview-wrapper .multiple-interview-featured .card .card-content .card-footer .read-more-text {
+  color: #473BF0 !important;
+  font-weight: 700;
+}
+main .interview-wrapper .multiple-interview-featured .card .card-content .card-footer .share-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #fff;
+  display: inline-flex;
+  position: absolute;
+  right: 0px;
+  bottom: 0px;
+  align-items: center;
+  justify-content: center;
+}
+main .interview-wrapper .multiple-interview-featured .card .card-content .card-footer .share-btn .notification {
+  width: 10px;
+  height: 10px;
+  border-radius: 50px;
+  background-color: red;
+  display: inline-block;
+  position: absolute;
+  right: 0px;
+  top: 0;
+}
+main .books-wrapper .filter-section {
+  margin-top: 74px;
+}
+main .books-wrapper .filter-section .filter-side-bar {
+  border: 1px solid #EDEDED;
+  transition: all 0.5s linear;
+}
+main .books-wrapper .filter-section .filter-side-bar .sider-bar-content .accordion-item h2 .accordion-button.main-item {
+  color: #121212;
+}
+main .books-wrapper .filter-section .filter-side-bar .sider-bar-content .accordion-item .accordion-button {
+  color: #8A8989;
+}
+main .books-wrapper .filter-section .filter-side-bar .sider-bar-content .accordion-item .accordion-body .pages-list li {
+  width: 31%;
+  cursor: pointer;
+}
+main .books-wrapper .filter-section .sider-bar-content button {
+  background-color: transparent;
+  box-shadow: none;
+}
+main .books-wrapper .filter-section .sider-bar-content button:focus {
+  background-color: transparent;
+  box-shadow: none;
+}
+main .books-wrapper .filter-section .sider-bar-content button:not(.collapsed)::after {
+  transform: rotate(0deg);
+}
+main .books-wrapper .filter-section .sider-bar-content button::after {
+  transform: rotate(-90deg);
+}
+main .books-wrapper .filter-section .filter-content-box {
+  padding: 0 50px;
+}
+main .books-wrapper .filter-section .filter-content-box input:focus-visible {
+  outline: none;
+  border-bottom: 1px solid #EDEDED !important;
+}
+main .books-wrapper .filter-section .filter-content-box .filter-content-header .heading-with-filter-btn span {
+  display: none !important;
+}
+main .card-blog {
+  margin-bottom: 50px;
+}
+main .card-blog .card-img .icon {
+  width: 32px;
+  height: 32px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #fff;
+  border-radius: 100%;
+  position: absolute;
+  top: 26px;
+}
+main .card-blog .card-img .icon.icon-left {
+  left: 24px;
+}
+main .card-blog .card-img .icon.icon-right {
+  right: 24px;
+}
+main .card-blog .card-img figure img {
+  min-height: 165px;
+  max-height: 400px;
+}
+main .card-blog .rating-with-language .langauge span {
+  padding: 0.25rem 0 !important;
+  display: inline-block;
+  border-radius: 30px;
+  margin-right: 0.5rem !important;
+  width: 90px;
+  text-align: center;
+}
+main .card-blog .book-info .no-of-pages {
+  background-color: #F6F6F6;
+  white-space: nowrap;
+}
+main .card-blog .read-more-text {
+  color: #473BF0 !important;
+  font-weight: 700;
+}
+main .pagination span {
+  color: #81828B;
+  cursor: pointer;
+}
+main .pagination span.active, main .pagination span:hover {
+  color: #121212;
+}
+main .leatest-blog {
+  margin: 100px 0;
+}
+main .leatest-blog .multiple-blog {
+  margin-top: 70px;
+}
+main .featured-section {
+  padding: 75px;
+  background-color: rgba(187, 187, 187, 0.1019607843);
+}
+main .featured-section .multiple-featured {
+  margin-top: 70px;
+}
+main .team-section {
+  padding: 75px;
+}
+main .team-section .multiple-members ul li {
+  width: 350px;
+}
+main .team-section .multiple-members ul li.active {
+  min-width: calc(100vw - 923px);
+}
+main .team-section .multiple-members ul li.active .card-blog .card-img {
+  background-color: #96FC04;
+}
+main .team-section .multiple-members ul li.active .card-blog .card-img .employee-data {
+  min-height: 340px;
+  background-color: #121212;
+}
+main .team-section .multiple-members ul li.active .card-blog .card-img .employee-data .member-info {
+  display: block;
+  position: absolute;
+  top: 40px;
+  left: 40px;
+}
+main .team-section .multiple-members ul li.active .card-blog .card-img .employee-data .member-info h4 {
+  font-size: 2rem;
+  font-weight: 700;
+}
+main .team-section .multiple-members ul li.active .card-blog .rating-with-language span.date {
+  display: block;
+}
+main .team-section .multiple-members ul li .card-blog .card-img {
+  background-color: #121212;
+  min-height: 400px;
+  border-radius: 1rem;
+}
+main .team-section .multiple-members ul li .card-blog .card-img .employee-data {
+  border-radius: 1rem 1rem 2rem 2rem;
+}
+main .team-section .multiple-members ul li .card-blog .card-img .employee-data .member-info {
+  display: none;
+}
+main .team-section .multiple-members ul li .card-blog .card-img .employee-data .water-mark-designation {
+  font-size: 120px;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.1);
+  right: 0;
+  top: 0;
+  transform: rotate(270deg) translate(-31px, 37%);
+  font-family: Satoshi-Bold;
+  position: absolute;
+}
+main .team-section .multiple-members ul li .card-blog .card-img .employee-data figure {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
+main .team-section .multiple-members ul li .card-blog .card-img .contact-icon {
+  background-color: #96FC04;
+  position: absolute;
+  bottom: 14px;
+  left: 52px;
+  border-radius: 50%;
+  padding: 0.5rem !important;
+}
+main .team-section .multiple-members ul li .card-blog .card-img .contact-icon span {
+  width: 4rem;
+  height: 4rem;
+  display: flex;
+  align-items: center;
+  background-color: #121212;
+  color: #96FC04;
+  border-radius: 50%;
+  justify-content: center;
+  font-size: 26px;
+  transform: rotate(-45deg);
+}
+main .team-section .multiple-members ul li .card-blog .rating-with-language span.date {
+  display: none;
+}
+main .multiple-blog .card-blog .card-img .blog-category {
+  left: 10px;
+  bottom: 10px;
+}
+main .send-book {
+  background-color: rgba(187, 187, 187, 0.1019607843);
+  padding-top: 75px;
+  padding-bottom: 75px;
+}
+main .send-book .form-div {
+  width: 100%;
+  max-width: 75%;
+  margin: auto;
+}
+main .send-book .form-div form {
+  margin-top: 4rem;
+}
+main .send-book .form-div form .input-group input {
+  background-color: #fff !important;
+}
+main .send-book .form-div form .input-group span.attachment-lable {
+  background-color: #fff !important;
+}
+main .blog-detail {
+  padding-top: 4.125rem;
+}
+main .blog-detail .blog-information .blog-profile-with-social-links .category-with-links .social-links a {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #F7F8FA;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+main .blog-detail .blog-information .blog-profile-with-social-links .category-with-links .social-links a .notification {
+  width: 10px;
+  height: 10px;
+  border-radius: 50px;
+  background-color: red;
+  display: inline-block;
+  position: absolute;
+  right: 0px;
+  top: 0;
+}
+main .archive-section {
+  padding-top: 100px;
+}
+main .archive-section .nav-tab-parent .nav .nav-item .nav-link {
+  border: 1px solid #DADDE2;
+  width: 7.8rem;
+  border-radius: 50px;
+  color: #121212;
+}
+main .archive-section .nav-tab-parent .nav .nav-item .nav-link.active {
+  background-color: #96FC04;
+  font-weight: 800;
+}
+main .legal-section {
+  padding-top: 100px;
+}
+main .contact-us {
+  width: 80%;
+  padding: 100px;
+}
+main .contact-us .contact-box {
+  margin: 80px 0;
+}
+main .contact-us .contact-box .contact-card .contact-icon span {
+  width: 60px;
+  height: 60px;
+  border-radius: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #F5F7FA;
+}
+main .contact-us .contact-form {
+  background-color: #F8F9FA;
+  padding: 3rem;
+}
+main .contact-us .contact-form .common-input {
+  background-color: #fff !important;
+}
+main .dashboard {
+  padding: 100px;
+}
+main .dashboard .dashboard-wrapper {
+  margin: 80px 0;
+}
+main .dashboard .dashboard-wrapper .dashboard-sidebar {
+  box-shadow: 0px 6px 34px 0px rgba(203, 213, 225, 0.2509803922);
+}
+main .dashboard .dashboard-wrapper .dashboard-sidebar ul li button {
+  width: 100%;
+  text-align: left;
+  color: #777777;
+  font-weight: 400;
+  margin-bottom: 1rem;
+}
+main .dashboard .dashboard-wrapper .dashboard-sidebar ul li button.active, main .dashboard .dashboard-wrapper .dashboard-sidebar ul li button:hover {
+  background-color: #F5F7FA;
+  font-weight: 600;
+  color: #121212;
+}
+main .dashboard .dashboard-wrapper .dashbaord-content .tab-content fieldset .field-content {
+  width: 90%;
+  margin: 40px auto;
+}
+main .dashboard .dashboard-wrapper .dashbaord-content .tab-content fieldset .field-content .form-div {
+  padding: 40px 0;
+}
+main .dashboard .dashboard-wrapper .dashbaord-content .tab-content fieldset .field-content .form-div .attachment-input .attachment-lable {
+  background-color: #F5F7FA !important;
+}
+main .dashboard .dashboard-wrapper .dashbaord-content .tab-content fieldset .field-content .date {
+  font-size: 0.75rem;
+}
+main .dashboard .dashboard-wrapper .dashbaord-content .tab-content fieldset .personal-info .upload-profile .uploaded-action .upload-btn input {
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+}
+main .dashboard .dashboard-wrapper .dashbaord-content .tab-content fieldset .publish-post .btn-group button {
+  min-width: 19%;
+  text-wrap: nowrap;
+  font-weight: 600;
+}
+main .about-section {
+  width: 70%;
+  padding: 100px;
+  margin: auto;
+}
+main .about-section .company-profile {
+  padding: 4rem 2rem;
+}
+main .slider-div .client-feeback {
+  border-radius: 32px;
+  padding: 2rem 8rem !important;
+  margin: 10px;
+  width: 1100px !important;
+}
+main .slider-div .client-feeback.bg-white-smoke {
+  background: #F6F6F6;
+}
+main .slider-div .client-feeback.bg-titan-white {
+  background-color: #EDEEFC;
+}
+main .slider-div .client-feeback.buttery-white {
+  background-color: #FFFBEB;
+}
+main .book-detail-wrapper {
+  padding: 100px;
+}
+main .book-detail-wrapper .book-detail {
+  width: 70%;
+  margin: auto;
+}
+main .book-detail-wrapper .book-detail .pages-with-language span {
+  width: 18%;
+  display: inline-block;
+  background-color: #F6F6F6;
+  text-align: center;
+  padding: 0.5rem 0 !important;
+  border-radius: 10px;
+  margin-right: 1rem !important;
+  min-width: 100px;
+}
+main .book-detail-wrapper .book-detail .book-bullet-list {
+  margin-left: 1.2rem !important;
+}
+main .book-detail-wrapper .book-detail .book-bullet-list li {
+  padding-bottom: 1rem;
+}
+main .book-detail-wrapper .book-detail .book-preview {
+  height: 1200px;
+  overflow: auto;
+}
+main .book-detail-wrapper .book-detail .book-preview::-webkit-scrollbar {
+  width: 5px;
+  border-radius: 5px;
+}
+main .book-detail-wrapper .book-detail .book-preview::-webkit-scrollbar-thumb {
+  background-color: #EAE9EA;
+}
+main .book-detail-wrapper .book-detail .book-preview .pages.active {
+  border: 2px solid #528dc6;
+}
+main .book-detail-wrapper .book-detail .book-preview .pages.active h3 {
+  color: #528dc6;
+}
+main .book-detail-wrapper .book-detail .book-preview .pages h3 {
+  margin: 1.2rem 0 !important;
+}
+main .book-detail-wrapper .book-detail .book-preview .pages .page-number span {
+  width: 30px;
+  height: 30px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  border: 1px solid;
+}
+
+/*---------------------------
+	Footer Styling
+----------------------------*/
+footer {
+  margin-top: 160px;
+  background-image: url(../img/herr-banner.png);
+  position: relative;
+}
+footer a {
+  font-family: Satoshi-Regular;
+  font-weight: 300;
+}
+footer h1 {
+  font-size: 56px;
+  font-weight: 900;
+  position: relative;
+  top: -60px;
+  font-family: Satoshi-Bold;
+}
+footer ul li span a {
+  color: #fff !important;
+  font-size: 1.2rem;
+}
+footer .new-letter-email {
+  background-color: #212121;
+  position: relative;
+  top: -60px;
+  border-radius: 16px;
+  padding: 10px;
+}
+footer .new-letter-email .form-div {
+  background-color: #fff;
+  border-radius: 16px;
+  padding: 40px 32px;
+  position: relative;
+  z-index: 2;
+}
+footer .new-letter-email .shape-left-side {
+  position: absolute;
+  left: -2.7rem;
+  top: 1.3rem;
+}
+footer .new-letter-email .shape-right-side {
+  position: absolute;
+  right: -2.7rem;
+  top: 1.3rem;
+  transform: rotate(-270deg);
+}
+footer .copy-right ul li span {
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  background-color: #fff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+footer .copy-right ul li span a {
+  color: #121212 !important;
+}
+
+/*---------------------------
+	Media Query Styling
+----------------------------*/
+@media only screen and (max-width: 1680px) {
+  main .common-top-bottom-spacing {
+    padding-top: 400px;
+    padding-bottom: 400px;
+  }
+}
+@media only screen and (max-width: 1260px) {
+  main .team-section .multiple-members ul li {
+    width: 320px;
+  }
+}
+@media only screen and (max-width: 1200px) {
+  main .slider-div {
+    margin-bottom: 7rem !important;
+  }
+  main .slider-div .client-feeback {
+    width: 650px !important;
+    padding: 2rem 1rem !important;
+  }
+  main .hero-section p, main .hero-section h1 {
+    text-align: center;
+  }
+  main .hero-section p br, main .hero-section h1 br {
+    display: none;
+  }
+  main .hero-section h1 {
+    font-size: 4.5rem;
+    line-height: 77px;
+  }
+  main .hero-section button {
+    margin: auto;
+  }
+  main .books-wrapper .filter-section {
+    width: 100%;
+  }
+  main .books-wrapper .filter-section .filter-side-bar {
+    position: absolute;
+    left: -500px;
+  }
+  main .books-wrapper .filter-section .filter-content-box {
+    width: 100%;
+    padding: 0;
+  }
+  main .interview-wrapper, main .our-blog-page {
+    width: 90%;
+  }
+  main .team-section .multiple-members ul {
+    justify-content: space-between;
+  }
+  main .team-section .multiple-members ul li {
+    width: 48.5%;
+  }
+  main .team-section .multiple-members ul li.active {
+    width: 100%;
+  }
+  main .send-book .form-div {
+    max-width: 90%;
+  }
+  main .contact-us, main .about-section {
+    width: 90%;
+  }
+  main .book-detail-wrapper .book-detail {
+    width: 90%;
+  }
+  main .common-top-bottom-spacing {
+    padding-top: 200px;
+    padding-bottom: 200px;
+  }
+  footer {
+    padding: 80px;
+    margin-top: 0;
+  }
+  footer h1 {
+    top: 0;
+    color: #fff;
+    text-align: center;
+    font-size: 40px;
+  }
+  footer h1 br {
+    display: none;
+  }
+  footer .new-letter-email {
+    top: 0;
+    margin: 2rem 0px;
+  }
+}
+@media only screen and (max-width: 992px) {
+  header {
+    padding: 0 0.688rem;
+  }
+  header .navbar-nav {
+    gap: 1.5rem !important;
+    margin: 1rem 0 !important;
+  }
+  .main-wrapper .login-wrapper .left-side {
+    display: none;
+  }
+  .main-wrapper .login-wrapper .right-side {
+    width: 100% !important;
+  }
+  main {
+    padding: 0;
+  }
+  main .common-top-bottom-spacing {
+    padding-top: 100px;
+    padding-bottom: 100px;
+  }
+  main .section-main-heading::after {
+    left: 10%;
+  }
+  main .section-main-heading span {
+    font-size: 2.5rem;
+  }
+  main .leatest-blog, main .featured-section {
+    margin: 80px 0px 0px;
+  }
+  main .contact-us, main .about-section {
+    width: 100%;
+    margin: 0;
+  }
+  main .dashboard {
+    margin: 0;
+  }
+}
+@media only screen and (max-width: 768px) {
+  .main-wrapper .login-wrapper .form-box {
+    width: 100%;
+    height: 100%;
+  }
+  main .hero-section {
+    padding: 110px 75px 0;
+  }
+  main .hero-section h1 {
+    font-size: 4.5rem;
+    line-height: 80px;
+    margin-bottom: 1rem !important;
+  }
+  main .interview-wrapper {
+    width: 100%;
+  }
+  main .our-blog .card-blog {
+    display: block !important;
+  }
+  main .dashboard .dashboard-wrapper .dashbaord-content .tab-content fieldset .field-content {
+    width: 100%;
+  }
+  main .team-section .multiple-members ul {
+    justify-content: space-between;
+  }
+  main .team-section .multiple-members ul li {
+    width: 100%;
+  }
+  main .team-section .multiple-members ul li.active {
+    width: 100%;
+  }
+  main .book-detail-wrapper .book-detail {
+    width: 100%;
+  }
+  main .book-detail-wrapper .book-detail .book-preview .pages {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+}
+@media only screen and (max-width: 600px) {
+  main .interview-wrapper {
+    padding: 50px 35px 0;
+  }
+  main .our-blog-page {
+    width: 100%;
+  }
+  main .hero-section {
+    padding: 150px 35px 0;
+  }
+  main .hero-section h1 {
+    font-size: 3.5rem;
+    line-height: 60px;
+  }
+  main .common-top-bottom-spacing {
+    padding-top: 100px;
+    padding-bottom: 100px;
+  }
+  .common-section, .featured-section {
+    padding-left: 35px !important;
+    padding-right: 35px !important;
+  }
+}
+@media only screen and (max-width: 568px) {
+  main .common-top-bottom-spacing {
+    padding-top: 50px;
+    padding-bottom: 50px;
+  }
+  main .slider-div .client-feeback {
+    width: 350px !important;
+  }
+  main .slider-div .client-feeback h2 {
+    margin: 0 !important;
+  }
+  main .about-section .company-profile {
+    padding: 4rem 0rem;
+  }
+  main .hero-section {
+    height: 100%;
+    padding: 150px 35px 40px;
+  }
+  main .hero-section figure {
+    display: none;
+  }
+  main .section-main-heading::after {
+    width: 200px;
+  }
+  main .books-wrapper {
+    padding: 50px 35px;
+  }
+  main .books-wrapper .filter-content-header form {
+    width: 100%;
+  }
+  main .pagination {
+    padding: 0px !important;
+  }
+  main .pagination ul {
+    gap: 0.5rem !important;
+  }
+  main .send-book .form-div {
+    max-width: 100%;
+  }
+  main .send-book .form-div span span {
+    left: 0 !important;
+  }
+  main .featured-section {
+    margin: 0;
+    padding: 50px;
+  }
+  main .dashboard .dashboard-wrapper .dashbaord-content .tab-content fieldset .field-content .btn-group button {
+    width: 100%;
+  }
+  footer ul.d-flex {
+    display: block !important;
+    margin: 1rem 0 !important;
+  }
+  footer ul.social-media-list {
+    display: flex !important;
+  }
+}
