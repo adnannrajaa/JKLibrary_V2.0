@@ -23,7 +23,7 @@ FROM nginx:alpine
 RUN rm -rf /usr/share/nginx/html/*
 
 # Copy the Angular build output to NGINX's root folder
-COPY --from=build /app/dist/jklibrary-v2.0  /usr/share/nginx/html
+COPY --from=build /app/dist/jklibrary_v2.0  /usr/share/nginx/html
 # Copy custom Nginx configuration
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 # Expose port 80
