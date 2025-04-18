@@ -1,10 +1,12 @@
 import { Component } from '@angular/core';
+import { FooterComponent, TopbarComponent } from '../../layouts';
+
 /*import { SlickCarouselModule } from 'ngx-slick-carousel';*/
 
 @Component({
   selector: 'app-about',
   standalone: true,
-  imports: [],
+  imports: [FooterComponent, TopbarComponent],
   templateUrl: './about.component.html',
   styleUrl: './about.component.scss'
 })

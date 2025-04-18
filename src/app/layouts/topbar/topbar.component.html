@@ -1,22 +1,23 @@
-<header class="position-fixed w-100 z-2">
-  <nav class="navbar navbar-expand-lg navbar-light">
+<header class="position-fixed w-100 z-2 bg-dark">
+  <nav class="navbar navbar-expand-lg navbar-dark">
     <div class="container-fluid">
-      <h4>
-        <a class="navbar-brand fs-3 text-white" href="#">JK Library.</a>
-      </h4>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+      <!-- Brand -->
+      <a class="navbar-brand fs-3 text-white" href="#">JK Library.</a>
+
+      <!-- Toggler -->
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02"
+        aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
+
+      <!-- Navbar items -->
       <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-        <ul class="navbar-nav gap-5 m-auto ">
+        <ul class="navbar-nav mx-auto gap-lg-5 text-center">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="/home">Home</a>
+            <a class="nav-link active" href="/home">Home</a>
           </li>
-          <!--<li class="nav-item">
-            <a class="nav-link" href="#">Latest News</a>
-          </li>-->
           <li class="nav-item">
-            <a class="nav-link " href="/featured-book" tabindex="-1">Featured Books</a>
+            <a class="nav-link" href="/featured-book">Featured Books</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/interview">Interview Links</a>
@@ -31,7 +32,11 @@
             <a class="nav-link" href="/contact-us">Contact</a>
           </li>
         </ul>
-        <button class="btn singup-btn" type="submit">Signup</button>
+
+        <!-- Signup Button -->
+        <div class="text-center text-lg-end mt-3 mt-lg-0">
+          <a href="/register"><button class="btn btn-outline-light px-4" type="button">Signup</button></a>
+        </div>
       </div>
     </div>
   </nav>

@@ -13,7 +13,7 @@ import { FooterComponent, TopbarComponent } from '../../layouts';
   imports: [CommonModule, TopbarComponent, FooterComponent],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
-})
+})  
 export class HomeComponent implements OnInit {
   // Subscription 
   private alive = true;

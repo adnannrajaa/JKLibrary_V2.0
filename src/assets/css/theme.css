@@ -135,7 +135,7 @@ a {
 }
 
 .common-top-bottom-spacing {
-  padding-top: 500px;
+  padding-top: 120px;
   padding-bottom: 500px;
 }
 
@@ -210,10 +210,15 @@ main .section-main-heading::after {
   transform: rotate(358deg);
 }
 main .hero-section {
-  background-image: url("../img/herr-banner.png");
-  padding: 150px 75px 0;
+  /* background-image: url("../img/herr-banner.png"); */
+  /* padding: 150px 75px 0; */
   position: relative;
-  height: 100vh;
+  height: 84rem;
+}
+main .hero-section .hero-section-sub {
+  background-image: url("../img/herr-banner.png");
+  height: 830px;
+  padding: 150px 75px 0;
 }
 main .hero-section p.banner-title {
   letter-spacing: 1rem;
@@ -240,7 +245,7 @@ main .hero-section figure {
   width: 100%;
   left: 50%;
   max-width: 92%;
-  transform: translate(-50%, 10px);
+  transform: translate(-50%, -38%);
   padding: 10px !important;
   border-radius: 12px;
   background-color: #212121;
@@ -772,16 +777,45 @@ footer .copy-right ul li span a {
 ----------------------------*/
 @media only screen and (max-width: 1680px) {
   main .common-top-bottom-spacing {
-    padding-top: 400px;
+    padding-top: 100px;
     padding-bottom: 400px;
+  }
+  main .hero-section {
+    /* background-image: url("../img/herr-banner.png"); */
+    /* padding: 150px 75px 0; */
+    position: relative;
+    height: 72rem;
+  }
+  main .hero-section figure {
+    transform: translate(-50%, -48%);
+  }
+}
+@media only screen and (max-width: 1400px) {
+  main .hero-section figure {
+    transform: translate(-50%, -31%);
   }
 }
 @media only screen and (max-width: 1260px) {
   main .team-section .multiple-members ul li {
     width: 320px;
   }
+  main .hero-section figure {
+    transform: translate(-50%, -37%);
+  }
 }
 @media only screen and (max-width: 1200px) {
+  main .hero-section .hero-section-sub{
+    padding: 110px 75px 0;
+  }
+  main .hero-section {
+    /* background-image: url("../img/herr-banner.png"); */
+    /* padding: 150px 75px 0; */
+    position: relative;
+    height: 50rem;
+  }
+  main .hero-section figure {
+    transform: translate(-50%, -82%);
+  }
   main .slider-div {
     margin-bottom: 7rem !important;
   }
@@ -796,7 +830,7 @@ footer .copy-right ul li span a {
     display: none;
   }
   main .hero-section h1 {
-    font-size: 4.5rem;
+    font-size: 3.5rem;
     line-height: 77px;
   }
   main .hero-section button {
@@ -899,9 +933,10 @@ footer .copy-right ul li span a {
     width: 100%;
     height: 100%;
   }
-  main .hero-section {
-    padding: 110px 75px 0;
+  main .hero-section figure {
+    display: none;
   }
+  
   main .hero-section h1 {
     font-size: 4.5rem;
     line-height: 80px;
@@ -934,17 +969,18 @@ footer .copy-right ul li span a {
   }
 }
 @media only screen and (max-width: 600px) {
+  main .hero-section .hero-section-sub{
+    padding: 150px 35px 40px;
+  }
   main .interview-wrapper {
     padding: 50px 35px 0;
   }
   main .our-blog-page {
     width: 100%;
   }
-  main .hero-section {
-    padding: 150px 35px 0;
-  }
+
   main .hero-section h1 {
-    font-size: 3.5rem;
+    font-size: 2.5rem;
     line-height: 60px;
   }
   main .common-top-bottom-spacing {
@@ -970,8 +1006,7 @@ footer .copy-right ul li span a {
   main .about-section .company-profile {
     padding: 4rem 0rem;
   }
-  main .hero-section {
-    height: 100%;
+  main .hero-section .hero-section-sub{
     padding: 150px 35px 40px;
   }
   main .hero-section figure {

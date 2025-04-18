@@ -1,37 +1,7 @@
-<header class="position-fixed w-100 z-2">
-  <nav class="navbar navbar-expand-lg navbar-light">
-      <div class="container-fluid">
-        <h4>
-          <a class="navbar-brand fs-3 text-white" href="#">JK Library.</a>
-        </h4>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-          <ul class="navbar-nav gap-5 m-auto ">
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="/home">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Latest News</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link " href="/featured-book" tabindex="-1" >Featured Books</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/interview">Interview Links</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/blog">Blog</a>
-            </li>
-          </ul>
-          <button class="btn singup-btn" type="submit">Signup</button>
-        </div>
-      </div>
-  </nav>
-</header>
+<app-topbar></app-topbar>
 <main>
     <section class="hero-section">
+        <div class="hero-section-sub">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-xl-8">
@@ -41,6 +11,7 @@
                     </h1>
                 </div>
             </div>
+        </div>
         </div>
         <figure>
             <img class="w-100 banner-content-img" src="assets/img/banner-content-img-3.png" alt="">
@@ -400,3 +371,5 @@
           </div>
     </section>
 </main>
+
+<app-footer></app-footer>

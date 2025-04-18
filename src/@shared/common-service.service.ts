@@ -1,5 +1,5 @@
-import { DOCUMENT, DatePipe } from '@angular/common';
-import { Inject, Injectable } from '@angular/core';
+import { DOCUMENT, DatePipe, isPlatformBrowser } from '@angular/common';
+import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
 import { BehaviorSubject, concat } from 'rxjs';
 import { environment } from '../environments/environment';
 import { CryptographyService } from '../@core/utils/cryptography.service';
@@ -10,11 +10,16 @@ import { CryptographyService } from '../@core/utils/cryptography.service';
 export class CommonService {
   public currentData: any;
   public editData: BehaviorSubject<any>;
-  constructor(public datepipe: DatePipe,
+  private isBrowser: boolean;
+
+  constructor(
+    public datepipe: DatePipe,
     public _cryptographyService: CryptographyService,
-    @Inject(DOCUMENT) private document: Document) {
+    @Inject(DOCUMENT) private document: Document,
+    @Inject(PLATFORM_ID) platformId: Object
+  ) {
     this.editData = new BehaviorSubject({});
-    const localStorage = document.defaultView?.localStorage;
+    this.isBrowser = isPlatformBrowser(platformId);
   }
 
   getCompletePath(filePath: string, clientSide: boolean = false): string | null {
@@ -36,15 +41,17 @@ export class CommonService {
       return this._cryptographyService.decryptImageURL(url);
   }
 
-  localStorageSetItem(key: any,value:any) {
-    if (localStorage) {
+  localStorageSetItem(key: any, value: any) {
+    if (this.isBrowser && localStorage) {
       localStorage.setItem(key, value);
     }
   }
+
   localStorageGetItem(key: any): any {
-    if (localStorage) {
-      return localStorage.getItem(key)
+    if (this.isBrowser && localStorage) {
+      return localStorage.getItem(key);
     }
+    return null;
   }
 
   isNullOrEmpty(obj: any): boolean {

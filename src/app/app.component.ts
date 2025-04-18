@@ -16,6 +16,9 @@ import { FooterComponent, TopbarComponent } from './layouts';
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
+  title(title: any) {
+    throw new Error('Method not implemented.');
+  }
   // Private
   private _unsubscribeAll: Subject<any>;
   private alive = true;

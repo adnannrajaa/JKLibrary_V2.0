@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, PLATFORM_ID, Inject } from '@angular/core';
 import {
   HttpRequest,
   HttpHandler,
@@ -13,24 +13,34 @@ import { LoaderService } from './loader.service';
 import { ResponseCode } from '../../@shared/constants/constant';
 import { CryptographyService } from './cryptography.service';
 import { environment } from '../../environments/environment';
+import { isPlatformBrowser } from '@angular/common';
 
 @Injectable()
 export class HttpHandlerInterceptor implements HttpInterceptor {
+  private isBrowser: boolean;
 
-  constructor(private _loaderService: LoaderService,
-    private _cryptographyService: CryptographyService) { }
+  constructor(
+    private _loaderService: LoaderService,
+    private _cryptographyService: CryptographyService,
+    @Inject(PLATFORM_ID) platformId: Object
+  ) {
+    this.isBrowser = isPlatformBrowser(platformId);
+  }
+
   ExcludeURLList = [
     environment.baseUrl + "/api/FileReceiver/FileReceiver",
     environment.baseUrl + "/api/FileReceiver/DownloadFile",
     environment.baseUrl + "/web/FileManager/DownloadFile",
-
   ];
+
   ExcludedAdditionalURLs = [
     environment.getIpAddress,
     environment.getIpDetails
   ];
+
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    const token = localStorage.getItem("auth")
+    const token = this.isBrowser ? localStorage.getItem("auth") : null;
+    
     // Encrypt request data
     let additionalExcludeFound = this.ExcludedAdditionalURLs.some(element => {
       return request.url.includes(element);
@@ -78,28 +88,5 @@ export class HttpHandlerInterceptor implements HttpInterceptor {
         return event;
       })
     );
-    //return next.handle(encryptedRequest)
-    //    .pipe(tap(
-    //        req => {
-    //            if (req instanceof HttpResponse) {
-    //                this._loaderService.HideLoader();
-    //                const response = JSON.parse(this._cryptographyService.decryptPayload(req.body));
-    //                if (response != "" || response != null || response.length > 0) {
-    //                    if (response.responseCode != ResponseCode.Success) {
-    //                        throw new Error(JSON.stringify(response));
-    //                    }
-    //                }
-    //                const res = req.clone({ body: response });
-    //                debugger;
-    //                return res;
-    //            }
-    //        },
-    //        (error: HttpErrorResponse) => {
-    //            this._loaderService.HideLoader();
-    //            return throwError(error);
-    //        }
-    //    )
-    //    )
   }
-
 }

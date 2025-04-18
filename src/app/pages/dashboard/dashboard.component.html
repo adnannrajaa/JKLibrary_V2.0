@@ -1,38 +1,7 @@
-<header class="position-fixed w-100 z-2">
-  <nav class="navbar navbar-expand-lg navbar-light">
-      <div class="container-fluid">
-        <h4>
-          <a class="navbar-brand fs-3 text-white" href="#">JK Library.</a>
-        </h4>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-          <ul class="navbar-nav gap-5 m-auto ">
-            <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="/home">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Latest News</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link " href="/featured-book" tabindex="-1" >Featured Books</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/interview">Interview Links</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/blog">Blog</a>
-            </li>
-          </ul>
-          <button class="btn singup-btn" type="submit">Signup</button>
-        </div>
-      </div>
-  </nav>
-</header>
+<app-topbar></app-topbar>
 <main>
     <section class="dashboard common-section pb-0">
-        <div class="container-fluid">
+        <div class="container-fluid" style="margin-top: 70px;">
             <div class="row">
                 <div class="col-md-12 text-center">
                     <h3 class="text-center section-main-heading position-relative mb-4">
@@ -56,7 +25,7 @@
                                       <button class="nav-link" id="pills-draft-tab" data-bs-toggle="pill" data-bs-target="#pills-draft" type="button" role="tab" aria-controls="pills-draft" aria-selected="false">View Drafts</button>
                                     </li>
                                     <li class="nav-item" role="presentation">
-                                        <button class="nav-link" id="pills-publish-post-tab" data-bs-toggle="pill" data-bs-target="#pills-publish-post" type="button" role="tab" aria-controls="pills-publish-post" aria-selected="false">Manage Published Postss</button>
+                                        <button class="nav-link" id="pills-publish-post-tab" data-bs-toggle="pill" data-bs-target="#pills-publish-post" type="button" role="tab" aria-controls="pills-publish-post" aria-selected="false">Manage Published Posts</button>
                                       </li>
                                   </ul>
                             </div>
@@ -194,12 +163,36 @@
                                                                             <input type="text" class="common-input form-control" placeholder="Enter Name">
                                                                         </div>
                                                                     </div>
+
                                                                     <div class="col-md-12">
                                                                         <div class="input-group">
-                                                                            <label for="" class="w-100 d-block mb-1">Post Description <span class="text-danger">*</span></label>
-                                                                            <div id="froala"></div>
+                                                                            <label for="post_description" class="w-100 d-block mb-1">
+                                                                                Post Description <span class="text-danger">*</span>
+                                                                            </label>
+                                                                            <textarea id="editor" name="post_description" class="form-control"></textarea>
                                                                         </div>
                                                                     </div>
+                                                                    <script>
+                                                                        ClassicEditor
+                                                                            .create(document.querySelector('#editor'), {
+                                                                                toolbar: {
+                                                                                    items: [
+                                                                                        'heading', '|',
+                                                                                        'bold', 'italic', 'underline', 'strikethrough', '|',
+                                                                                        'bulletedList', 'numberedList', '|',
+                                                                                        'link', 'blockQuote', 'insertTable', 'undo', 'redo'
+                                                                                    ]
+                                                                                },
+                                                                                language: 'en',
+                                                                                table: {
+                                                                                    contentToolbar: ['tableColumn', 'tableRow', 'mergeTableCells']
+                                                                                }
+                                                                            })
+                                                                            .catch(error => {
+                                                                                console.error(error);
+                                                                            });
+                                                                    </script>
+                                                                                                                                        
                                                                     <div class="col-md-12">
                                                                         <div class="input-group attachment-input">
                                                                             <label class="d-block w-100 mb-1" for="">Post Cover Image</label>
@@ -494,3 +487,4 @@
     </section>
    
 </main>
+<app-footer></app-footer>
