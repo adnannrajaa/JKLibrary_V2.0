@@ -7,7 +7,8 @@ export class RegexpPattern {
 export enum Extensions {
     image = 'jpg,png,jpeg',
     excel = 'xlsx,xls',
-    pdf = 'pdf'
+  pdf = 'pdf',
+  video = 'mp4,avi,mov'
 }
 export enum Size {
     image = 800, //KB,
@@ -17,7 +18,8 @@ export enum Size {
 export enum FileType {
   image = 'Image',
   pdf = "Pdf",
-  excel = "excel"
+  excel = "excel",
+  video = "Video",
 }
 
 export enum AuthScreen {
@@ -51,6 +53,12 @@ export enum FileStatus {
     Uploading,
     UploadedSuccess,
     UploadFaild,
+}
+
+export enum CategoryType {
+  Book = 1,
+  Interview = 2,
+  Blog = 3,
 }
 
 export enum ResponseMessage {

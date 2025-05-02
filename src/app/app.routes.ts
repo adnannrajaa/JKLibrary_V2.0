@@ -1,5 +1,4 @@
 import { Routes } from '@angular/router';
-import { HomeComponent } from './pages/home/home.component';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './pages/auth/login/login.component';
 import { ResetPasswordComponent } from './pages/auth/reset-password/reset-password.component';
@@ -17,6 +16,7 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { AboutComponent } from './pages/about/about.component';
 import { BookDetailComponent } from './pages/featured-books/book-detail/book-detail.component';
 import { ForgetPasswordComponent } from './pages/auth/forget-password/forget-password.component';
+import { HomeComponent } from './pages/home/home.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -29,7 +29,7 @@ export const routes: Routes = [
       { path: 'two-step-verify', title: 'Two Step Authanticator', component: TwoStepVerficationComponent },
       { path: 'forget-password', title: 'Forget Password', component: ForgetPasswordComponent },
       { path: 'mfa-code', title: 'MFA', component: MfaCodeComponent },
-      { path: 'home', title: 'JK Library', component: HomeComponent },
+      { path: 'home', title: 'Home', component: HomeComponent },
       { path: 'featured-book', title: 'Featured Book', component: FeaturedBooksComponent },
       { path: 'interview', title: 'Interview', component: InterviewComponent },
       { path: 'blog', title: 'Blog', component: BlogComponent },

@@ -1,7 +1,10 @@
 export interface IpAddress {
   ip: string
 }
-
+export class MiscellaneousDDL {
+  id: number;
+  name: string;
+}
 export interface IpDetails
 {
   status: string,

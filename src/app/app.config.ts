@@ -1,5 +1,5 @@
 import { ApplicationConfig, ErrorHandler, provideZoneChangeDetection } from '@angular/core';
-import { provideRouter, withComponentInputBinding } from '@angular/router';
+import { TitleStrategy, provideRouter, withComponentInputBinding } from '@angular/router';
 
 import { routes } from './app.routes';
 import { provideClientHydration } from '@angular/platform-browser';
@@ -7,6 +7,7 @@ import { provideClientHydration } from '@angular/platform-browser';
 import {
   AccountData,
   BookData,
+  CategoryData,
   FileData,
   HomeData,
   MiscellaneousData,
@@ -17,6 +18,7 @@ import {
 import {
   AccountService,
   BookService,
+  CategoryService,
   FileService,
   HomeService,
   MiscellaneousService,
@@ -26,6 +28,7 @@ import { GlobalErrorHandler, HttpHandlerInterceptor, UtilsService } from '../@co
 import { HTTP_INTERCEPTORS, provideHttpClient, withFetch, withInterceptorsFromDi } from '@angular/common/http';
 import { DatePipe } from '@angular/common';
 import { SAVER, getSaver } from '../@core/saver.provider';
+import { TemplatePageTitleStrategy } from '../@shared/TemplatePageTitleStrategy ';
 
 const DATA_SERVICES = [
   { provide: HomeData, useClass: HomeService },
@@ -34,6 +37,7 @@ const DATA_SERVICES = [
   { provide: StaticPagesData, useClass: StaticPagesService },
   { provide: MiscellaneousData, useClass: MiscellaneousService },
   { provide: AccountData, useClass: AccountService },
+  { provide: CategoryData, useClass: CategoryService },
 ]
 
 const ROOT_PROVIDERS = [
@@ -46,7 +50,7 @@ export const CORE_PROVIDERS = [
   { provide: SAVER, useFactory: getSaver },
   { provide: ErrorHandler, useClass: GlobalErrorHandler },
   { provide: HTTP_INTERCEPTORS, useClass: HttpHandlerInterceptor, multi: true },
-
+  { provide: TitleStrategy, useClass: TemplatePageTitleStrategy },
 ]
 
 

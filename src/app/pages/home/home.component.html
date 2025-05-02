@@ -1008,43 +1008,105 @@
               <h1 class="fw-700">Send a book</h1>
             </div>
             <div class="col-md-12">
-              <form action="">
+              <form  [formGroup]="bookInfoForm" (ngSubmit)="onSubmit()">
                 <div class="row">
+                  <ngb-alert type="danger" *ngIf="error" [dismissible]="true">{{ error }}</ngb-alert>
+                  <ngb-alert type="success" *ngIf="success" [dismissible]="true">{{ success }}</ngb-alert>
                   <div class="col-md-6">
                     <div class="input-group">
-                      <label class="d-block w-100 mb-1" for="">Book Name</label>
-                      <input type="text" class="form-control common-input" placeholder="Enter Book Name">
+                      <label class="d-block w-100 mb-1">Book Name<span class="text-danger">*</span></label>
+                      <input type="text" name="title" formControlName="title"
+                             [ngClass]="{ 'is-invalid': submitted && f.title.errors }" class="form-control common-input"
+                             placeholder="Enter Book Name">
+                      <div *ngIf="submitted && f.title.errors" class="invalid-feedback">
+                        <div *ngIf="f.title.errors.required">Book name is required </div>
+                      </div>
                     </div>
                   </div>
                   <div class="col-md-6">
                     <div class="input-group">
-                      <label class="d-block w-100 mb-1" for="">Author Name</label>
-                      <input type="text" class="form-control common-input" placeholder="Enter Author Name">
+                      <label class="d-block w-100 mb-1">Book Author<span class="text-danger">*</span></label>
+                      <input type="text" name="author" formControlName="author"
+                             [ngClass]="{ 'is-invalid': submitted && f.author.errors }" class="form-control common-input"
+                             placeholder="Enter Author Name">
+                      <div *ngIf="submitted && f.author.errors" class="invalid-feedback">
+                        <div *ngIf="f.author.errors.required">Author name is required </div>
+                      </div>
                     </div>
                   </div>
+                  <div class="col-md-6">
+                    <div class="input-group">
+                      <label class="d-block w-100 mb-1">Category<span class="text-danger">*</span></label>
+                      <select class="form-control common-input"
+                              name="categoryId"
+                              [ngClass]="{ 'is-invalid': submitted && f.categoryId.errors }"
+                              placeholder="Select category"
+                              formControlName="categoryId">
+                        <option value="">Select category</option>
+                        <option *ngFor="let item of categoriesDDL " value="{{item.id}}">{{item.name}}</option>
+                      </select>
+                      <div *ngIf="submitted && f.categoryId.errors" class="invalid-feedback">
+                        <div *ngIf="f.categoryId.errors.required">Please select category</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="input-group">
+                      <label class="d-block w-100 mb-1">Select Language<span class="text-danger">*</span></label>
+                      <select class="form-control common-input"
+                              name="language"
+                              [ngClass]="{ 'is-invalid': submitted && f.language.errors }"
+                              placeholder="Select Language"
+                              formControlName="language">
+                        <option value="">Select Language</option>
+                        <option value="English">English</option>
+                        <option value="English">Kashmiri</option>
+                        <option value="English">Pharsi</option>
+                        <option value="Urdu">Urdu</option>
+                      </select>
+                      <div *ngIf="submitted && f.language.errors" class="invalid-feedback">
+                        <div *ngIf="f.language.errors.required">Please select language</div>
+                      </div>
+                    </div>
+                  </div>
+
                   <div class="col-md-6">
                     <div class="input-group attachment-input">
-                      <label class="d-block w-100 mb-1" for="">Cover Page</label>
-                      <input type="file" class="form-control common-input">
+                      <label class="d-block w-100 mb-1" for="">Cover Page<span class="text-danger">*</span></label>
+                      <input (change)="onfileUpload($event,'Image')" accept="image/png, image/jpg, image/jpeg"
+                             [ngClass]="{ 'is-invalid': submitted && f.coverPage.errors }"
+                             type="file" class="form-control common-input">
                       <span class="attachment-lable"><i class="fa-solid fa-arrow-up-from-bracket"></i> Upload Cover Page</span>
+                      <span class="badge bg-secondary mt-1">{{coverPageOrignalFileName}}</span>
+                      <div *ngIf="submitted && f.coverPage.errors" class="invalid-feedback">
+                        <div *ngIf="f.coverPage.errors.required">Cover page is required </div>
+                      </div>
                       <span class="d-block w-100">
-                        <small class="float-end">Max size: 800 kb</small>
+                        <small class="float-end">Allowed JPG, JPEG or PNG. Max size of 800kB</small>
                       </span>
                     </div>
                   </div>
                   <div class="col-md-6">
                     <div class="input-group attachment-input">
-                      <label class="d-block w-100 mb-1" for="">Cover Page</label>
-                      <input type="file" class="form-control common-input">
+                      <label class="d-block w-100 mb-1" for="">Upload Book<span class="text-danger">*</span></label>
+                      <input (change)="onfileUpload($event,'Pdf')" accept="application/pdf"
+                             [ngClass]="{ 'is-invalid': submitted && f.url.errors }"
+                             type="file" class="form-control common-input">
                       <span class="attachment-lable"><i class="fa-solid fa-arrow-up-from-bracket"></i> Upload Book</span>
+
+                      <span class="badge bg-secondary">{{bookOrignalFileName}}</span>
+                      <div *ngIf="submitted && f.url.errors" class="invalid-feedback">
+                        <div *ngIf="f.url.errors.required">Please upload book pdf</div>
+                      </div>
                       <span class="d-block w-100">
-                        <span class="position-absolute start-50">Format: PDF</span>
-                        <small class="float-end">Max size: 4 MB</small>
+                        <small class="float-end">Allowed format PDF. Max size: 4 MB</small>
                       </span>
                     </div>
                   </div>
+
+
                   <div class="col-md-12 text-end">
-                    <button class="theme-btn mt-5">Submit Book</button>
+                    <button class="theme-btn mt-5" type="submit">Submit Book</button>
                   </div>
                 </div>
               </form>

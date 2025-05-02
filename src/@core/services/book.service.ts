@@ -6,12 +6,17 @@ import { BookData } from '../data/book';
 
 @Injectable()
 export class BookService extends BookData {
-
+  
   constructor(private _utilsServices: UtilsService) {
     super();
   }
   get(request: BaseRequestModel): Observable<BaseResponseModel> {
     return this._utilsServices.postPut<BaseResponseModel>('/web/book/get', request);
   }
+  sendBook(book: any): Observable<BaseResponseModel> {
+    return this._utilsServices.postPut<BaseResponseModel>('/web/Book/SaveBook', book);
+  }
+
+
 
 }

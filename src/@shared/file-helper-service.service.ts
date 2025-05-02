@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { FileType, Size } from "./constants/constant";
+import { Extensions, FileType, Size } from "./constants/constant";
 
 @Injectable({
     providedIn: 'root'
@@ -38,7 +38,50 @@ export class FileHelper {
         return fileSize;
 
     }
+  isValidFile(event: any, fileType: string): boolean {
 
+    var isValid = false;
+    var extension = this.getExtention(event);
+    switch (fileType) {
+      case FileType.image:
+        let imgExt = Extensions.image.split(',');
+        imgExt.forEach(ex => {
+          if (ex.toLowerCase() == extension) {
+            isValid = true;
+            return isValid;
+          }
+        })
+        break;
+      case FileType.pdf:
+        let pdfExt = Extensions.pdf.split(',');
+        pdfExt.forEach(ex => {
+          if (ex.toLowerCase() == extension) {
+            isValid = true;
+            return isValid;
+          }
+        })
+        break;
+      case FileType.excel:
+        let excelExt = Extensions.excel.split(',');
+        excelExt.forEach(ex => {
+          if (ex.toLowerCase() == extension) {
+            isValid = true;
+            return isValid;
+          }
+        })
+        break;
+      case FileType.video:
+        let videoExt = Extensions.video.split(',');
+        videoExt.forEach(ex => {
+          if (ex.toLowerCase() == extension) {
+            isValid = true;
+            return isValid;
+          }
+        })
+        break;
+    }
+    return isValid;
+  }
     isValidSize(event: any, fileType: string, sizeUnit: string = "KB" || "MB" || "GB"): boolean {
 
         var isValid = false;
