@@ -12,45 +12,110 @@
                         <h3 class="text-center">JK Library</h3>
                     </div>
                     <div class="col-md-12">
-                        <div class="form-box m-auto mt-48 d-flex flex-column justify-content-center">
-                            <h1>Welcome Back</h1>
-                            <p>Enter detail to sign into your account.</p>
-                            <form action="" class="mt-48">
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="input-group">
-                                            <label class="d-block w-100 mb-1" for="">Email</label>
-                                            <input type="text" class="form-control common-input" placeholder="Enter your Email">
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <div class="input-group">
-                                            <label class="d-block w-100 mb-1" for="">Password</label>
-                                            <input type="text" class="form-control common-input" placeholder="Enter your Password">
-                                            <div class="d-flex w-100 justify-content-between px-2">
-                                                <span>
-                                                    <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike">
-                                                    <label for="vehicle1">&nbsp; Remember me</label>
-                                                </span>
-                                                <span>
-                                                    <a href="">Forgot Password</a>
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                   
-                                    <div class="col-md-12">
-                                        <div class="input-group">
-                                            <button class="theme-btn w-100">Sign Up</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </form>
-                            
+                      <div class="form-box m-auto mt-48 d-flex flex-column justify-content-center">
+                        <h1>Welcome Back</h1>
+                        <p>Enter detail to sign into your account.</p>
+                      
+                        <form  [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="mt-48">
+
+                          <span class="text-danger" *ngIf="error" >{{ error }}</span>
+                          <div *ngIf="currentScreen == '1'">
+                           
                             <div class="col-md-12">
-                                <p class="text-center mt-48" style="margin-bottom: 2.5rem !important;">Dont have an account? <a href="/register">Sign Up</a></p>
+                              <label class="d-block w-100 mb-1" for="">Email</label>
+                              <input type="email" formControlName="email" class="form-control common-input" id="email" placeholder="Email"
+                                     [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+                              <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                                <div *ngIf="f.email.errors.required">Email is required</div>
+                                <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
+                              </div>
                             </div>
-                </div>
+
+                            <div class="mb-3">
+                              <div class="float-end">
+                                <a routerLink="/forget-password" class="text-muted">
+                                  Forgot
+                                  password?
+                                </a>
+                              </div>
+                              <label class="d-block w-100 mb-1" for="">Password</label>
+                              <div class="input-group auth-pass-inputgroup">
+                                <input [type]="passwordTextType ? 'text' : 'password'"
+                                       class="form-control common-input" formControlName="password"
+                                       [ngClass]="{ 'is-invalid': submitted && f.password.errors }"
+                                       placeholder="Enter password" aria-label="Password"
+                                       aria-describedby="password-addon">
+                                <button class="btn btn-light " (click)="togglePasswordTextType()" type="button" id="password-addon">
+                                  <i class="mdi" [ngClass]="{ 'mdi-eye-off-outline': passwordTextType,'mdi-eye-outline': !passwordTextType}"></i>
+
+                                </button>
+                                <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                                  <span *ngIf="f.password.errors.required">Password is required</span>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="form-check">
+                              <input class="form-check-input" type="checkbox" id="remember-check">
+                              <label class="form-check-label" for="remember-check">
+                                Remember me
+                              </label>
+                            </div>
+                          </div>
+                          <div *ngIf="currentScreen == '2'">
+                            <div class="mb-3">
+                              <div class="float-end">
+                                <a href="javascript: void(0);" (click)="showRecoveryCodeScreen()" class="text-muted">
+                                  Log in with a recovery code?
+                                </a>
+                              </div>
+                              <label for="twoFactorCode">MFA Code</label>
+                              <input type="text" formControlName="twoFactorCode" class="form-control" id="twoFactorCode" placeholder="MFA Code"
+                                     [ngClass]="{ 'is-invalid': submitted && f.twoFactorCode.errors }" />
+                              <div *ngIf="submitted && f.twoFactorCode.errors" class="invalid-feedback">
+                                <div *ngIf="f.twoFactorCode.required">MFA code is required</div>
+                                <div *ngIf="f.twoFactorCode.errors.minlength || f.twoFactorCode.errors.maxlength">MFA code must be between 6 and 7 characters long</div>
+                              </div>
+
+                            </div>
+                          </div>
+
+                          <div *ngIf="currentScreen == '3'">
+                            <div class="mb-3">
+                              <div class="float-end">
+                                <a href="javascript: void(0);" (click)="showMFAScreen()" class="text-muted">
+                                  Have
+                                  authenticator code?
+                                </a>
+                              </div>
+                              <label for="recoveryCode">Recovery Code</label>
+                              <input type="text" formControlName="recoveryCode" class="form-control" id="recoveryCode" placeholder="Recovery Code"
+                                     [ngClass]="{ 'is-invalid': submitted && f.recoveryCode.errors }" />
+                              <div *ngIf="submitted && f.recoveryCode.errors" class="invalid-feedback">
+                                <div *ngIf="f.email.recoveryCode.required">Recovery code is required</div>
+                              </div>
+                            </div>
+                          </div>
+                          <div *ngIf="currentScreen == '1'">
+                            <div class="col-md-12">
+                              <div class="input-group">
+                                <button class="theme-btn w-100" type="submit">Login</button>
+                              </div>
+                            </div>
+                          </div>
+
+                          <div *ngIf="currentScreen == '2' || currentScreen == '3'">
+                            <div class="col-md-12">
+                              <div class="input-group">
+                                <button class="theme-btn w-100" type="submit">Verify</button>
+                              </div>
+                            </div>
+                          </div>
+
+                        </form>
+                        <div class="col-md-12">
+                          <p class="text-center mt-48" style="margin-bottom: 2.5rem !important;">Dont have an account? <a href="/register">Sign Up</a></p>
+                        </div>
+                      </div>
             </div>
             
             

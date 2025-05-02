@@ -20,6 +20,12 @@ export enum FileType {
   excel = "excel"
 }
 
+export enum AuthScreen {
+  Login = "1",
+  MFA = "2",
+  RecoveryCodes = "3"
+}
+
 export enum SizeUnit {
     KB = "KB",
     MB = "MB",

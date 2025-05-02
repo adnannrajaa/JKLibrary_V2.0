@@ -11,7 +11,6 @@ import {
   HomeData,
   MiscellaneousData,
   StaticPagesData,
-  UserData,
 } from '../@core/data';
 
 //Services
@@ -22,7 +21,6 @@ import {
   HomeService,
   MiscellaneousService,
   StaticPagesService,
-  UserService,
 } from '../@core/services';
 import { GlobalErrorHandler, HttpHandlerInterceptor, UtilsService } from '../@core/utils';
 import { HTTP_INTERCEPTORS, provideHttpClient, withFetch, withInterceptorsFromDi } from '@angular/common/http';
@@ -30,7 +28,6 @@ import { DatePipe } from '@angular/common';
 import { SAVER, getSaver } from '../@core/saver.provider';
 
 const DATA_SERVICES = [
-  { provide: UserData, useClass: UserService },
   { provide: HomeData, useClass: HomeService },
   { provide: FileData, useClass: FileService },
   { provide: BookData, useClass: BookService },

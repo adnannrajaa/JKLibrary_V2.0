@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component } from "@angular/core";
+
 
 @Component({
   selector: 'app-mfa-code',
@@ -8,5 +9,4 @@ import { Component } from '@angular/core';
   styleUrl: './mfa-code.component.scss'
 })
 export class MfaCodeComponent {
-
 }

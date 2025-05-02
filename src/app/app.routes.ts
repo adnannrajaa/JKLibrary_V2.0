@@ -16,6 +16,7 @@ import { ContactUsComponent } from './pages/contact-us/contact-us.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { AboutComponent } from './pages/about/about.component';
 import { BookDetailComponent } from './pages/featured-books/book-detail/book-detail.component';
+import { ForgetPasswordComponent } from './pages/auth/forget-password/forget-password.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -26,6 +27,7 @@ export const routes: Routes = [
       { path: 'reset-password', title: 'Reset Password', component: ResetPasswordComponent },
       { path: 'register', title: 'Register', component: SignUpComponent },
       { path: 'two-step-verify', title: 'Two Step Authanticator', component: TwoStepVerficationComponent },
+      { path: 'forget-password', title: 'Forget Password', component: ForgetPasswordComponent },
       { path: 'mfa-code', title: 'MFA', component: MfaCodeComponent },
       { path: 'home', title: 'JK Library', component: HomeComponent },
       { path: 'featured-book', title: 'Featured Book', component: FeaturedBooksComponent },

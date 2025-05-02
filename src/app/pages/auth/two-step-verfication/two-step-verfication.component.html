@@ -12,72 +12,93 @@
                         <h3 class="text-center">JK Library</h3>
                     </div>
                     <div class="col-md-12">
-                        <div class="form-box m-auto mt-48 d-flex flex-column justify-content-center">
-                            <h1>Enable 2 Step Verification</h1>
-                            <p>To use an authenticator app gp through the following steps:</p>
-                            <form action="" class="mt-48">
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <ol>
-                                            <li class="mb-2">
-                                                <span>Download a two-factor authenticator app like Microsoft Authenticator for Windows Phone, Android and iOs or Google Authenticator for Android and iOS.</span>
-                                            </li>
-                                            <li class="mb-2">
-                                                <span>Scan the QR Code or enter this key i2kv pswl eg4d orcv ohkp yxyz ycgj wre into your two factor authenticator app. Spaces and casing do not matter.</span>
-                                                <div class="qr-code my-3">
-                                                    <svg width="112" height="112" viewBox="0 0 112 112" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                                        <g clip-path="url(#clip0_198_408)">
-                                                        <path d="M42 0H0V42H42V0ZM35 35H7V7H35V35Z" fill="#444444"/>
-                                                        <path d="M14 14H28V28H14V14ZM0 112H42V70H0V112ZM7 77H35V105H7V77Z" fill="#444444"/>
-                                                        <path d="M14 84H28V98H14V84ZM70 0V42H112V0H70ZM105 35H77V7H105V35Z" fill="#444444"/>
-                                                        <path d="M84 14H98V28H84V14ZM14 49H0V63H21V56H14V49ZM49 63H63V77H49V63ZM21 49H35V56H21V49ZM63 84H49V91H56V98H63V91V84ZM42 49V56H35V63H49V49H42ZM56 28H63V42H56V28ZM63 56V63H77V49H56V56H63ZM49 42H56V49H49V42ZM63 98H77V112H63V98ZM49 98H56V112H49V98ZM63 77H70V84H63V77ZM63 21V7H56V0H49V28H56V21H63ZM84 98H91V112H84V98ZM84 84H98V91H84V84ZM77 91H84V98H77V91ZM70 84H77V91H70V84ZM98 70V77H105V84H112V70H105H98ZM105 91H98V112H112V98H105V91ZM70 70V77H91V63H77V70H70ZM84 49V56H98V63H112V49H98H84Z" fill="#444444"/>
-                                                        </g>
-                                                        <defs>
-                                                        <clipPath id="clip0_198_408">
-                                                        <rect width="112" height="112" fill="white"/>
-                                                        </clipPath>
-                                                        </defs>
-                                                    </svg>
-                                                        
-                                                </div>
-                                            </li>
-                                            <li class="mb-2">
-                                                <span>Once you have scanned the QR code or input the key above, your two factor authentication app will provide you with a unique code. Enter the code in the confirmation box below.</span>
-                                            </li>
-                                        </ol>
-                                    </div>
-                                    <div class="col-lg-12">
-                                        <h4 class="mb-3">Authenticator Code</h4>
-                                        <div class="d-flex gap-2 authentication-code">
-                                            <div class="input-group w-auto">
-                                                <input type="text" class="common-input">
-                                            </div>
-                                            <div class="input-group w-auto">
-                                                <input type="text" class="common-input">
-                                            </div>
-                                            <div class="input-group w-auto">
-                                                <input type="text" class="common-input">
-                                            </div>
-                                            <div class="input-group w-auto">
-                                                <input type="text" class="common-input">
-                                            </div>
-                                            <div class="input-group w-auto">
-                                                <input type="text" class="common-input">
-                                            </div>
-                                            <div class="input-group w-auto">
-                                                <input type="text" class="common-input">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <div class="input-group">
-                                            <button class="theme-btn w-100">Sign Up</button>
-                                        </div>
-                                    </div>
+                      <div class="form-box m-auto mt-48 d-flex flex-column justify-content-center">
+                        <h1 *ngIf="!showRecoveryCodes">Enable 2 Step Verification</h1>
+                        <h1 *ngIf="showRecoveryCodes">Recovery Codes</h1>
+                        <p>To use an authenticator app gp through the following steps:</p>
+                        <div class="row" *ngIf="!showRecoveryCodes">
+                          <div class="col-md-12">
+                            <ol>
+                              <li class="mb-2">
+                                <span>
+                                  <p>
+                                    Download a two-factor authenticator app like Microsoft Authenticator for
+                                    <a href="https://go.microsoft.com/fwlink/?Linkid=825071">Windows Phone</a>,
+                                    <a href="https://go.microsoft.com/fwlink/?Linkid=825072">Android</a> and
+                                    <a href="https://go.microsoft.com/fwlink/?Linkid=825073">iOS</a> or
+                                    Google Authenticator for
+                                    <a href="https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2&amp;hl=en">Android</a> and
+                                    <a href="https://itunes.apple.com/us/app/google-authenticator/id388497605?mt=8">iOS</a>.
+                                  </p>
+                                </span>
+                              </li>
+                              <li class="mb-2">
+                                <span>Scan the QR Code or enter this key <kbd>{{mfaModel.sharedKey}}</kbd> into your two factor authenticator app. Spaces and casing do not matter.</span>
+                                <div class="qr-code my-3">
+                                  <qr-code value="{{mfaModel.authenticatorUri}}" size="100" errorCorrectionLevel="M"></qr-code>
                                 </div>
-                            </form>
-                            
+                              </li>
+                              <li class="mb-2">
+                                <span>Once you have scanned the QR code or input the key above, your two factor authentication app will provide you with a unique code. Enter the code in the confirmation box below.</span>
+                              </li>
+                            </ol>
+                          </div>
+                          <form [formGroup]="mfaForm" (ngSubmit)="onSubmit()">
+                            <ngb-alert type="danger" *ngIf="error" [dismissible]="false">{{ error }}</ngb-alert>
+                            <div class="col-lg-12">
+                              <h4 class="mb-3">Authenticator Code</h4>
+                              <div class="d-flex gap-2 authentication-code">
+                                <ng-otp-input #ngOtpInput
+                                              (onInputChange)="onOtpChange($event)"
+                                              [config]="config"></ng-otp-input>
+
+                                <div *ngIf="submitted && f.code.errors" class="invalid-feedback">
+                                  <span *ngIf="f.code.errors.required">Authenticator code is required</span>
+                                </div>
+                              </div>
+                            </div>
+                            <div class="col-md-12 mt-48">
+                              <div class="input-group">
+                                <button class="theme-btn w-100" type="submit">Verify</button>
+                              </div>
+                            </div>
+                          </form>
+
                         </div>
+                        <div class="card-body" *ngIf="showRecoveryCodes">
+                          <ngb-alert type="warning" [dismissible]="false">
+                            <p>
+                              <span class="glyphicon glyphicon-warning-sign"></span>
+                              <strong>Put these codes in a safe place.</strong>
+                            </p>
+                            <p>
+                              If you lose your device and don't have the recovery codes you will lose access to your account.
+                            </p>
+                            <p>
+                              Manage your recovery codes by <a href="javascript: void(0);" (click)="copyToClipboard()" class="card-link">copying them to the clipboard</a> or <a href="javascript: void(0);" (click)="downloadCodes()" class="card-link" style="margin-left:0px;">downloading them as a text file</a>
+                            </p>
+                            <p>
+                              Please proceed to the <a routerLink="/account/login" class="card-link">login</a> page to access your account.
+                            </p>
+                          </ngb-alert>
+                          <div class="row">
+                            <div class="col-md-12">
+                              <ng-container *ngFor="let code of recoveryCodes; let i = index">
+                                <ng-container *ngIf="i % 2 === 0">
+                                  <code>{{ code }}</code>
+                                  <ng-container *ngIf="recoveryCodes[i + 1]">
+                                    &nbsp;
+                                    <code>{{ recoveryCodes[i + 1] }}</code>
+                                  </ng-container>
+                                  <br />
+                                </ng-container>
+                              </ng-container>
+                            </div>
+                          </div>
+                        </div>
+
+                        <!-- end card-body-->
+                      </div>
                         <p class="text-center mt-48" style="margin-bottom: 2.5rem !important;">Already have an account? <a href="">Sign In</a></p>
                     </div>
                 </div>

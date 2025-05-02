@@ -1,4 +1,3 @@
-export * from '../data/users';
 export * from '../data/home';
 export * from '../data/file';
 export * from '../data/book';

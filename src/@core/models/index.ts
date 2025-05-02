@@ -1,4 +1,3 @@
-export * from '../models/user-model';
 export * from '../models/menu-model';
 export * from '../models/file-model';
 export * from '../models/response-model';
