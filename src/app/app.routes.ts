@@ -14,9 +14,9 @@ import { LegalComponent } from './pages/legal/legal.component';
 import { ContactUsComponent } from './pages/contact-us/contact-us.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { AboutComponent } from './pages/about/about.component';
-import { BookDetailComponent } from './pages/featured-books/book-detail/book-detail.component';
 import { ForgetPasswordComponent } from './pages/auth/forget-password/forget-password.component';
 import { HomeComponent } from './pages/home/home.component';
+import { BookDetailComponent } from './pages/featured-books/book-detail/book-detail.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -33,13 +33,13 @@ export const routes: Routes = [
       { path: 'featured-book', title: 'Featured Book', component: FeaturedBooksComponent },
       { path: 'interview', title: 'Interview', component: InterviewComponent },
       { path: 'blog', title: 'Blog', component: BlogComponent },
-      { path: 'blog-detail', title: 'Blog Detail', component: BlogDetailComponent },
+      { path: 'blog-detail/:id', title: 'Blog Detail', component: BlogDetailComponent },
       { path: 'archives', title: 'Archives', component: ArchivesComponent },
       { path: 'legal', title: 'Legal', component: LegalComponent },
       { path: 'contact-us', title: 'Contact Us', component: ContactUsComponent },
       { path: 'dashboard', title: 'Dashbaord', component: DashboardComponent },
       { path: 'about', title: 'About Us', component: AboutComponent },
-      { path: 'book-detail', title: 'Book Detail', component: BookDetailComponent },
+      { path: 'book-detail/:id', title: 'Book Detail', component: BookDetailComponent },
     ],
   },
 ];
