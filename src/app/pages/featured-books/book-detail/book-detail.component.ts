@@ -56,6 +56,7 @@ export class BookDetailComponent implements OnInit, OnDestroy {
           this.bookDetail = response.data;
           this.bookDetail.displayCoverPage = this.getCompletePath(this.bookDetail.displayCoverPage);
           this.pdfSrc = this.getCompletePath(this.bookDetail.url);
+          console.log(this.pdfSrc)
           if (this.bookDetail.comments?.length > 0) {
             this.comments = this.buildCommentTree(this.bookDetail.comments);
           }
