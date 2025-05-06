@@ -70,7 +70,6 @@ export class FeaturedBooksComponent implements OnInit, OnDestroy {
         } else {
           //this._messageService.Message(response.responseMessage, MessageType.error);
         }
-        console.log(this.books);
 
       })
 
