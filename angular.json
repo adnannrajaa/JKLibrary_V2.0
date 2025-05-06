@@ -74,6 +74,15 @@
                 },
                 "fonts": true
               },
+              "assets": [
+                "src/favicon.ico",
+                "src/assets",
+                {
+                  "glob": "**/*",
+                  "input": "node_modules/ngx-extended-pdf-viewer/assets/",
+                  "output": "/assets/"
+                }
+              ],
               "outputHashing": "all",
               "sourceMap": false,
               "namedChunks": false,
