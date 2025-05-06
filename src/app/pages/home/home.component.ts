@@ -84,8 +84,6 @@ export class HomeComponent implements OnInit {
               return s;
             });
           }
-          console.log(this.books)
-          console.log(this.banners)
         }
       })
   }

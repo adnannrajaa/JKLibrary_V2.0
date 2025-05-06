@@ -5,14 +5,15 @@ import { takeWhile } from 'rxjs';
 import { BookData, FileData } from '../../../../@core/data';
 import { CommonService } from '../../../../@shared/common-service.service';
 import { BaseRequestModel } from '../../../../@core/models';
-import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
+
 
 
 @Component({
   selector: 'app-book-detail',
   standalone: true,
-  imports: [CommonModule,TopbarComponent, FooterComponent, RouterModule],
+  imports: [CommonModule, TopbarComponent, FooterComponent, RouterModule, NgxExtendedPdfViewerModule],
   templateUrl: './book-detail.component.html',
   styleUrl: './book-detail.component.scss'
 })
@@ -31,7 +32,7 @@ export class BookDetailComponent implements OnInit, OnDestroy {
   bookDetail: any;
   comments: any;
   private alive = true;
-
+  pdfSrc = 'assets/pdf-test.pdf';
   constructor(private route: ActivatedRoute,
     private _bookService: BookData,
     private _fileService: FileData,
@@ -52,9 +53,9 @@ export class BookDetailComponent implements OnInit, OnDestroy {
       .pipe(takeWhile(() => this.alive))
       .subscribe((response) => {
         if (response.success) {
-          console.log(response)
           this.bookDetail = response.data;
           this.bookDetail.displayCoverPage = this.getCompletePath(this.bookDetail.displayCoverPage);
+          this.pdfSrc = this.getCompletePath(this.bookDetail.url);
           if (this.bookDetail.comments?.length > 0) {
             this.comments = this.buildCommentTree(this.bookDetail.comments);
           }
@@ -93,7 +94,6 @@ export class BookDetailComponent implements OnInit, OnDestroy {
         } else {
           //this._messageService.Message(response.responseMessage, MessageType.error);
         }
-        console.log(this.books);
 
       })
 
