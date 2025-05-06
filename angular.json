@@ -19,7 +19,9 @@
           "options": {
             "allowedCommonJsDependencies": [
               "crypto-js",
-              "file-saver"
+              "file-saver",
+              "pdfjs-dist",
+              "ngx-extended-pdf-viewer"
             ],
             "outputPath": "dist/jklibrary-v2.0",
             "index": "src/index.html",
