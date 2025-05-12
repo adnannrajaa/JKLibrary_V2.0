@@ -1,19 +1,19 @@
-<div class="main-wrapper">
-    <div class="login-wrapper p-2 d-flex gap-2">
-        <div class="left-side w-50 h-100">
-            <figure class="h-100">
-                <img src="assets/img/left-banner.png" alt="" class="img-fluid h-100 rounded-5 w-100">
+<div class="main-wrapper min-vh-100">
+    <div class="login-wrapper p-2  d-flex gap-2 ">
+        <div class="left-side">
+            <figure class="h-100 m-0">
+                <img src="assets/img/left-banner.png" alt="" class="img-fluid h-100 rounded-5  object-fit-cover">
             </figure>
         </div>
-        <div class="right-side h-100 w-50 pt-5">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-md-12">
-                        <h3 class="text-center">JK Library</h3>
+        <div class="h-100 d-flex flex-grow-1 right-side">
+            <div class="container-fluid py-3">
+                <div class="flex-column h-100 row">
+                    <div class="col-12">
+                        <h3 class="text-center mb-2">JK Library</h3>
                     </div>
-                    <div class="col-md-12">
-                      <div class="form-box m-auto mt-48 d-flex flex-column justify-content-center">
-                        <h1>Welcome Back</h1>
+                    <div class="col-12 flex-grow-1">
+                      <div class="d-flex flex-column form-box h-100 justify-content-center mx-auto p-2">
+                         <h1>Welcome Back</h1>
                         <p>Enter detail to sign into your account.</p>
                       
                         <form  [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="mt-48">
@@ -32,12 +32,7 @@
                             </div>
 
                             <div class="mb-3">
-                              <div class="float-end">
-                                <a routerLink="/forget-password" class="text-muted">
-                                  Forgot
-                                  password?
-                                </a>
-                              </div>
+                             
                               <label class="d-block w-100 mb-1" for="">Password</label>
                               <div class="input-group auth-pass-inputgroup">
                                 <input [type]="passwordTextType ? 'text' : 'password'"
@@ -45,21 +40,37 @@
                                        [ngClass]="{ 'is-invalid': submitted && f.password.errors }"
                                        placeholder="Enter password" aria-label="Password"
                                        aria-describedby="password-addon">
-                                <button class="btn btn-light " (click)="togglePasswordTextType()" type="button" id="password-addon">
-                                  <i class="mdi" [ngClass]="{ 'mdi-eye-off-outline': passwordTextType,'mdi-eye-outline': !passwordTextType}"></i>
+                                <button class="bg-transparent border-0 btn btn-light end-0 h-100 position-absolute" (click)="togglePasswordTextType()" type="button" id="password-addon">
+                               
+                                  <span class="mdi" [ngClass]="{ 'mdi-eye-off-outline': passwordTextType,'mdi-eye-outline': !passwordTextType}">
+                                    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M12.9833 9.99993C12.9833 11.6499 11.6499 12.9833 9.99993 12.9833C8.34993 12.9833 7.0166 11.6499 7.0166 9.99993C7.0166 8.34993 8.34993 7.0166 9.99993 7.0166C11.6499 7.0166 12.9833 8.34993 12.9833 9.99993Z" stroke="#5B5B5B" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M9.99987 16.8914C12.9415 16.8914 15.6832 15.1581 17.5915 12.1581C18.3415 10.9831 18.3415 9.00806 17.5915 7.83306C15.6832 4.83306 12.9415 3.09973 9.99987 3.09973C7.0582 3.09973 4.31654 4.83306 2.4082 7.83306C1.6582 9.00806 1.6582 10.9831 2.4082 12.1581C4.31654 15.1581 7.0582 16.8914 9.99987 16.8914Z" stroke="#5B5B5B" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
 
+                                  </span>
                                 </button>
                                 <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
                                   <span *ngIf="f.password.errors.required">Password is required</span>
                                 </div>
                               </div>
                             </div>
-                            <div class="form-check">
+                            <div class="d-flex align-items-center justify-content-between mb-3">
+                                 <div class="form-check">
                               <input class="form-check-input" type="checkbox" id="remember-check">
                               <label class="form-check-label" for="remember-check">
                                 Remember me
                               </label>
                             </div>
+                             <div class="float-end">
+                                <a routerLink="/forget-password" class="text-muted">
+                                  Forgot
+                                  password?
+                                </a>
+                              </div>
+
+                            </div>
+                           
                           </div>
                           <div *ngIf="currentScreen == '2'">
                             <div class="mb-3">
@@ -112,13 +123,18 @@
                           </div>
 
                         </form>
-                        <div class="col-md-12">
-                          <p class="text-center mt-48" style="margin-bottom: 2.5rem !important;">Dont have an account? <a href="/register">Sign Up</a></p>
-                        </div>
+                          
+                       
                       </div>
+                    </div>
+                    <div class="col-12">
+                      <p class="text-center mt-48" style="margin-bottom: 2.5rem !important;">Dont have an account? <a href="/register">Sign Up</a></p>
+                    </div>
+                    
+                </div>
             </div>
-            
-            
         </div>
     </div>
 </div>
+
+

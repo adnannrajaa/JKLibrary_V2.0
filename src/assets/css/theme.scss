@@ -157,7 +157,7 @@ a{
     height: 100vh;
     .form-box{
         width: 500px;
-        margin-top: 2.5rem !important;
+        @REM margin-top: 2.5rem !important;
         height: calc(100vh - 245px);
         .action-box{
             border: 1px solid $border-color;
