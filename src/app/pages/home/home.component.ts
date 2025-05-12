@@ -9,11 +9,12 @@ import { FooterComponent, TopbarComponent } from '../../layouts';
 import { FileHelper } from '../../../@shared/file-helper-service.service';
 import { FileType, MessageType, SizeUnit, Size, CategoryType } from '../../../@shared/constants/constant';
 import { NgbAlert } from '@ng-bootstrap/ng-bootstrap';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, TopbarComponent, FooterComponent, FormsModule, ReactiveFormsModule, NgbAlert],
+  imports: [CommonModule, TopbarComponent, FooterComponent, FormsModule, ReactiveFormsModule, NgbAlert, RouterModule],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })  
@@ -26,6 +27,7 @@ export class HomeComponent implements OnInit {
 
   //Listing Models
   books: any[] = [];
+  featuredBooks: any[] = [];
   banners: any[] = [];
 
   //Send a book
@@ -56,7 +58,7 @@ export class HomeComponent implements OnInit {
     this.createFormGroup();
     this.loadCategories();
     var request = new BaseRequestModel()
-    request.pageSize = 4;
+    request.pageSize = 6;
     this.loadHomeData(request);
   }
   get f() { return this.bookInfoForm.controls; }
@@ -70,6 +72,9 @@ export class HomeComponent implements OnInit {
           if (this.books != null && this.books?.length > 0) {
             this.books.map(s => {
               s.coverPage = this._commonService.getCompletePath(s.coverPage);
+              if (s.isPinned) {
+                this.featuredBooks.push(s)
+              }
               return s;
             });
           }
@@ -79,8 +84,6 @@ export class HomeComponent implements OnInit {
               return s;
             });
           }
-          console.log(this.books)
-          console.log(this.banners)
         }
       })
   }
@@ -163,7 +166,11 @@ export class HomeComponent implements OnInit {
         })
     }
   }
-
+  action(item: any, actionType: string) {
+    if (actionType == 'download') {
+      this.downloadFile(item)
+    }
+  }
   onSubmit() {
     this.submitted = true;
     // stop h.ere if form is invalid

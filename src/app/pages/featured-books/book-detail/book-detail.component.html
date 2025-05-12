@@ -6,7 +6,7 @@
                 <div class="row">
                     <div class="col-xl-6">
                         <figure class="text-center h-100">
-                            <img src="assets/img/book-1.png" alt="" class="h-100 border p-4 rounded">
+                            <img src="{{bookDetail?.displayCoverPage}}" alt="" class="h-100 border p-4 rounded">
                         </figure>
                     </div>
                     <div class="col-xl-6">
@@ -20,80 +20,50 @@
                             </span>
                             <span class="ms-2">4.5</span>
                         </div>
-                        <h2 class="mt-4">Kashmir Siyasat</h2>
-                        <span class="d-inline-block my-3">by Andrew Robertson</span>
+                        <h2 class="mt-4">{{bookDetail?.title}}</h2>
+                        <span class="d-inline-block my-3">by {{bookDetail?.author}}</span>
                        <div class="pages-with-language">
                         <span>45 pages</span>
-                        <span>Urdu</span>
+                        <span>{{bookDetail?.categoryName}}</span>
                        </div>
                         <ul class="mt-3 book-bullet-list">
                             <li>
                                 <span>PDF Format</span>
                             </li>
                             <li>
-                                <span>Size: 20 MB</span>
+                              <span>Size: {{bookDetail?.pdfSize}} MB</span>
                             </li>
                             <li>
-                                <span>Language: Urdu</span>
+                              <span>Language:  {{bookDetail?.language}}</span>
                             </li>
                             <li>
-                                <span>Writer: Andrew Robertson</span>
+                              <span>Writer:  {{bookDetail?.author}}</span>
                             </li>
                         </ul>
-                        <button class="theme-btn px-5">Download</button>
+                        <button class="theme-btn px-5" (click)="downloadFile(bookDetail)" >Download</button>
                     </div>
                 </div>
             </div>
             <div class="book-preview mt-5">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="pages active p-5">
-                                <h3>Q&A: Acces to Education</h3>
-                                <h3>Information for field and refugee parents</h3>
-                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-                                <h3>Who is eligible?</h3>
-                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-                                <h3>Children living in Onr Temporary sites.</h3>
-                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-                                <div class="page-bottom">
-                                    <hr width="50%">
-                                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,</p>
-                                    pLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
-                                </div>
-                                <div class="page-number text-center mt-4">
-                                    <span>1</span>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-12">
-                            <div class="pages p-5 mt-3">
-                                <h3>Q&A: Acces to Education</h3>
-                                <h3>Information for field and refugee parents</h3>
-                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-                                <h3>Who is eligible?</h3>
-                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-                                <h3>Children living in Onr Temporary sites.</h3>
-                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-                                <div class="page-bottom">
-                                    <hr width="50%">
-                                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,</p>
-                                    pLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
-                                </div>
-                            </div>
-                        </div>
+            
+              <div class="container-fluid">
+                <div class="row">
+                  <div class="col-12">
+                    <div class="pages active p-5">
+                      <ngx-extended-pdf-viewer [src]="pdfSrc"
+                                               [showPresentationModeButton]="false"
+                                                [showPrintButton]="true"
+                                                [showDownloadButton]="true"
+                                                [showPagingButtons]="true"
+                                                [showZoomButtons]="true"
+                                               height="140vh">
+
+                      </ngx-extended-pdf-viewer>
                     </div>
+                  </div>
+
                 </div>
+              </div>
             </div>
         </div>
         
@@ -125,23 +95,23 @@
                 <div class="filter-content-cards mt-5">
                     <div class="container-fluid">
                         <div class="row">
-                            <div class="col-xl-4 col-md-6">
+                            <div class="col-xl-4 col-md-6"  *ngFor="let book of books">
                                 <div class="card-blog">
                                     <div class="card-img position-relative">
-                                        <span class="download-icon icon icon-left">
+                                        <span class="download-icon icon icon-left" (click)="downloadFile(book)">
                                           <i class="fa-solid fa-arrow-down"></i>
                                         </span>
                                         <span class="fvrt-icon icon icon-right">
                                           <i class="fa-regular fa-heart"></i>
                                         </span>
                                         <figure>
-                                            <img src="assets/img/book-1.png" alt="" class="w-100">
+                                            <img src="{{book.displayCoverPage}}" alt="" class="w-100">
                                         </figure>
                                     </div>
                                     <div class="rating-with-language d-flex justify-content-between align-items-center my-2">
                                         <div class="langauge">
-                                            <span class="bg-dark text-white">English</span>
-                                            <span class="bg-theme">Suspense</span>
+                                          <span class="bg-dark text-white">{{book.categoryName}}</span>
+                                          <span class="bg-theme">{{book.language}}</span>
                                         </div>
                                         <span>
                                             <i class="fa-solid fa-star text-warning"></i> 5.0
@@ -149,192 +119,18 @@
                                     </div>
                                     <div class="book-info d-flex align-items-center justify-content-between my-3">
                                       <div>
-                                        <h4>The Flash No. 01</h4>
-                                        <p>Joshua Williamson</p>
+                                        <h4>{{book.title}}</h4>
+                                        <p>{{book.author}}</p>
                                       </div>
                                       <span class="no-of-pages p-2 rounded">60 pages</span>
                                       
                                     </div>
                                     <span>
-                                      <a href="" class="read-more-text">Read now <i class="fa-solid fa-arrow-right"></i></a>
+                                      <a [routerLink]="['/book-detail',book.id]" href="javascript: void(0);" class="read-more-text">Read now <i class="fa-solid fa-arrow-right"></i></a>
                                     </span>
                                 </div>
                             </div>
-                            <div class="col-xl-4 col-md-6">
-                              <div class="card-blog">
-                                  <div class="card-img position-relative">
-                                      <span class="download-icon icon icon-left">
-                                        <i class="fa-solid fa-arrow-down"></i>
-                                      </span>
-                                      <span class="fvrt-icon icon icon-right">
-                                        <i class="fa-regular fa-heart"></i>
-                                      </span>
-                                      <figure>
-                                          <img src="assets/img/book-2.png" alt="" class="w-100">
-                                      </figure>
-                                  </div>
-                                  <div class="rating-with-language d-flex justify-content-between align-items-center my-2">
-                                      <div class="langauge">
-                                          <span class="bg-dark text-white">English</span>
-                                          <span class="bg-theme">Suspense</span>
-                                      </div>
-                                      <span>
-                                          <i class="fa-solid fa-star text-warning"></i> 5.0
-                                      </span>
-                                  </div>
-                                  <div class="book-info d-flex align-items-center justify-content-between my-3">
-                                    <div>
-                                      <h4>The Flash No. 01</h4>
-                                      <p>Joshua Williamson</p>
-                                    </div>
-                                    <span class="no-of-pages p-2 rounded">60 pages</span>
-                                    
-                                  </div>
-                                  <span>
-                                    <a href="" class="read-more-text">Read now <i class="fa-solid fa-arrow-right"></i></a>
-                                  </span>
-                              </div>
-                          </div>
-                          <div class="col-xl-4 col-md-6">
-                                <div class="card-blog">
-                                    <div class="card-img position-relative">
-                                        <span class="download-icon icon icon-left">
-                                          <i class="fa-solid fa-arrow-down"></i>
-                                        </span>
-                                        <span class="fvrt-icon icon icon-right">
-                                          <i class="fa-regular fa-heart"></i>
-                                        </span>
-                                        <figure>
-                                            <img src="assets/img/book-3.png" alt="" class="w-100">
-                                        </figure>
-                                    </div>
-                                    <div class="rating-with-language d-flex justify-content-between align-items-center my-2">
-                                        <div class="langauge">
-                                            <span class="bg-dark text-white">English</span>
-                                            <span class="bg-theme">Suspense</span>
-                                        </div>
-                                        <span>
-                                            <i class="fa-solid fa-star text-warning"></i> 5.0
-                                        </span>
-                                    </div>
-                                    <div class="book-info d-flex align-items-center justify-content-between my-3">
-                                      <div>
-                                        <h4>The Flash No. 01</h4>
-                                        <p>Joshua Williamson</p>
-                                      </div>
-                                      <span class="no-of-pages p-2 rounded">60 pages</span>
-                                      
-                                    </div>
-                                    <span>
-                                      <a href="" class="read-more-text">Read now <i class="fa-solid fa-arrow-right"></i></a>
-                                    </span>
-                                </div>
-                          </div>
-                          <div class="col-xl-4 col-md-6">
-                            <div class="card-blog">
-                                <div class="card-img position-relative">
-                                    <span class="download-icon icon icon-left">
-                                      <i class="fa-solid fa-arrow-down"></i>
-                                    </span>
-                                    <span class="fvrt-icon icon icon-right">
-                                      <i class="fa-regular fa-heart"></i>
-                                    </span>
-                                    <figure>
-                                        <img src="assets/img/book-1.png" alt="" class="w-100">
-                                    </figure>
-                                </div>
-                                <div class="rating-with-language d-flex justify-content-between align-items-center my-2">
-                                    <div class="langauge">
-                                        <span class="bg-dark text-white">English</span>
-                                        <span class="bg-theme">Suspense</span>
-                                    </div>
-                                    <span>
-                                        <i class="fa-solid fa-star text-warning"></i> 5.0
-                                    </span>
-                                </div>
-                                <div class="book-info d-flex align-items-center justify-content-between my-3">
-                                  <div>
-                                    <h4>The Flash No. 01</h4>
-                                    <p>Joshua Williamson</p>
-                                  </div>
-                                  <span class="no-of-pages p-2 rounded">60 pages</span>
-                                  
-                                </div>
-                                <span>
-                                  <a href="" class="read-more-text">Read now <i class="fa-solid fa-arrow-right"></i></a>
-                                </span>
-                            </div>
-                        </div>
-                        <div class="col-xl-4 col-md-6">
-                          <div class="card-blog">
-                              <div class="card-img position-relative">
-                                  <span class="download-icon icon icon-left">
-                                    <i class="fa-solid fa-arrow-down"></i>
-                                  </span>
-                                  <span class="fvrt-icon icon icon-right">
-                                    <i class="fa-regular fa-heart"></i>
-                                  </span>
-                                  <figure>
-                                      <img src="assets/img/book-2.png" alt="" class="w-100">
-                                  </figure>
-                              </div>
-                              <div class="rating-with-language d-flex justify-content-between align-items-center my-2">
-                                  <div class="langauge">
-                                      <span class="bg-dark text-white">English</span>
-                                      <span class="bg-theme">Suspense</span>
-                                  </div>
-                                  <span>
-                                      <i class="fa-solid fa-star text-warning"></i> 5.0
-                                  </span>
-                              </div>
-                              <div class="book-info d-flex align-items-center justify-content-between my-3">
-                                <div>
-                                  <h4>The Flash No. 01</h4>
-                                  <p>Joshua Williamson</p>
-                                </div>
-                                <span class="no-of-pages p-2 rounded">60 pages</span>
-                                
-                              </div>
-                              <span>
-                                <a href="" class="read-more-text">Read now <i class="fa-solid fa-arrow-right"></i></a>
-                              </span>
-                          </div>
-                      </div>
-                      <div class="col-xl-4 col-md-6">
-                            <div class="card-blog">
-                                <div class="card-img position-relative">
-                                    <span class="download-icon icon icon-left">
-                                      <i class="fa-solid fa-arrow-down"></i>
-                                    </span>
-                                    <span class="fvrt-icon icon icon-right">
-                                      <i class="fa-regular fa-heart"></i>
-                                    </span>
-                                    <figure>
-                                        <img src="assets/img/book-3.png" alt="" class="w-100">
-                                    </figure>
-                                </div>
-                                <div class="rating-with-language d-flex justify-content-between align-items-center my-2">
-                                    <div class="langauge">
-                                        <span class="bg-dark text-white">English</span>
-                                        <span class="bg-theme">Suspense</span>
-                                    </div>
-                                    <span>
-                                        <i class="fa-solid fa-star text-warning"></i> 5.0
-                                    </span>
-                                </div>
-                                <div class="book-info d-flex align-items-center justify-content-between my-3">
-                                  <div>
-                                    <h4>The Flash No. 01</h4>
-                                    <p>Joshua Williamson</p>
-                                  </div>
-                                  <span class="no-of-pages p-2 rounded">60 pages</span>
-                                  
-                                </div>
-                                <span>
-                                  <a href="" class="read-more-text">Read now <i class="fa-solid fa-arrow-right"></i></a>
-                                </span>
-                            </div>
-                      </div>
+                          
                         </div>
                     </div>
                 </div>
