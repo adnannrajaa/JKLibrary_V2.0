@@ -1,19 +1,19 @@
 <div class="main-wrapper min-vh-100">
-    <div class="login-wrapper p-2 d-flex gap-2 h-100">
-        <div class="left-side w-50">
+    <div class="login-wrapper p-2  d-flex gap-2 ">
+        <div class="left-side">
             <figure class="h-100 m-0">
-                <img src="assets/img/left-banner.png" alt="" class="img-fluid h-100 rounded-5 w-100 object-fit-cover">
+                <img src="assets/img/left-banner.png" alt="" class="img-fluid h-100 rounded-5  object-fit-cover">
             </figure>
         </div>
-        <div class="right-side w-50">
+        <div class="h-100 d-flex flex-grow-1 right-side">
             <div class="container-fluid py-3">
-                <div class="row">
+                <div class="row h-100 flex-column">
                     <div class="col-12">
                         <h3 class="text-center mb-2">JK Library</h3>
                     </div>
-                    <div class="col-12">
-                      <div class="form-box mx-auto">
-                        <h1 class="h4 mb-2">Welcome!</h1>
+                    <div class="col-12 flex-grow-1">
+                      <div class="d-flex flex-column form-box h-100 justify-content-center mx-auto p-2">
+                        <h1 class="mb-2">Welcome!</h1>
                         <p class="small mb-4">Enter detail to sign up into your account.</p>
                         <form [formGroup]="userInfoForm" (ngSubmit)="onSubmit()" class="mb-4">
                           <ngb-alert type="danger" *ngIf="error" [dismissible]="false">{{ error }}</ngb-alert>
@@ -101,7 +101,7 @@
 
                         </form>
 
-                        
+                      
                       </div>
                     </div>
                     <div class="col-12">

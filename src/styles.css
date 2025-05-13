@@ -1,0 +1,16 @@
+/*---------------------------
+	Font Family
+----------------------------*/
+@import url(assets/css/theme.css);
+@font-face {
+  font-family: Satoshi-Regular;
+  src: url("assets/font/Satoshi-Regular.otf") format("opentype");
+}
+@font-face {
+  font-family: Satoshi-Medium;
+  src: url("assets/font/Satoshi-Medium.otf") format("opentype");
+}
+@font-face {
+  font-family: Satoshi-Bold;
+  src: url("assets/font/Satoshi-Bold.otf") format("opentype");
+}/*# sourceMappingURL=styles.css.map */

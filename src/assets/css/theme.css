@@ -197,7 +197,7 @@ a {
 
 .main-wrapper .login-wrapper .form-box {
   width: 500px;
-  margin-top: 2.5rem !important;
+  /* margin-top: 2.5rem !important; */
   height: calc(100vh - 245px);
 }
 
