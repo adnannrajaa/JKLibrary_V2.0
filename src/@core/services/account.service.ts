@@ -57,9 +57,9 @@ export class AccountService extends AccountData {
   
 
   visitor(request: visitor): Observable<BaseResponseModel> {
-    return this._utilsServices.postPut<BaseResponseModel>('/api/account/visitor', request);
+    return this._utilsServices.postPut<BaseResponseModel>('/api/user/visitor', request);
   }
   visitorIp(request: any): Observable<BaseResponseModel> {
-    return this._utilsServices.postPut<BaseResponseModel>('/api/account/VisitorIp', request);
+    return this._utilsServices.postPut<BaseResponseModel>('/api/user/VisitorIp', request);
   }
 }
