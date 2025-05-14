@@ -1,1 +1,4 @@
-/*# sourceMappingURL=topbar.component.css.map */
+header.sticky {
+  position: fixed !important;
+  background-color: #212121;
+}/*# sourceMappingURL=topbar.component.css.map */
