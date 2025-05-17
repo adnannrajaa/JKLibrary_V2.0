@@ -2,28 +2,33 @@
 <main>
   <section class="hero-section">
     <div class="hero-section-sub">
-    <p class="banner-title px-3 text-white">WORLD CLASS</p>
-    <div class="container-fluid">
-      <div class="row">
-        <div class="col-xl-8">
-          <h1 class="text-uppercase">
-            Discover <span class="highlight fw-bold">Infinite</span><br /> Knowledge at<br /> JK Library
-          </h1>
-          <!-- <span class="shape-left-side">
+      <p class="banner-title px-3 text-white">WORLD CLASS</p>
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-xl-8">
+            <h1 class="text-uppercase">
+              Discover <span class="highlight fw-bold">Infinite</span><br /> Knowledge at<br /> JK Library
+            </h1>
+            <!-- <span class="shape-left-side">
             <figure>
               <img src="assets/img/after-img.png" alt="">
             </figure>
           </span> -->
+          </div>
+          <div class="col-xl-4 d-flex flex-column justify-content-end">
+            <p class="text-white mb-5 para-text">Unlock endless learning opportunities at<br /> JK Library, where knowledge knows no<br /> bounds.</p>
+            <a href="/register"> <button class="theme-btn">Create Account</button> </a>
+          </div>
         </div>
-        <div class="col-xl-4 d-flex flex-column justify-content-end">
-          <p class="text-white mb-5 para-text">Unlock endless learning opportunities at<br /> JK Library, where knowledge knows no<br /> bounds.</p>
-          <a href="/register"> <button class="theme-btn">Create Account</button> </a>
-</div>
       </div>
     </div>
-  </div>
-  <div class="hero-section-right-corve"></div>
-    <figure>
+    <div class="hero-section-right-corve"></div>
+    <div *ngFor="let banner of banners">
+      <figure>
+        <img class="w-100 banner-content-img" src="{{banner.displayBGImage}}" alt="">
+      </figure>
+    </div>
+    <figure *ngIf="!haveBanners">
       <img class="w-100 banner-content-img" src="assets/img/banner-content-img.svg" alt="">
     </figure>
     <div style="justify-items: end;">

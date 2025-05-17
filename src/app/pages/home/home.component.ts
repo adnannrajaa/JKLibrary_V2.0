@@ -35,6 +35,7 @@ export class HomeComponent implements OnInit {
   homeBooks: any[] = [];
   featuredBooks: any[] = [];
   banners: any[] = [];
+  haveBanners: boolean = false;
   haveRecommendedBooks: boolean = false;
   recommendedBooksPagination: any[] = [];
 
@@ -92,7 +93,11 @@ export class HomeComponent implements OnInit {
               s.displayBGImage = this._commonService.getCompletePath(s.displayBGImage);
               return s;
             });
+            this.haveBanners = true;
+          } else {
+            this.haveBanners = false;
           }
+          console.log(this.banners);
         }
       })
   }
