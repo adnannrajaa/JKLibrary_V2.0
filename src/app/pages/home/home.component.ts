@@ -8,13 +8,13 @@ import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } 
 import { FooterComponent, TopbarComponent } from '../../layouts';
 import { FileHelper } from '../../../@shared/file-helper-service.service';
 import { FileType, MessageType, SizeUnit, Size, CategoryType } from '../../../@shared/constants/constant';
-import { NgbAlert } from '@ng-bootstrap/ng-bootstrap';
+import { NgbAlert, NgbPagination } from '@ng-bootstrap/ng-bootstrap';
 import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, TopbarComponent, FooterComponent, FormsModule, ReactiveFormsModule, NgbAlert, RouterModule],
+  imports: [CommonModule, TopbarComponent, FooterComponent, FormsModule, ReactiveFormsModule, NgbAlert, RouterModule, NgbPagination],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })  
@@ -25,10 +25,18 @@ export class HomeComponent implements OnInit {
   error = "";
   success = "";
 
+  pageSizeChanged: number = 9;
+  pageNoChanged: number = 1;
+  searchText: string = '';
+
+
   //Listing Models
   books: any[] = [];
+  homeBooks: any[] = [];
   featuredBooks: any[] = [];
   banners: any[] = [];
+  haveRecommendedBooks: boolean = false;
+  recommendedBooksPagination: any[] = [];
 
   //Send a book
   bookInfoForm: FormGroup;
@@ -60,6 +68,7 @@ export class HomeComponent implements OnInit {
     var request = new BaseRequestModel()
     request.pageSize = 6;
     this.loadHomeData(request);
+    this.loadRecommendedBooksTbl(new BaseRequestModel(1, 9));
   }
   get f() { return this.bookInfoForm.controls; }
   loadHomeData(request: BaseRequestModel) {
@@ -67,10 +76,10 @@ export class HomeComponent implements OnInit {
       .pipe(takeWhile(() => this.alive))
       .subscribe((response) => {
         if (response.success) {
-          this.books = response?.data?.books
+          this.homeBooks = response?.data?.books
           this.banners = response?.data?.banners
-          if (this.books != null && this.books?.length > 0) {
-            this.books.map(s => {
+          if (this.homeBooks != null && this.homeBooks?.length > 0) {
+            this.homeBooks.map(s => {
               s.coverPage = this._commonService.getCompletePath(s.coverPage);
               if (s.isPinned) {
                 this.featuredBooks.push(s)
@@ -87,6 +96,50 @@ export class HomeComponent implements OnInit {
         }
       })
   }
+  loadRecommendedBooksTbl(request: BaseRequestModel) {
+    this._bookService.get(request)
+      .pipe(takeWhile(() => this.alive))
+      .subscribe((response) => {
+        if (response.success) {
+          this.books = response.data?.items;
+          this.recommendedBooksPagination = response.data;
+          if (this.books.length > 0) {
+            this.books.map(s => {
+              s.displayCoverPage = this._commonService.getCompletePath(s.displayCoverPage);
+              s.discount = 0;
+              return s;
+            });
+            this.haveRecommendedBooks = true;
+          }
+          else {
+            this.haveRecommendedBooks = false;
+          }
+        } else {
+          //this._messageService.Message(response.responseMessage, MessageType.error);
+        }
+
+      })
+
+  }
+
+  reloadRecommendedBooksTbl(callFrom: string, event: any) {
+    switch (callFrom) {
+      case 'pageSizeChanged':
+        this.pageSizeChanged = event;
+        this.pageNoChanged = 1;
+        break;
+      case 'search':
+        this.searchText = event;
+        this.pageNoChanged = 1;
+        break;
+      case 'pagination':
+        this.pageNoChanged = event;
+        break;
+    }
+    var obj = new BaseRequestModel(this.pageNoChanged, this.pageSizeChanged, this.searchText);
+    this.loadRecommendedBooksTbl(obj)
+  }
+
   downloadFile(book: any) {
     this._fileService.downloadFile(book.url, book.id, book.originalBookName).
       subscribe(response => {

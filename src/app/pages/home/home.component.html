@@ -17,8 +17,8 @@
         </div>
         <div class="col-xl-4 d-flex flex-column justify-content-end">
           <p class="text-white mb-5 para-text">Unlock endless learning opportunities at<br /> JK Library, where knowledge knows no<br /> bounds.</p>
-          <button class="theme-btn">Create Account</button>
-        </div>
+          <a href="/register"> <button class="theme-btn">Create Account</button> </a>
+</div>
       </div>
     </div>
   </div>
@@ -267,7 +267,7 @@
                     </div>
                     <form action="" style="padding: 0 14px 0 0;">
                         <div class="my-2 icon-with-input position-relative">
-                            <input type="text" name="" id="" placeholder="Search by location, place..." class="border-0">
+                            <input type="text" name="" id="" placeholder="Search by location, place..." class="border-0" (keyup)="reloadRecommendedBooksTbl('search',$event.target.value)">
                             <span class="icon">
                                 <i class="fa-solid fa-magnifying-glass"></i>
                             </span>
@@ -287,14 +287,14 @@
                                           </span>
                                           <figure>
                                             <a [routerLink]="['/book-detail',book.id]" href="javascript: void(0);">
-                                              <img src="{{book.coverPage}}" alt="" class="w-100">
+                                              <img src="{{book.displayCoverPage}}" alt="" class="w-100">
                                             </a>
                                             
                                           </figure>
                                       </div>
                                       <div class="rating-with-language d-flex justify-content-between align-items-center my-2">
                                           <div class="langauge">
-                                            <span class="bg-dark text-white">{{book.category}}</span>
+                                            <span class="bg-dark text-white">{{book.categoryName}}</span>
                                             <span class="bg-theme">{{book.language}}</span>
                                           </div>
                                           <span>
@@ -320,41 +320,18 @@
                   </div>
                 </div>
                 
-                <div class="pagination justify-content-between px-4">
-                  <span class="d-inline-block"><i class="fa-solid fa-angle-left"></i> Previous</span>
-                  <ul class="d-flex gap-3 list-unstyled">
-                    <li>
-                      <span class="active">1</span>
-                    </li>
-                    <li>
-                      <span>2</span>
-                    </li>
-                    <li>
-                      <span>3</span>
-                    </li>
-                    <li>
-                      <span>4</span>
-                    </li>
-                    <li>
-                      <span>5</span>
-                    </li>
-                    <li>
-                      <span>6</span>
-                    </li>
-                    <li>
-                      <span>7</span>
-                    </li>
-                    <li>
-                      <span>8</span>
-                    </li>
-                    <li>
-                      <span>9</span>
-                    </li>
-                    <li>
-                      <span>10</span>
-                    </li>
-                  </ul>
-                  <span class="d-inline-block">Next <i class="fa-solid fa-angle-right"></i></span>
+                <div class="pagination justify-content-between px-4" *ngIf="haveRecommendedBooks">
+                  <ngb-pagination class="pagination pagination-rounded justify-content-center mt-3 mb-4 pb-1"
+                                  [collectionSize]="recommendedBooksPagination?.totalItems"
+                                  [(page)]="recommendedBooksPagination.currentPage"
+                                  [pageSize]="recommendedBooksPagination?.pageSize"
+                                  [maxSize]="7"
+                                  [rotate]="true"
+                                  [ellipses]="false"
+                                  (pageChange)="reloadRecommendedBooksTbl('pagination',$event)"
+                                  [boundaryLinks]="true"></ngb-pagination>
+
+
                 </div>
             </div>
         </div>
@@ -509,7 +486,9 @@
                   </div>
                 </div>
                 <span>
-                  <a href="" class="read-more-text">Read more <i class="fa-solid fa-arrow-right"></i></a>
+                  <span>
+                    <a [routerLink]="['/book-detail',book.id]" href="javascript: void(0);" class="read-more-text">Read now <i class="fa-solid fa-arrow-right"></i></a>
+                  </span>
                 </span>
             </div>
             </div>

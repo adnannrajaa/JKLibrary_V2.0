@@ -182,10 +182,10 @@
             </div>
             <div class="filter-content-box w-80">
                 <div class="filter-content-header d-flex align-items-center justify-content-between flex-wrap">
-                    <h3>Recommended Books</h3>
+                  <h3>Featured Books</h3>
                     <form action="" style="padding: 0 14px 0 0;">
                         <div class="my-2 icon-with-input position-relative">
-                            <input type="text" name="" id="" placeholder="Search by location, place..." class="border-0">
+                            <input type="text" name="" id="" placeholder="Search by location, place..." class="border-0" (keyup)="reloadFeaturedBooksTbl('search',$event.target.value)">
                             <span class="icon">
                                 <i class="fa-solid fa-magnifying-glass"></i>
                             </span>
@@ -195,7 +195,7 @@
                 <div class="filter-content-cards mt-5">
                     <div class="container-fluid">
                         <div class="row">
-                            <div class="col-xl-4 col-md-6"  *ngFor="let book of recommendedBooks">
+                            <div class="col-xl-4 col-md-6"  *ngFor="let book of books">
                                 <div class="card-blog">
                                     <div class="card-img position-relative">
                                         <span class="download-icon icon icon-left" (click)="downloadFile(book)">
@@ -234,41 +234,18 @@
                         </div>
                     </div>
                 </div>
-                <div class="pagination justify-content-between px-4">
-                  <span class="d-inline-block"><i class="fa-solid fa-angle-left"></i> Previous</span>
-                  <ul class="d-flex gap-3 list-unstyled">
-                    <li>
-                      <span class="active">1</span>
-                    </li>
-                    <li>
-                      <span>2</span>
-                    </li>
-                    <li>
-                      <span>3</span>
-                    </li>
-                    <li>
-                      <span>4</span>
-                    </li>
-                    <li>
-                      <span>5</span>
-                    </li>
-                    <li>
-                      <span>6</span>
-                    </li>
-                    <li>
-                      <span>7</span>
-                    </li>
-                    <li>
-                      <span>8</span>
-                    </li>
-                    <li>
-                      <span>9</span>
-                    </li>
-                    <li>
-                      <span>10</span>
-                    </li>
-                  </ul>
-                  <span class="d-inline-block">Next <i class="fa-solid fa-angle-right"></i></span>
+                <div class="pagination justify-content-between px-4" *ngIf="haveFeaturedBooks">
+                    <ngb-pagination class="pagination pagination-rounded justify-content-center mt-3 mb-4 pb-1"
+                                    [collectionSize]="booksPagination?.totalItems"
+                                    [(page)]="booksPagination.currentPage"
+                                    [pageSize]="booksPagination?.pageSize"
+                                    [maxSize]="7"
+                                    [rotate]="true"
+                                    [ellipses]="false"
+                                    (pageChange)="reloadFeaturedBooksTbl('pagination',$event)"
+                                    [boundaryLinks]="true"></ngb-pagination>
+
+               
                 </div>
             </div>
         </div>
@@ -285,97 +262,74 @@
             </div>
         </div>
         <div class="filter-section d-flex w-80 m-auto">
-            <div class="filter-content-box">
-                <div class="filter-content-header d-flex align-items-center justify-content-between flex-wrap">
-                    <h3>Recommended Books</h3>
-                    <form action="">
-                        <div class="my-2 icon-with-input position-relative">
-                            <input type="text" name="" id="" placeholder="Search by location, place..." class="border-0 pe-5 bg-transparent">
-                            <span class="icon">
-                                <i class="fa-solid fa-magnifying-glass"></i>
-                            </span>
-                        </div>
-                    </form>
+          <div class="filter-content-box">
+            <div class="filter-content-header d-flex align-items-center justify-content-between flex-wrap">
+              <h3>Recommended Books</h3>
+              <form action="">
+                <div class="my-2 icon-with-input position-relative">
+                  <input type="text" name="" id="" placeholder="Search by location, place..." class="border-0 pe-5 bg-transparent" (keyup)="reloadRecommendedBooksTbl('search',$event.target.value)">
+                  <span class="icon">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                  </span>
                 </div>
-                <div class="filter-content-cards mt-5">
-                    <div class="container-fluid">
-                        <div class="row">
-                            <div class="col-xl-4 col-md-6" *ngFor="let book of books">
-                                <div class="card-blog">
-                                    <div class="card-img position-relative">
-                                        <span class="download-icon icon icon-left" (click)="downloadFile(book)">
-                                          <i class="fa-solid fa-arrow-down"></i>
-                                        </span>
-                                        <span class="fvrt-icon icon icon-right">
-                                          <i class="fa-regular fa-heart"></i>
-                                        </span>
-                                        <figure>
-                                            <img src="{{book.displayCoverPage}}" alt="" class="w-100">
-                                        </figure>
-                                    </div>
-                                    <div class="rating-with-language d-flex justify-content-between align-items-center my-2">
-                                        <div class="langauge">
-                                          <span class="bg-dark text-white">{{book.categoryName}}</span>
-                                          <span class="bg-theme">{{book.language}}</span>
-                                        </div>
-                                        <span>
-                                            <i class="fa-solid fa-star text-warning"></i> 5.0
-                                        </span>
-                                    </div>
-                                    <div class="book-info d-flex align-items-center justify-content-between my-3">
-                                      <div>
-                                        <h4>{{book.title}}</h4>
-                                        <p>{{book.author}}</p>
-                                      </div>
-                                      <span class="no-of-pages p-2 rounded">60 pages</span>
-                                      
-                                    </div>
-                                    <span>
-                                      <a [routerLink]="['/book-detail',book.id]" href="javascript: void(0);" class="read-more-text">Read now <i class="fa-solid fa-arrow-right"></i></a>
-                                    </span>
-                                </div>
-                            </div>
-                           
-                        </div>
-                    </div>
-                </div>
-                <div class="pagination justify-content-between px-4">
-                  <span class="d-inline-block"><i class="fa-solid fa-angle-left"></i> Previous</span>
-                  <ul class="d-flex gap-3 list-unstyled">
-                    <li>
-                      <span class="active">1</span>
-                    </li>
-                    <li>
-                      <span>2</span>
-                    </li>
-                    <li>
-                      <span>3</span>
-                    </li>
-                    <li>
-                      <span>4</span>
-                    </li>
-                    <li>
-                      <span>5</span>
-                    </li>
-                    <li>
-                      <span>6</span>
-                    </li>
-                    <li>
-                      <span>7</span>
-                    </li>
-                    <li>
-                      <span>8</span>
-                    </li>
-                    <li>
-                      <span>9</span>
-                    </li>
-                    <li>
-                      <span>10</span>
-                    </li>
-                  </ul>
-                  <span class="d-inline-block">Next <i class="fa-solid fa-angle-right"></i></span>
-                </div>
+              </form>
             </div>
+            <div class="filter-content-cards mt-5">
+              <div class="container-fluid">
+                <div class="row">
+                  <div class="col-xl-4 col-md-6" *ngFor="let book of recommendedBooks">
+                    <div class="card-blog">
+                      <div class="card-img position-relative">
+                        <span class="download-icon icon icon-left" (click)="downloadFile(book)">
+                          <i class="fa-solid fa-arrow-down"></i>
+                        </span>
+                        <span class="fvrt-icon icon icon-right">
+                          <i class="fa-regular fa-heart"></i>
+                        </span>
+                        <figure>
+                          <img src="{{book.displayCoverPage}}" alt="" class="w-100">
+                        </figure>
+                      </div>
+                      <div class="rating-with-language d-flex justify-content-between align-items-center my-2">
+                        <div class="langauge">
+                          <span class="bg-dark text-white">{{book.categoryName}}</span>
+                          <span class="bg-theme">{{book.language}}</span>
+                        </div>
+                        <span>
+                          <i class="fa-solid fa-star text-warning"></i> 5.0
+                        </span>
+                      </div>
+                      <div class="book-info d-flex align-items-center justify-content-between my-3">
+                        <div>
+                          <h4>{{book.title}}</h4>
+                          <p>{{book.author}}</p>
+                        </div>
+                        <span class="no-of-pages p-2 rounded">60 pages</span>
+
+                      </div>
+                      <span>
+                        <a [routerLink]="['/book-detail',book.id]" href="javascript: void(0);" class="read-more-text">Read now <i class="fa-solid fa-arrow-right"></i></a>
+                      </span>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+            <div class="pagination justify-content-between px-4" *ngIf="haveRecommendedBooks">
+              <ngb-pagination class="pagination pagination-rounded justify-content-center mt-3 mb-4 pb-1"
+                              [collectionSize]="recommendedBooksPagination?.totalItems"
+                              [(page)]="recommendedBooksPagination.currentPage"
+                              [pageSize]="recommendedBooksPagination?.pageSize"
+                              [maxSize]="7"
+                              [rotate]="true"
+                              [ellipses]="false"
+                              (pageChange)="reloadRecommendedBooksTbl('pagination',$event)"
+                              [boundaryLinks]="true"></ngb-pagination>
+
+
+            </div>
+          </div>
         </div>
     </section>
    

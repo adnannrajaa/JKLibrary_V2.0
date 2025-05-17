@@ -6,26 +6,30 @@ import { BookData, FileData } from '../../../@core/data';
 import { CommonService } from '../../../@shared/common-service.service';
 import { BaseRequestModel } from '../../../@core/models';
 import { takeWhile } from 'rxjs';
+import { NgbPagination } from '@ng-bootstrap/ng-bootstrap';
 
 
 @Component({
   selector: 'app-featured-books',
   standalone: true,
-  imports: [CommonModule, TopbarComponent, FooterComponent, RouterModule],
+  imports: [CommonModule, TopbarComponent, FooterComponent, RouterModule, NgbPagination],
   templateUrl: './featured-books.component.html',
   styleUrl: './featured-books.component.scss'
 })
 export class FeaturedBooksComponent implements OnInit, OnDestroy {
   //pagination variables 
-  pageSizeChanged: number = 50;
+  pageSizeChanged: number = 9;
   pageNoChanged: number = 1;
   searchText: string = '';
   showPagination: boolean = false;
 
   error = "";
   books: any[] = [];
+  booksPagination: any[] = [];
   recommendedBooks: any[] = [];
-  haveBooks: boolean = false;
+  recommendedBooksPagination: any[] = [];
+  haveRecommendedBooks: boolean = false;
+  haveFeaturedBooks: boolean = false;
   private alive = true;
   constructor(private route: ActivatedRoute,
     private _bookService: BookData,
@@ -34,7 +38,8 @@ export class FeaturedBooksComponent implements OnInit, OnDestroy {
 
   }
   ngOnInit(): void {
-    this.loadBooksTbl(new BaseRequestModel());
+    this.loadRecommendedBooksTbl(new BaseRequestModel(1, 9));
+    this.loadFeaturedBooksTbl(new BaseRequestModel(1, 9));
   }
   getCompletePath(imageurl) {
     return this._commonService.getCompletePath(imageurl);
@@ -47,25 +52,24 @@ export class FeaturedBooksComponent implements OnInit, OnDestroy {
         }
       });
   }
-  loadBooksTbl(request: BaseRequestModel) {
+  loadRecommendedBooksTbl(request: BaseRequestModel) {
     this._bookService.get(request)
       .pipe(takeWhile(() => this.alive))
       .subscribe((response) => {
         if (response.success) {
-          this.books = response.data?.items;
-          if (this.books.length > 0) {
-            this.books.map(s => {
+          this.recommendedBooks = response.data?.items;
+          this.recommendedBooksPagination = response.data;
+          console.log(this.recommendedBooksPagination)
+          if (this.recommendedBooks.length > 0) {
+            this.recommendedBooks.map(s => {
               s.displayCoverPage = this.getCompletePath(s.displayCoverPage);
               s.discount = 0;
-              this.recommendedBooks.push(s);
               return s;
             });
-            this.haveBooks = true;
-            this.showPagination = true;
+            this.haveRecommendedBooks = true;
           }
           else {
-            this.haveBooks = false;
-            this.showPagination = false;
+            this.haveRecommendedBooks = false;
           }
         } else {
           //this._messageService.Message(response.responseMessage, MessageType.error);
@@ -74,7 +78,33 @@ export class FeaturedBooksComponent implements OnInit, OnDestroy {
       })
 
   }
-  reloadBooksTbl(callFrom: string, event: any) {
+  loadFeaturedBooksTbl(request: BaseRequestModel) {
+    this._bookService.get(request)
+      .pipe(takeWhile(() => this.alive))
+      .subscribe((response) => {
+        if (response.success) {
+          this.books = response.data?.items;
+          this.booksPagination = response.data;
+          console.log(this.booksPagination)
+          if (this.books.length > 0) {
+            this.books.map(s => {
+              s.displayCoverPage = this.getCompletePath(s.displayCoverPage);
+              s.discount = 0;
+              return s;
+            });
+            this.haveFeaturedBooks = true;
+          }
+          else {
+            this.haveFeaturedBooks = false;
+          }
+        } else {
+          //this._messageService.Message(response.responseMessage, MessageType.error);
+        }
+
+      })
+
+  }
+  reloadFeaturedBooksTbl(callFrom: string, event: any) {
     switch (callFrom) {
       case 'pageSizeChanged':
         this.pageSizeChanged = event;
@@ -89,7 +119,26 @@ export class FeaturedBooksComponent implements OnInit, OnDestroy {
         break;
     }
     var obj = new BaseRequestModel(this.pageNoChanged, this.pageSizeChanged, this.searchText);
-    this.loadBooksTbl(obj)
+    this.loadFeaturedBooksTbl(obj)
+
+
+  }
+  reloadRecommendedBooksTbl(callFrom: string, event: any) {
+    switch (callFrom) {
+      case 'pageSizeChanged':
+        this.pageSizeChanged = event;
+        this.pageNoChanged = 1;
+        break;
+      case 'search':
+        this.searchText = event;
+        this.pageNoChanged = 1;
+        break;
+      case 'pagination':
+        this.pageNoChanged = event;
+        break;
+    }
+    var obj = new BaseRequestModel(this.pageNoChanged, this.pageSizeChanged, this.searchText);
+    this.loadRecommendedBooksTbl(obj)
 
 
   }
