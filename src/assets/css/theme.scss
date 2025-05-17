@@ -178,7 +178,7 @@ a{
 ----------------------------*/
 header{
     padding: 2.5rem 4.688rem;
-    background-color: $dark-jungle-green;
+    @REM background-color: $dark-jungle-green;
     margin: 0;
     .navbar{
         ul{
