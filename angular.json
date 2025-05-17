@@ -43,6 +43,7 @@
             ],
             "styles": [
               "src/styles.scss",
+              "node_modules/swiper/swiper-bundle.min.css",
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "node_modules/slick-carousel/slick/slick.scss",
               "node_modules/slick-carousel/slick/slick-theme.scss"

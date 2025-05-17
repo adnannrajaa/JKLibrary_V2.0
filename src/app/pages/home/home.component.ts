@@ -10,11 +10,12 @@ import { FileHelper } from '../../../@shared/file-helper-service.service';
 import { FileType, MessageType, SizeUnit, Size, CategoryType } from '../../../@shared/constants/constant';
 import { NgbAlert, NgbPagination } from '@ng-bootstrap/ng-bootstrap';
 import { RouterModule } from '@angular/router';
+import { SwiperService } from '../../../@shared/Services';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, TopbarComponent, FooterComponent, FormsModule, ReactiveFormsModule, NgbAlert, RouterModule, NgbPagination],
+  imports: [CommonModule,TopbarComponent, FooterComponent, FormsModule, ReactiveFormsModule, NgbAlert, RouterModule, NgbPagination],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })  
@@ -60,7 +61,8 @@ export class HomeComponent implements OnInit {
     private _miscellaneousService: MiscellaneousData,
     private formBuilder: FormBuilder,
     private _fileService: FileData,
-    private _fileHelper: FileHelper) {
+    private _fileHelper: FileHelper,
+    private swiperService: SwiperService) {
 
   }
   ngOnInit(): void {
@@ -270,6 +272,10 @@ export class HomeComponent implements OnInit {
       'bookname': '50 Shades of Gray'
     },
   ]
+
+  ngAfterViewInit() {
+    this.swiperService.initSwiper('.mySwiper', 1, 0, 3000, 1, 1, 1);
+  }
   ngOnDestroy() {
     this.destroy$.next();
     this.destroy$.complete();

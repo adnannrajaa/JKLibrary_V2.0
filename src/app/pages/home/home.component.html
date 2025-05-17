@@ -23,14 +23,26 @@
       </div>
     </div>
     <div class="hero-section-right-corve"></div>
-    <div *ngFor="let banner of banners">
-      <figure>
-        <img class="w-100 banner-content-img" src="{{banner.displayBGImage}}" alt="">
-      </figure>
-    </div>
-    <figure *ngIf="!haveBanners">
-      <img class="w-100 banner-content-img" src="assets/img/banner-content-img.svg" alt="">
-    </figure>
+      <div class="swiper mySwiper">
+        <div class="swiper-wrapper">
+          <div *ngFor="let slide of banners" class="slideshow__slide w-100 swiper-slide" [ngStyle]="{'background-image': 'url(' + slide.displayBGImage + ')'}">
+            <div class="container">
+              <div class="row">
+                <div class="col-lg-6">
+                  <div class="text-end" data-aos="fade-right" data-aos-delay="300">
+                    <h4 class="fs-18 fw-medium">{{ slide.title }}</h4>
+                    <h3 class="display-4 fw-semibold mb-3">{{ slide.subTitle }}</h3>
+                  </div>
+                </div>
+                
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="swiper-pagination"></div>
+      </div>
+    
     <div style="justify-items: end;">
       <div class="hero-section-left-corve"></div>
     </div>

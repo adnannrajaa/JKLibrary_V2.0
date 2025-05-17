@@ -36,6 +36,7 @@
     "pdfjs-dist": "^5.2.133",
     "rxjs": "~7.8.0",
     "slick-carousel": "^1.8.1",
+    "swiper": "^11.2.6",
     "tslib": "^2.3.0",
     "zone.js": "~0.14.3"
   },
