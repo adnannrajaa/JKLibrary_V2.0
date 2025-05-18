@@ -48,7 +48,7 @@ export class DashboardComponent implements OnInit {
   addressForm: FormGroup;
   addressSubmitted: boolean = false
   content: string = '';
-  isUrdu: boolean = false;
+  isUrdu: boolean = true;
   placeholderText: string = 'Enter text here...';
 
   editorModules = {
