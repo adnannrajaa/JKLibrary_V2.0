@@ -8,6 +8,7 @@ import { UtilsService } from '../utils/utils.service';
   providedIn: 'root'
 })
 export class FileService extends FileData {
+  
   constructor(private _utilsServices: UtilsService
   ) { super(); }
   uploadFile(event: any): Observable<Upload> {
@@ -25,5 +26,7 @@ export class FileService extends FileData {
   downloadFile(filePath: string, bookId:string,fileName?: string, ): Observable<Download> {
     return this._utilsServices.downloadFile(filePath, bookId, fileName);
   }
-
+  getPdfFile(filePath: string): Observable<any> {
+    return this._utilsServices.getDelete<any>(null, "/web/FileManager/" + filePath);
+  }
 }

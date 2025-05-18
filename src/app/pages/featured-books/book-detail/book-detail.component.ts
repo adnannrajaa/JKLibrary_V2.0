@@ -32,7 +32,7 @@ export class BookDetailComponent implements OnInit, OnDestroy {
   bookDetail: any;
   comments: any;
   private alive = true;
-  pdfSrc = 'assets/pdf-test.pdf';
+  pdfSrc : any;
   constructor(private route: ActivatedRoute,
     private _bookService: BookData,
     private _fileService: FileData,
@@ -55,14 +55,22 @@ export class BookDetailComponent implements OnInit, OnDestroy {
         if (response.success) {
           this.bookDetail = response.data;
           this.bookDetail.displayCoverPage = this.getCompletePath(this.bookDetail.displayCoverPage);
-          this.pdfSrc = this.getCompletePath(this.bookDetail.url);
+          
           if (this.bookDetail.comments?.length > 0) {
             this.comments = this.buildCommentTree(this.bookDetail.comments);
           }
+          this.getPdf(this.bookDetail);
         } else {
           this.error = response.responseMessage;
         }
       })
+  }
+  getPdf(book: any) {
+    this._fileService.getPdfFile(book.url).
+      subscribe(response => {
+        this.pdfSrc = response;
+        console.log(response);
+      });
   }
   downloadFile(book: any) {
     this._fileService.downloadFile(book.url, book.id, book.originalBookName).
