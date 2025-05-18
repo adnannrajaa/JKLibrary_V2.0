@@ -273,77 +273,90 @@
                                                     <div class="form-div">
                                                         <form action="">
                                                             <div class="container-fluid">
-                                                                <div class="row">
-                                                                    <div class="col-md-12">
-                                                                        <div class="input-group">
-                                                                            <label for="" class="d-block w-100 mb-1">Post Name <span class="text-danger">*</span></label>
-                                                                            <input type="text" class="common-input form-control" placeholder="Enter Name">
-                                                                        </div>
-                                                                    </div>
-
-                                                                    <div class="col-md-12">
-                                                                        <div class="input-group">
-                                                                            <label for="post_description" class="w-100 d-block mb-1">
-                                                                                Post Description <span class="text-danger">*</span>
-                                                                            </label>
-                                                                            <textarea id="editor" name="post_description" class="form-control"></textarea>
-                                                                        </div>
-                                                                    </div>
-                                                                    <script>
-                                                                        ClassicEditor
-                                                                            .create(document.querySelector('#editor'), {
-                                                                                toolbar: {
-                                                                                    items: [
-                                                                                        'heading', '|',
-                                                                                        'bold', 'italic', 'underline', 'strikethrough', '|',
-                                                                                        'bulletedList', 'numberedList', '|',
-                                                                                        'link', 'blockQuote', 'insertTable', 'undo', 'redo'
-                                                                                    ]
-                                                                                },
-                                                                                language: 'en',
-                                                                                table: {
-                                                                                    contentToolbar: ['tableColumn', 'tableRow', 'mergeTableCells']
-                                                                                }
-                                                                            })
-                                                                            .catch(error => {
-                                                                                console.error(error);
-                                                                            });
-                                                                    </script>
-                                                                                                                                        
-                                                                    <div class="col-md-12">
-                                                                        <div class="input-group attachment-input">
-                                                                            <label class="d-block w-100 mb-1" for="">Post Cover Image</label>
-                                                                            <input type="file" class="form-control common-input">
-                                                                            <span class="attachment-lable"><i class="fa-solid fa-arrow-up-from-bracket"></i> Upload Cover Page</span>
-                                                                            <span class="d-block w-100">
-                                                                              <small class="float-end">Max size: 800 kb</small>
-                                                                            </span>
-                                                                          </div>
-                                                                    </div>
-                                                                    <div class="col-md-6">
-                                                                        <div class="input-group">
-                                                                            <label class="d-block w-100 mb-1" for="">Publication Date</label>
-                                                                            <select name="" id="" class="form-control common-input">
-                                                                                <option value="Now, Today">Now, Today</option>
-                                                                            </select>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-md-6">
-                                                                        <div class="input-group">
-                                                                            <label class="d-block w-100 mb-1" for="">Categories</label>
-                                                                            <select name="" id="" class="form-control common-input">
-                                                                                <option value="Now, Today">Select</option>
-                                                                            </select>
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-md-12">
-                                                                        <div class="btn-group gap-3 justify-content-end text-end w-100 flex-wrap">
-                                                                            <button class="theme-stroked-btn text-danger border-danger">Cancel</button>
-                                                                            <button class="theme-stroked-btn">Save as Draft</button>
-                                                                            <button class="theme-btn">Publish Post</button>
-                                                                        </div>
-                                                                    </div>
+                                                              <div class="row">
+                                                                <div class="col-md-12">
+                                                                  <div class="input-group">
+                                                                    <label for="" class="d-block w-100 mb-1">Post Name <span class="text-danger">*</span></label>
+                                                                    <input type="text" class="common-input form-control" placeholder="Enter Name">
+                                                                  </div>
                                                                 </div>
+                                                                <div class="col-md-12">
+                                                                  <div class="input-group">
+                                                                    <label for="" class="d-block w-100 mb-1">Select Language <span class="text-danger">*</span></label>
+                                                                    <select class="common-input form-control" (change)="setLanguage($event.target.value)">
+                                                                      <option value="en">English</option>
+                                                                      <option value="ur">اردو</option>
+                                                                    </select>
+                                                                  </div>
+                                                                </div>
+                                                                
+                                                                <div class="col-md-12">
+                                                                  <div class="input-group">
+                                                                    <label for="post_description" class="w-100 d-block mb-1">
+                                                                      Post Description <span class="text-danger">*</span>
+                                                                    </label>
+                                                                    <quill-editor class="form-control" [(ngModel)]="content"
+                                                                                  [modules]="editorModules"
+                                                                                  [styles]="{ height: '200px' }"
+                                                                                  [dir]="textDirection">
+                                                                    </quill-editor>
+                                                                  </div>
+                                                                </div>
+                                                                <script>
+                                                                  ClassicEditor
+                                                                    .create(document.querySelector('#editor'), {
+                                                                      toolbar: {
+                                                                        items: [
+                                                                          'heading', '|',
+                                                                          'bold', 'italic', 'underline', 'strikethrough', '|',
+                                                                          'bulletedList', 'numberedList', '|',
+                                                                          'link', 'blockQuote', 'insertTable', 'undo', 'redo'
+                                                                        ]
+                                                                      },
+                                                                      language: 'en',
+                                                                      table: {
+                                                                        contentToolbar: ['tableColumn', 'tableRow', 'mergeTableCells']
+                                                                      }
+                                                                    })
+                                                                    .catch(error => {
+                                                                      console.error(error);
+                                                                    });
+                                                                </script>
+
+                                                                <div class="col-md-12">
+                                                                  <div class="input-group attachment-input">
+                                                                    <label class="d-block w-100 mb-1" for="">Post Cover Image</label>
+                                                                    <input type="file" class="form-control common-input">
+                                                                    <span class="attachment-lable"><i class="fa-solid fa-arrow-up-from-bracket"></i> Upload Cover Page</span>
+                                                                    <span class="d-block w-100">
+                                                                      <small class="float-end">Max size: 800 kb</small>
+                                                                    </span>
+                                                                  </div>
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                  <div class="input-group">
+                                                                    <label class="d-block w-100 mb-1" for="">Publication Date</label>
+                                                                    <select name="" id="" class="form-control common-input">
+                                                                      <option value="Now, Today">Now, Today</option>
+                                                                    </select>
+                                                                  </div>
+                                                                </div>
+                                                                <div class="col-md-6">
+                                                                  <div class="input-group">
+                                                                    <label class="d-block w-100 mb-1" for="">Categories</label>
+                                                                    <select name="" id="" class="form-control common-input">
+                                                                      <option value="Now, Today">Select</option>
+                                                                    </select>
+                                                                  </div>
+                                                                </div>
+                                                                <div class="col-md-12">
+                                                                  <div class="btn-group gap-3 justify-content-end text-end w-100 flex-wrap">
+                                                                    <button class="theme-stroked-btn text-danger border-danger">Cancel</button>
+                                                                    <button class="theme-stroked-btn">Save as Draft</button>
+                                                                    <button class="theme-btn">Publish Post</button>
+                                                                  </div>
+                                                                </div>
+                                                              </div>
                                                             </div>
                                                         </form>
                                                     </div>

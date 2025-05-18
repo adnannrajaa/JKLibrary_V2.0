@@ -11,11 +11,12 @@ import { RegexpPattern, FileType, MessageType, SizeUnit, Size, StrongPasswordReg
 import { CustomValidators } from '../../../@shared/CustomValidators';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { QuillModule } from 'ngx-quill';
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [TopbarComponent, FooterComponent, CommonModule, RouterModule, ReactiveFormsModule, FormsModule],
+  imports: [TopbarComponent, FooterComponent, CommonModule, RouterModule, ReactiveFormsModule, FormsModule, QuillModule],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.scss'
 })
@@ -46,7 +47,16 @@ export class DashboardComponent implements OnInit {
   //Address Form
   addressForm: FormGroup;
   addressSubmitted: boolean = false
+  content: string = '';
+  textDirection: 'ltr' | 'rtl' = 'ltr';
 
+  editorModules = {
+    toolbar: [
+      ['bold', 'italic', 'underline'],
+      [{ list: 'ordered' }, { list: 'bullet' }],
+      ['clean']
+    ]
+  };
   constructor(private _accountData: AccountData,
     private _fileHelper: FileHelper,
     private _fileService: FileData,
@@ -234,6 +244,9 @@ export class DashboardComponent implements OnInit {
           this._messageService.Message(response.responseMessage, MessageType.error);
         }
       });
+  }
+  setLanguage(lang: string) {
+    this.textDirection = lang === 'ur' ? 'rtl' : 'ltr';
   }
   ngOnDestory() {
     this.alive = false;

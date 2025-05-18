@@ -33,6 +33,7 @@
     "ng-otp-input": "^2.0.7",
     "ng-qrcode": "^18.0.0",
     "ngx-extended-pdf-viewer": "^23.1.1",
+    "ngx-quill": "^26.0.10",
     "pdfjs-dist": "^5.2.133",
     "rxjs": "~7.8.0",
     "slick-carousel": "^1.8.1",
