@@ -48,7 +48,7 @@ export class DashboardComponent implements OnInit {
   addressForm: FormGroup;
   addressSubmitted: boolean = false
   content: string = '';
-  textDirection: 'ltr' | 'rtl' = 'ltr';
+  isUrdu: boolean = false;
   placeholderText: string = 'Enter text here...';
 
   editorModules = {
@@ -262,13 +262,8 @@ export class DashboardComponent implements OnInit {
       });
   }
   setLanguage(lang: string) {
-    if (lang === 'ur') {
-      this.textDirection = 'rtl';
-      this.placeholderText = '...یہاں متن درج کریں'; // Urdu placeholder
-    } else {
-      this.textDirection = 'ltr';
-      this.placeholderText = 'Enter text here...';
-    }
+    this.isUrdu = lang === 'ur';
+    this.placeholderText = this.isUrdu ? 'یہاں متن درج کریں...' : 'Enter text here...';
   }
   ngOnDestory() {
     this.alive = false;
