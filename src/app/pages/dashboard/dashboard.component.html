@@ -232,14 +232,13 @@
                                                                     <div class="input-group">
                                                                       <label for="" class="d-block mb-1 w-100">Confirm Password<span class="text-danger">*</span></label>
                                                                       <div class="input-with-icon">
-                                                                        <input type="password" class="common-input form-control" placeholder="Confirm Password">
                                                                         <input [type]="passwordTextTypeRetype ? 'text' : 'password'"
                                                                                class="form-control common-input"
                                                                                id="account-retype-new-password"
                                                                                name="confirm-new-password"
                                                                                [ngClass]="{ 'is-invalid': changePasswordSubmitted && changePassword.confirmPassword.errors }"
                                                                                formControlName="confirmPassword"
-                                                                               placeholder="Confirm New Password" />
+                                                                               placeholder="Confirm Password" />
                                                                         <button class="btn btn-light " (click)="togglePasswordTextTypeRetype()" type="button" id="password-addon">
                                                                           <i class="fa-regular" [ngClass]="{ 'fa-eye-off': passwordTextTypeRetype,'fa-eye': !passwordTextTypeRetype}"></i>
                                                                         </button>
