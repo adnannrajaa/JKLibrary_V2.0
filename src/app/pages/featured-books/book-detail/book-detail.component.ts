@@ -69,7 +69,6 @@ export class BookDetailComponent implements OnInit, OnDestroy {
     this._fileService.getPdfFile(book.url).
       subscribe(response => {
         this.pdfSrc = response;
-        console.log(response);
       });
   }
   downloadFile(book: any) {
