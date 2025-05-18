@@ -32,7 +32,7 @@ export class BookDetailComponent implements OnInit, OnDestroy {
   bookDetail: any;
   comments: any;
   private alive = true;
-  pdfSrc : any;
+  pdfSrc: string ;
   constructor(private route: ActivatedRoute,
     private _bookService: BookData,
     private _fileService: FileData,

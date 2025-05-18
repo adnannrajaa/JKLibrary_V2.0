@@ -2,7 +2,7 @@ import { Inject, Injectable } from '@angular/core';
 import { HttpClient, HttpEvent, HttpEventType, HttpHeaders, HttpProgressEvent, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Download, Upload } from '../models';
-import { scan } from 'rxjs/operators';
+import { map, scan } from 'rxjs/operators';
 import { SAVER, Saver } from '../saver.provider';
 import { CommonService } from '../../@shared/common-service.service';
 import { Router } from '@angular/router';
@@ -59,7 +59,14 @@ export class UtilsService {
       { responseType: 'json' }
     ) as Observable<returnType>;
   }
-
+  loadPdf<T = string>(url: string): Observable<T> {
+    return this.http.get(url, {
+      responseType: 'blob',
+      reportProgress: true
+    }).pipe(
+      map(blob => URL.createObjectURL(blob) as unknown as T)
+    );
+  }
   uploadFile(url: string, files: File[]): Observable<Upload> {
 
     var formData = new FormData();
