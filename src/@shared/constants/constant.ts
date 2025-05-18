@@ -4,6 +4,8 @@ export class RegexpPattern {
     public static BarcodeMinLength = /^[a-zA-Z0-9_.]{3,}$/;
 }
 
+export const StrongPasswordRegx: RegExp =
+  /^(?=[^A-Z]*[A-Z])(?=[^a-z]*[a-z])(?=\D*\d).{8,}$/;
 export enum Extensions {
     image = 'jpg,png,jpeg',
     excel = 'xlsx,xls',

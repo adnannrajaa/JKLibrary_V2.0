@@ -41,6 +41,9 @@ export class AccountService extends AccountData {
     throw new Error('Method not implemented.');
   }
 
+  getActiveUserInfo(): Observable<BaseResponseModel> {
+    return this._utilsServices.postPut<BaseResponseModel>('/api/user/GetCurrentUser', new BaseRequestModel());
+  }
 
   saveUser(user: any): Observable<BaseResponseModel> {
     return this._utilsServices.postPut<BaseResponseModel>('/api/user/SaveUser', user);

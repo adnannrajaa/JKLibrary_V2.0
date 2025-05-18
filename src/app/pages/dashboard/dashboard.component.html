@@ -39,63 +39,122 @@
                                                 <h4 class="mb-2">Personal Information</h4>
                                                 <p>Fill all information below.</p>
                                                 <div class="field-content">
-                                                    <div class="upload-profile d-flex gap-4 align-items-end pb-5 border-bottom flex-wrap">
-                                                        <figure>
-                                                            <img src="assets/img/profile-avatar.png" alt="">
-                                                        </figure>
-                                                        <div>
-                                                            <div class="btn-group gap-3 mb-3">
-                                                                <span class="uploaded-action position-relative">
-                                                                    <div class="upload-btn">
-                                                                        <input type="file" class="h-100 w-100">
-                                                                        <button class="theme-btn px-4 py-2">Update</button>
-                                                                    </div>
-                                                                </span>
-                                                                <span>
-                                                                    <button class="theme-stroked-btn px-4 py-2"><i class="fa-regular fa-trash-can"></i> Remove</button>
-                                                                </span>
-                                                            </div>
-                                                            <p>Allowed JPG, JPEG, or PNG. Max size of 800kb</p>
-                                                        </div>
+                                                  <div class="upload-profile d-flex gap-4 align-items-end pb-5 border-bottom flex-wrap">
+                                                    <figure *ngIf="image == null ||  image == ''">
+                                                      <img src="assets/img/profile-avatar.png" alt="">
+                                                    </figure>
+                                                    <figure *ngIf="image != null &&  image != ''">
+                                                      <img [src]="image" alt="">
+                                                    </figure>
+                                                    <div>
+                                                      <div class="btn-group gap-3 mb-3">
+                                                        <span class="uploaded-action position-relative">
+                                                          <div class="upload-btn">
+                                                            <input type="file" class="h-100 w-100" #file id="profile-upload" hidden accept="image/*" (change)="onfileUpload($event)">
+                                                            <button (click)="file.click()" for="profile-upload" class="theme-btn px-4 py-2">Update</button>
+                                                          </div>
+                                                        </span>
+                                                        <span>
+                                                          <button class="theme-stroked-btn px-4 py-2"><i class="fa-regular fa-trash-can"></i> Remove</button>
+                                                        </span>
+                                                      </div>
+                                                      <p>Allowed JPG, JPEG, or PNG. Max size of 800kb</p>
                                                     </div>
+                                                  </div>
+                                                  <form [formGroup]="personalInfoForm" (ngSubmit)="onPrsonalInfoSubmit()">
+
                                                     <div class="form-div border-bottom">
-                                                        <div class="form">
-                                                            <div class="container-fluid">
-                                                                <div class="row">
-                                                                    <div class="col-md-6">
-                                                                        <div class="input-group">
-                                                                            <label for="" class="d-block mb-1 w-100">First Name<span class="text-danger">*</span></label>
-                                                                            <input type="text" class="common-input form-control" placeholder="John">
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-md-6">
-                                                                        <div class="input-group">
-                                                                            <label for="" class="d-block mb-1 w-100">Last Name<span class="text-danger">*</span></label>
-                                                                            <input type="text" class="common-input form-control" placeholder="Doe">
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-md-6">
-                                                                        <div class="input-group">
-                                                                            <label for="" class="d-block mb-1 w-100">Gender<span class="text-danger">*</span></label>
-                                                                            <input type="text" class="common-input form-control" placeholder="Male">
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-md-6">
-                                                                        <div class="input-group">
-                                                                            <label for="" class="d-block mb-1 w-100">Phone Number<span class="text-danger">*</span></label>
-                                                                            <input type="text" class="common-input form-control" placeholder="03179570054">
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="col-md-6">
-                                                                        <div class="input-group">
-                                                                            <label for="" class="d-block mb-1 w-100">Email<span class="text-danger">*</span></label>
-                                                                            <input type="text" class="common-input form-control" placeholder="kinmaker.ktk@gmail.com">
-                                                                        </div>
-                                                                    </div>
+                                                      <div class="form">
+                                                        <div class="container-fluid">
+                                                          <div class="row">
+                                                            <div class="col-md-6">
+                                                              <div class="input-group">
+                                                                <label for="" class="d-block mb-1 w-100">First Name<span class="text-danger">*</span></label>
+                                                                <input type="text"
+                                                                       class="form-control common-input"
+                                                                       id="account-firstName"
+                                                                       formControlName="firstName"
+                                                                       [ngClass]="{ 'is-invalid': personalInfoSubmitted && personalInfo.firstName.errors }"
+                                                                       name="firstName"
+                                                                       placeholder="First Name" />
+                                                                <div *ngIf="personalInfoSubmitted && personalInfo.firstName.errors" class="form-text text-danger">
+                                                                  <small *ngIf="personalInfo.firstName.errors.required">First name is required. </small>
                                                                 </div>
+                                                              </div>
                                                             </div>
+                                                            <div class="col-md-6">
+                                                              <div class="input-group">
+                                                                <label for="" class="d-block mb-1 w-100">Last Name<span class="text-danger">*</span></label>
+                                                                <input type="text"
+                                                                       class="form-control  common-input"
+                                                                       id="account-lastName"
+                                                                       formControlName="lastName"
+                                                                       [ngClass]="{ 'is-invalid': personalInfoSubmitted && personalInfo.lastName.errors }"
+                                                                       name="lastName"
+                                                                       placeholder="Last Name" />
+                                                                <div *ngIf="personalInfoSubmitted && personalInfo.lastName.errors" class="form-text text-danger">
+                                                                  <small *ngIf="personalInfo.lastName.errors.required">Last name is required. </small>
+                                                                </div>
+                                                              </div>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                              <div class="input-group">
+                                                                <label for="" class="d-block mb-1 w-100">Gender<span class="text-danger">*</span></label>
+                                                                <select class="form-control common-input "
+                                                                        id="accountGender"
+                                                                        formControlName="gender"
+                                                                        [ngClass]="{ 'is-invalid': personalInfoSubmitted && personalInfo.gender.errors }"
+                                                                        placeholder="Gender"
+                                                                        name="accountGender">
+                                                                  <option value="">-- select --</option>
+                                                                  <option value="male">Male</option>
+                                                                  <option value="female">Female</option>
+                                                                </select>
+                                                                <div *ngIf="personalInfoSubmitted && personalInfo.gender.errors" class="form-text text-danger">
+                                                                  <small *ngIf="personalInfo.gender.errors.required">Gender is required. </small>
+                                                                </div>
+                                                              </div>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                              <div class="input-group">
+                                                                <label for="" class="d-block mb-1 w-100">Phone Number<span class="text-danger">*</span></label>
+                                                                <input type="text"
+                                                                       formControlName="phoneNumber"
+                                                                       class="form-control  common-input "
+                                                                       [ngClass]="{ 'is-invalid': personalInfoSubmitted && personalInfo.phoneNumber.errors }"
+                                                                       id="account-phone"
+                                                                       placeholder="Phone Number"
+                                                                       name="phone" />
+                                                                <div *ngIf="personalInfoSubmitted && personalInfo.phoneNumber.errors" class="form-text text-danger">
+                                                                  <small *ngIf="personalInfo.phoneNumber.errors.required">Phone number is required. </small>
+                                                                  <small *ngIf="personalInfo.phoneNumber.errors.pattern">Invalid phone number. </small>
+                                                                </div>
+                                                              </div>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                              <div class="input-group">
+                                                                <label for="" class="d-block mb-1 w-100">Email<span class="text-danger">*</span></label>
+                                                                <input type="email"
+                                                                       [(ngModel)]="email"
+                                                                       [ngModelOptions]="{standalone: true}"
+                                                                       disabled="disabled"
+                                                                       class="form-control common-input"
+                                                                       id="account-e-mail"
+                                                                       name="email"
+                                                                       placeholder="Email" />
+                                                              </div>
+                                                            </div>
+                                                          </div>
                                                         </div>
+                                                      </div>
+
+                                                      <div class="d-flex flex-wrap gap-2 mt-2">
+                                                        <button type="submit" class="btn btn-primary">Save Changes</button>
+                                                        <button type="reset" class="btn btn-secondary">Cancel</button>
+                                                      </div>
                                                     </div>
+                                                  </form>
+                                                  <!--/ form -->
                                                 </div>
                                                 
                                             </div>
@@ -107,38 +166,97 @@
                                                 <div class="field-content">
                                                     <div class="form-div border-bottom">
                                                         <div class="form">
-                                                            <form action="">
-                                                                <div class="container-fluid">
-                                                                    <div class="row">
-                                                                        <div class="col-md-6">
-                                                                            <div class="input-group">
-                                                                                <label for="" class="d-block mb-1 w-100">Password<span class="text-danger">*</span></label>
-                                                                                <div class="input-with-icon">
-                                                                                    <input type="password" class="common-input form-control" placeholder="Password">
-                                                                                    <span>
-                                                                                        <i class="fa-regular fa-eye"></i>
-                                                                                    </span>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="col-md-6">
-                                                                            <div class="input-group">
-                                                                                <label for="" class="d-block mb-1 w-100">Confirm Password<span class="text-danger">*</span></label>
-                                                                                <div class="input-with-icon">
-                                                                                    <input type="password" class="common-input form-control" placeholder="Confirm Password">
-                                                                                    <span>
-                                                                                        <i class="fa-regular fa-eye"></i>
-                                                                                    </span>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="col">
-                                                                            <div class="text-end">
-                                                                                <button class="theme-btn px-4">Save Changes</button>
-                                                                            </div>
-                                                                        </div>
+                                                            <form  class="validate-form"  [formGroup]="changePasswordForm" (ngSubmit)="onChangePasswordSubmit()">
+                                                              <div class="container-fluid">
+                                                                <div class="row">
+                                                                  <div class="col-md-6">
+                                                                    <div class="input-group">
+                                                                      <label for="" class="d-block mb-1 w-100">Old Password<span class="text-danger">*</span></label>
+                                                                      <div class="input-with-icon">
+                                                                        <input [type]="passwordTextTypeOld ? 'text' : 'password'" class="form-control common-input" formControlName="oldPassword"
+                                                                               [ngClass]="{ 'is-invalid': changePasswordSubmitted && changePassword.oldPassword.errors }"
+                                                                               placeholder="Enter Old Password" aria-label="oldPassword"
+                                                                               aria-describedby="password-addon">
+                                                                        <button class="btn btn-light " (click)="togglePasswordTextTypeOld()" type="button" id="password-addon">
+                                                                          <i class="fa-regular" [ngClass]="{ 'fa-eye-off': passwordTextTypeOld,'fa-eye': !passwordTextTypeOld}"></i>
+                                                                        </button>
+
+                                                                      </div>
+                                                                      <div *ngIf="changePasswordSubmitted && changePassword.oldPassword.errors" class="invalid-feedback">
+                                                                        <span *ngIf="changePassword.oldPassword.errors.required">Old password is required</span>
+                                                                      </div>
                                                                     </div>
+                                                                  </div>
+                                                                 
                                                                 </div>
+                                                                <div class="row">
+                                                                  <div class="col-md-6">
+                                                                    <div class="input-group">
+                                                                      <label for="" class="d-block mb-1 w-100">New Password<span class="text-danger">*</span></label>
+                                                                      <div class="input-with-icon">
+                                                                        <input [type]="passwordTextTypeNew ? 'text' : 'password'"
+                                                                               id="account-new-password"
+                                                                               name="new-password"
+                                                                               class="form-control common-input"
+                                                                               [ngClass]="{ 'is-invalid': changePasswordSubmitted && changePassword.newPassword.errors }"
+                                                                               formControlName="newPassword"
+                                                                               placeholder="New Password" />
+                                                                        <button class="btn btn-light " (click)="togglePasswordTextTypeNew()" type="button" id="password-addon">
+                                                                          <i class="fa-regular" [ngClass]="{ 'fa-eye-off': passwordTextTypeNew,'fa-eye': !passwordTextTypeNew}"></i>
+                                                                        </button>
+
+                                                                      </div>
+                                                                      <div *ngIf="changePasswordSubmitted && changePassword.newPassword.errors" class="form-text text-danger">
+                                                                        <small *ngIf="changePassword.newPassword.errors.required">New password is required. </small>
+                                                                      </div>
+                                                                    </div>
+                                                                    <div class="text-danger text-sm" *ngIf="!isPasswordStrong() && passwordFormField?.dirty">
+                                                                      <span class="block" [ngClass]="{'text-success': passwordFormField?.value?.match('^(?=.*[A-Z])')}">
+                                                                        At least one uppercase letter. <br />
+                                                                      </span>
+                                                                      <span class="block" [ngClass]="{'text-success': passwordFormField?.value?.match('(?=.*[a-z])')}">
+                                                                        At least one lowercase letter.<br />
+                                                                      </span>
+                                                                      <span class="block" [ngClass]="{'text-success': passwordFormField?.value?.match('(.*[0-9].*)')}">
+                                                                        At least one digit.<br />
+                                                                      </span>
+                                                                      <span class="block" [ngClass]="{'text-success': passwordFormField?.value?.match('(?=.*[!@#$%^&*])')}">
+                                                                        At least one special character.<br />
+                                                                      </span>
+                                                                      <span class="block" [ngClass]="{'text-success': passwordFormField?.value?.match('.{8,}')}">
+                                                                        At least 8 characters long.
+                                                                      </span>
+                                                                    </div>
+                                                                  </div>
+                                                                  <div class="col-md-6">
+                                                                    <div class="input-group">
+                                                                      <label for="" class="d-block mb-1 w-100">Confirm Password<span class="text-danger">*</span></label>
+                                                                      <div class="input-with-icon">
+                                                                        <input type="password" class="common-input form-control" placeholder="Confirm Password">
+                                                                        <input [type]="passwordTextTypeRetype ? 'text' : 'password'"
+                                                                               class="form-control common-input"
+                                                                               id="account-retype-new-password"
+                                                                               name="confirm-new-password"
+                                                                               [ngClass]="{ 'is-invalid': changePasswordSubmitted && changePassword.confirmPassword.errors }"
+                                                                               formControlName="confirmPassword"
+                                                                               placeholder="Confirm New Password" />
+                                                                        <button class="btn btn-light " (click)="togglePasswordTextTypeRetype()" type="button" id="password-addon">
+                                                                          <i class="fa-regular" [ngClass]="{ 'fa-eye-off': passwordTextTypeRetype,'fa-eye': !passwordTextTypeRetype}"></i>
+                                                                        </button>
+                                                                      </div>
+                                                                      <div *ngIf="changePasswordSubmitted && changePassword.confirmPassword.errors" class="form-text text-danger">
+                                                                        <small *ngIf="changePassword.confirmPassword.errors.required">Please confirm your new password. </small>
+                                                                        <small *ngIf="changePassword.confirmPassword.errors.mustMatch">New and confirm password not match. </small>
+                                                                      </div>
+                                                                    </div>
+                                                                  </div>
+                                                                  <div class="col">
+                                                                    <div class="text-end">
+                                                                      <button class="theme-btn px-4">Save Changes</button>
+                                                                    </div>
+                                                                  </div>
+                                                                </div>
+                                                              </div>
                                                             </form>
                                                         </div>
                                                     </div>

@@ -12,11 +12,11 @@ import { BlogDetailComponent } from './pages/blog/blog-detail/blog-detail.compon
 import { ArchivesComponent } from './pages/archives/archives.component';
 import { LegalComponent } from './pages/legal/legal.component';
 import { ContactUsComponent } from './pages/contact-us/contact-us.component';
-import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { AboutComponent } from './pages/about/about.component';
 import { ForgetPasswordComponent } from './pages/auth/forget-password/forget-password.component';
 import { HomeComponent } from './pages/home/home.component';
 import { BookDetailComponent } from './pages/featured-books/book-detail/book-detail.component';
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
 
 export const routes: Routes = [
   { path: '', title: 'Home', component: HomeComponent },

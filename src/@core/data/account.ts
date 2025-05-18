@@ -13,6 +13,7 @@ export abstract class AccountData {
   abstract saveUser(user: any): Observable<BaseResponseModel>;
   abstract updatePersonalInfo(personalInfo: any): Observable<BaseResponseModel>;
   abstract updateAddress(userBio: any): Observable<BaseResponseModel>;
+  abstract getActiveUserInfo(): Observable<BaseResponseModel>;
 
   abstract visitor(request: visitor): Observable<BaseResponseModel>;
   abstract visitorIp(request: any): Observable<BaseResponseModel>;
