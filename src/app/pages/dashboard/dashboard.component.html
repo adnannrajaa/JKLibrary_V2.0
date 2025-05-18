@@ -295,33 +295,13 @@
                                                                     <label for="post_description" class="w-100 d-block mb-1">
                                                                       Post Description <span class="text-danger">*</span>
                                                                     </label>
-                                                                    <quill-editor class="form-control" [(ngModel)]="content"
+                                                                    <quill-editor  [(ngModel)]="content"
                                                                                   [modules]="editorModules"
                                                                                   [styles]="{ height: '200px' }"
                                                                                   [dir]="textDirection">
                                                                     </quill-editor>
                                                                   </div>
                                                                 </div>
-                                                                <script>
-                                                                  ClassicEditor
-                                                                    .create(document.querySelector('#editor'), {
-                                                                      toolbar: {
-                                                                        items: [
-                                                                          'heading', '|',
-                                                                          'bold', 'italic', 'underline', 'strikethrough', '|',
-                                                                          'bulletedList', 'numberedList', '|',
-                                                                          'link', 'blockQuote', 'insertTable', 'undo', 'redo'
-                                                                        ]
-                                                                      },
-                                                                      language: 'en',
-                                                                      table: {
-                                                                        contentToolbar: ['tableColumn', 'tableRow', 'mergeTableCells']
-                                                                      }
-                                                                    })
-                                                                    .catch(error => {
-                                                                      console.error(error);
-                                                                    });
-                                                                </script>
 
                                                                 <div class="col-md-12">
                                                                   <div class="input-group attachment-input">

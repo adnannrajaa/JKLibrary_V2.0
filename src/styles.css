@@ -14,3 +14,7 @@
   font-family: Satoshi-Bold;
   src: url("assets/font/Satoshi-Bold.otf") format("opentype");
 }/*# sourceMappingURL=styles.css.map */
+
+.quill .ql-editor[dir="rtl"] {
+  font-family: 'Noto Nastaliq Urdu', 'Jameel Noori Nastaleeq', serif;
+}

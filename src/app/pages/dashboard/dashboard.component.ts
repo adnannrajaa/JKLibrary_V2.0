@@ -51,11 +51,29 @@ export class DashboardComponent implements OnInit {
   textDirection: 'ltr' | 'rtl' = 'ltr';
 
   editorModules = {
-    toolbar: [
-      ['bold', 'italic', 'underline'],
-      [{ list: 'ordered' }, { list: 'bullet' }],
-      ['clean']
-    ]
+    toolbar: {
+      container: [
+        ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
+        ['blockquote', 'code-block'],
+        [{ 'list': 'ordered' }, { 'list': 'bullet' }],
+        [{ 'script': 'sub' }, { 'script': 'super' }],      // superscript/subscript
+        [{ 'indent': '-1' }, { 'indent': '+1' }],          // outdent/indent
+        [{ direction: 'ltr' }, { direction: 'rtl' }],
+        [{ 'language': ['en', 'ur'] }], // Custom, we'll wire this up manually                       // text direction
+
+        [{ 'size': ['small', false, 'large', 'huge'] }],  // custom dropdown
+        [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
+
+        [{ 'color': [] }, { 'background': [] }],          // dropdown with defaults from theme
+        [{ 'font': [] }],
+        [{ 'align': [] }],
+
+        ['clean'],                                         // remove formatting button
+      ],
+      handlers: {
+        'language': (value: string) => this.setLanguage(value)
+      }
+    }
   };
   constructor(private _accountData: AccountData,
     private _fileHelper: FileHelper,
