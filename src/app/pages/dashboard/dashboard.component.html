@@ -295,10 +295,12 @@
                                                                     <label for="post_description" class="w-100 d-block mb-1">
                                                                       Post Description <span class="text-danger">*</span>
                                                                     </label>
-                                                                    <quill-editor  [(ngModel)]="content"
+                                                                    <quill-editor [(ngModel)]="content"
                                                                                   [modules]="editorModules"
                                                                                   [styles]="{ height: '200px' }"
-                                                                                  [dir]="textDirection">
+                                                                                  [placeholder]="placeholderText"
+                                                                                  [dir]="textDirection"
+                                                                                  class="custom-quill">
                                                                     </quill-editor>
                                                                   </div>
                                                                 </div>

@@ -49,8 +49,10 @@ export class DashboardComponent implements OnInit {
   addressSubmitted: boolean = false
   content: string = '';
   textDirection: 'ltr' | 'rtl' = 'ltr';
+  placeholderText: string = 'Enter text here...';
 
   editorModules = {
+    theme: 'snow',
     toolbar: {
       container: [
         ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
@@ -58,9 +60,8 @@ export class DashboardComponent implements OnInit {
         [{ 'list': 'ordered' }, { 'list': 'bullet' }],
         [{ 'script': 'sub' }, { 'script': 'super' }],      // superscript/subscript
         [{ 'indent': '-1' }, { 'indent': '+1' }],          // outdent/indent
-        [{ direction: 'ltr' }, { direction: 'rtl' }],
-        [{ 'language': ['en', 'ur'] }], // Custom, we'll wire this up manually                       // text direction
-
+        [{ direction: 'rtl' }],
+       
         [{ 'size': ['small', false, 'large', 'huge'] }],  // custom dropdown
         [{ 'header': [1, 2, 3, 4, 5, 6, false] }],
 
@@ -70,9 +71,6 @@ export class DashboardComponent implements OnInit {
 
         ['clean'],                                         // remove formatting button
       ],
-      handlers: {
-        'language': (value: string) => this.setLanguage(value)
-      }
     }
   };
   constructor(private _accountData: AccountData,
@@ -264,7 +262,13 @@ export class DashboardComponent implements OnInit {
       });
   }
   setLanguage(lang: string) {
-    this.textDirection = lang === 'ur' ? 'rtl' : 'ltr';
+    if (lang === 'ur') {
+      this.textDirection = 'rtl';
+      this.placeholderText = '...یہاں متن درج کریں'; // Urdu placeholder
+    } else {
+      this.textDirection = 'ltr';
+      this.placeholderText = 'Enter text here...';
+    }
   }
   ngOnDestory() {
     this.alive = false;

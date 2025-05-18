@@ -1,1 +1,6 @@
 /*# sourceMappingURL=dashboard.component.css.map */
+
+.custom-quill .ql-editor::before {
+  text-align: inherit !important;
+  direction: inherit !important;
+}
