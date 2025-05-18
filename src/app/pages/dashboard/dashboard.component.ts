@@ -262,7 +262,7 @@ export class DashboardComponent implements OnInit {
       });
   }
   setLanguage(lang: string) {
-    this.isUrdu = lang === 'ur';
+    this.isUrdu = (lang === 'ur');
     this.placeholderText = this.isUrdu ? 'یہاں متن درج کریں...' : 'Enter text here...';
   }
   ngOnDestory() {

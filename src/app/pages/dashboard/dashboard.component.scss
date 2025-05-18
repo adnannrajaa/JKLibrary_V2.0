@@ -1,18 +1,24 @@
+.custom-quill {
+  .ql-editor {
+    direction: ltr;
+    text-align: left;
 
+    &::before {
+      direction: ltr;
+      text-align: left;
+    }
+  }
 
-.rtl-editor .ql-editor {
-  direction: rtl;
-  text-align: right;
-}
+  &.rtl-editor {
+    .ql-editor {
+      direction: rtl;
+      text-align: right;
 
-.rtl-editor .ql-editor::before {
-  direction: rtl;
-  text-align: right;
-  font-family: 'Noto Nastaliq Urdu', serif;
-}
-
-/* LTR fallback (optional) */
-.custom-quill .ql-editor {
-  direction: ltr;
-  text-align: left;
+      &::before {
+        direction: rtl !important;
+        text-align: right !important;
+        font-family: 'Noto Nastaliq Urdu', serif; // Optional: elegant Urdu font
+      }
+    }
+  }
 }
