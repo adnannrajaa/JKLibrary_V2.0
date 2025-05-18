@@ -31,6 +31,7 @@ export class HttpHandlerInterceptor implements HttpInterceptor {
     environment.baseUrl + "/api/FileReceiver/FileReceiver",
     environment.baseUrl + "/api/FileReceiver/DownloadFile",
     environment.baseUrl + "/web/FileManager/DownloadFile",
+    environment.baseUrl + "/web/FileManager",
   ];
 
   ExcludedAdditionalURLs = [
