@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   hmr: false,
-  fileServer: 'http://localhost:6331/Upload',
+  fileServer: 'http://localhost:6331',
   baseUrl: 'http://localhost:6331',
   getIpAddress: 'http://api.ipify.org/?format=json',
   getIpDetails: 'http://ip-api.com/json/',
