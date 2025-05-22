@@ -35,8 +35,15 @@ export class HomeComponent implements OnInit {
   books: any[] = [];
   homeBooks: any[] = [];
   featuredBooks: any[] = [];
+
+  pinnedBlog: any ;
+
   banners: any[] = [];
   haveBanners: boolean = false;
+
+  blogs: any[] = [];
+  haveBlogs: boolean = false;
+
   haveRecommendedBooks: boolean = false;
   recommendedBooksPagination: any[] = [];
 
@@ -81,6 +88,7 @@ export class HomeComponent implements OnInit {
         if (response.success) {
           this.homeBooks = response?.data?.books
           this.banners = response?.data?.banners
+          this.blogs = response?.data?.blogs;
           if (this.homeBooks != null && this.homeBooks?.length > 0) {
             this.homeBooks.map(s => {
               s.coverPage = this._commonService.getCompletePath(s.coverPage);
@@ -99,7 +107,24 @@ export class HomeComponent implements OnInit {
           } else {
             this.haveBanners = false;
           }
-          console.log(this.banners);
+          if (this.blogs != null && this.blogs?.length > 0) {
+            this.blogs.map(s => {
+              s.coverPage = this._commonService.getCompletePath(s.coverPage);
+              s.avatar = this._commonService.getCompletePath(s.avatar);
+              if (s.isPinned) {
+                this.pinnedBlog = s;
+              }
+              return s;
+            });
+            if (this._commonService.isNullOrEmpty(this.pinnedBlog)) {
+              this.pinnedBlog = this.blogs[0];
+            }
+            this.haveBlogs = true;
+          } else {
+            this.haveBlogs = false;
+          }
+
+          console.log(this.blogs);
         }
       })
   }

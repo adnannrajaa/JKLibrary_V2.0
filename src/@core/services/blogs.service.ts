@@ -13,6 +13,11 @@ export class BlogService extends BlogData {
     super();
   }
 
+
+  getBlogDetail(id: string): Observable<BaseResponseModel> {
+    return this._utilsServices.postPut<BaseResponseModel>('/web/Blog/GetBlogDetail', id);
+  }
+
   saveBlog(blog: any): Observable<BaseResponseModel> {
     return this._utilsServices.postPut<BaseResponseModel>('/web/Blog/SaveBlog', blog);
   }

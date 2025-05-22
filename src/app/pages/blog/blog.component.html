@@ -30,248 +30,104 @@
               </h3>
           </div>
       </div>
-      <div class="multiple-blog my-5">
-        <div class="row">
-          <div class="col-xl-6 col-md-12">
-            <div class="card-blog">
-              <div class="card-img position-relative">
-                  <figure>
-                      <img src="assets/img/blog-1.png" alt="" class="w-100">
-                  </figure>
+        <div class="multiple-blog my-5">
+          <div class="filter-content-header d-flex align-items-center justify-content-between flex-wrap">
+            <h3>Latest Blogs</h3>
+            <form action="" style="padding: 0 14px 0 0;">
+              <div class="my-2 icon-with-input position-relative">
+                <input type="text" name="" id="" placeholder="Search by title" class="border-0" (keyup)="reloadBlogsTbl('search',$event.target.value)">
+                <span class="icon">
+                  <i class="fa-solid fa-magnifying-glass"></i>
+                </span>
               </div>
-              <div class="author-info-with-blog-category our-blog-main-category d-flex justify-content-between align-items-center">
+            </form>
+          </div>
+          <div class="row mt-5">
+            <div class="col-xl-6 col-md-12">
+              <div class="card-blog">
+                <div class="card-img position-relative">
+                  <figure>
+                    <img src="{{pinnedBlog?.coverPage}}" alt="" class="w-100">
+                  </figure>
+                </div>
+                <div class="author-info-with-blog-category our-blog-main-category d-flex justify-content-between align-items-center">
                   <div class="author-info d-flex gap-3">
                     <div class="avatar">
-                      <img src="assets/img/user-avatar.png" alt="">
+                      <img src="{{pinnedBlog?.avatar}}" alt="">
                     </div>
                     <div class="authar-data">
-                      <h5>Olivia Rhye</h5>
-                      <p>20 Jan 2022</p>
+                      <h5>{{pinnedBlog?.createdByName}}</h5>
+                      <p>{{pinnedBlog?.createdDate | date}}</p>
                     </div>
                   </div>
                   <span class="blog-category bg-theme p-2 px-4 rounded-5">
-                    Study
+                    {{pinnedBlog?.category}}
                   </span>
-              </div>
-              <div class="book-info our-blog-main-heading d-flex align-items-center justify-content-between">
-                <div>
-                  <h4>Lorem ipsum dolor sit amet, consectetur adipiscing elit,</h4>
-                  <p>sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Tincidunt eget nullam non nisi est</p>
                 </div>
-              </div>
-              <span>
-                <a href="" class="read-more-text blog-text">Show more</a>
-              </span>
-          </div>
-          </div>
-          <div class="col-xl-6 col-md-12">
-            <div class="card-blog child-blog d-flex">
-              <div class="card-img position-relative">
-                  <figure class="position-relative">
-                      <img src="assets/img/blog-2.png" alt="" class="w-100">
-                      <span class="blog-category bg-theme p-2 px-4 rounded-5 position-absolute">
-                        Study
-                      </span>
-                  </figure>
-                
-              </div>
-              <div class="blog-data">
-                <div class="author-info-with-blog-category d-flex justify-content-between align-items-center ">
-                  <div class="author-info d-flex gap-3">
-                    <div class="avatar">
-                      <img src="assets/img/user-avatar.png" alt="">
-                    </div>
-                    <div class="authar-data">
-                      <h5>Olivia Rhye</h5>
-                      <p>20 Jan 2022</p>
-                    </div>
-                  </div>
-                 
-              </div>
-              <div class="book-info d-flex align-items-center justify-content-between">
-                <div>
-                  <h4>Professional English Course</h4>
-                  <p>sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Tincidunt eget nullam non nisi est</p>
-                </div>
-              </div>
-              <span>
-                <a href="" class="read-more-text blog-text">Show more</a>
-              </span>
-              </div>
-          </div>
-          <div class="card-blog child-blog d-flex">
-            <div class="card-img position-relative">
-                <figure class="position-relative">
-                    <img src="assets/img/blog-3.png" alt="" class="w-100">
-                    <span class="blog-category bg-theme p-2 px-4 rounded-5 position-absolute">
-                      Study
-                    </span>
-                </figure>
-                
-            </div>
-            <div class="blog-data">
-              <div class="author-info-with-blog-category d-flex justify-content-between align-items-center ">
-                <div class="author-info d-flex gap-3">
-                  <div class="avatar">
-                    <img src="assets/img/user-avatar.png" alt="">
-                  </div>
-                  <div class="authar-data">
-                    <h5>Olivia Rhye</h5>
-                    <p>20 Jan 2022</p>
+                <div class="book-info our-blog-main-heading d-flex align-items-center justify-content-between">
+                  <div>
+                    <h4>{{pinnedBlog?.title}}</h4>
+                    <p [innerHtml]="pinnedBlog?.content"></p>
                   </div>
                 </div>
-               
-            </div>
-            <div class="book-info d-flex align-items-center justify-content-between ">
-              <div>
-                <h4>Professional English Course</h4>
-                <p>sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Tincidunt eget nullam non nisi est</p>
-              </div>
-            </div>
-            <span>
-              <a href="" class="read-more-text blog-text">Show more</a>
-            </span>
-            </div>
-        </div>
-        <div class="card-blog child-blog d-flex">
-          <div class="card-img position-relative">
-              <figure class="position-relative">
-                  <img src="assets/img/blog-4.png" alt="" class="w-100">
-                  <span class="blog-category bg-theme p-2 px-4 rounded-5 position-absolute">
-                    Study
-                  </span>
-              </figure>
-              
-          </div>
-          <div class="blog-data">
-            <div class="author-info-with-blog-category d-flex justify-content-between align-items-center ">
-              <div class="author-info d-flex gap-3">
-                <div class="avatar">
-                  <img src="assets/img/user-avatar.png" alt="">
-                </div>
-                <div class="authar-data">
-                  <h5>Olivia Rhye</h5>
-                  <p>20 Jan 2022</p>
-                </div>
-              </div>
-             
-          </div>
-          <div class="book-info d-flex align-items-center justify-content-between ">
-            <div>
-              <h4>Professional English Course</h4>
-              <p>sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Tincidunt eget nullam non nisi est</p>
-            </div>
-          </div>
-          <span>
-            <a href="" class="read-more-text blog-text">Show more</a>
-          </span>
-          </div>
-      </div>
-      <div class="card-blog child-blog d-flex">
-        <div class="card-img position-relative">
-            <figure class="position-relative">
-                <img src="assets/img/blog-2.png" alt="" class="w-100">
-                <span class="blog-category bg-theme p-2 px-4 rounded-5 position-absolute">
-                  Study
+                <span>
+                  <a [routerLink]="['/blog-detail',pinnedBlog?.id]" class="read-more-text blog-text">Show more</a>
                 </span>
-            </figure>
-          
-        </div>
-        <div class="blog-data">
-          <div class="author-info-with-blog-category d-flex justify-content-between align-items-center ">
-            <div class="author-info d-flex gap-3">
-              <div class="avatar">
-                <img src="assets/img/user-avatar.png" alt="">
-              </div>
-              <div class="authar-data">
-                <h5>Olivia Rhye</h5>
-                <p>20 Jan 2022</p>
               </div>
             </div>
-           
-        </div>
-        <div class="book-info d-flex align-items-center justify-content-between ">
-          <div>
-            <h4>Professional English Course</h4>
-            <p>sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Tincidunt eget nullam non nisi est</p>
-          </div>
-        </div>
-        <span>
-          <a href="" class="read-more-text blog-text">Show more</a>
-        </span>
-        </div>
-    </div>
-    <div class="card-blog child-blog d-flex">
-      <div class="card-img position-relative">
-          <figure class="position-relative">
-              <img src="assets/img/blog-3.png" alt="" class="w-100">
-              <span class="blog-category bg-theme p-2 px-4 rounded-5 position-absolute">
-                Study
-              </span>
-          </figure>
-          
-      </div>
-      <div class="blog-data">
-        <div class="author-info-with-blog-category d-flex justify-content-between align-items-center ">
-          <div class="author-info d-flex gap-3">
-            <div class="avatar">
-              <img src="assets/img/user-avatar.png" alt="">
+            <div class="col-xl-6 col-md-12">
+              <div class="card-blog child-blog d-flex" *ngFor="let blog of blogs">
+                <div class="card-img position-relative">
+                  <figure class="position-relative">
+                    <img src="{{blog.coverPage}}" alt="" class="w-100">
+                    <span class="blog-category bg-theme p-2 px-4 rounded-5 position-absolute">
+                      {{blog.category}}
+                    </span>
+                  </figure>
+
+                </div>
+                <div class="blog-data">
+                  <div class="author-info-with-blog-category d-flex justify-content-between align-items-center ">
+                    <div class="author-info d-flex gap-3">
+                      <div class="avatar">
+                        <img src="{{blog.avatar}}" alt="">
+                      </div>
+                      <div class="authar-data">
+                        <h5>{{blog.createdByName}}</h5>
+                        <p>{{blog.createdDate | date}}</p>
+                      </div>
+                    </div>
+
+                  </div>
+                  <div class="book-info d-flex align-items-center justify-content-between">
+                    <div>
+                      <h4>{{blog.title}}</h4>
+                      <p [innerHtml]="blog.content"></p>
+                    </div>
+                  </div>
+                  <span>
+                    <a [routerLink]="['/blog-detail',blog.id]" class="read-more-text blog-text">Show more</a>
+                  </span>
+                </div>
+              </div>
+
             </div>
-            <div class="authar-data">
-              <h5>Olivia Rhye</h5>
-              <p>20 Jan 2022</p>
+
+            <div class="pagination justify-content-between px-4" *ngIf="haveBlogs">
+              <ngb-pagination class="pagination pagination-rounded justify-content-center mt-3 mb-4 pb-1"
+                              [collectionSize]="blogsPagination?.totalItems"
+                              [(page)]="blogsPagination.currentPage"
+                              [pageSize]="blogsPagination?.pageSize"
+                              [maxSize]="7"
+                              [rotate]="true"
+                              [ellipses]="false"
+                              (pageChange)="reloadBlogsTbl('pagination',$event)"
+                              [boundaryLinks]="true"></ngb-pagination>
+
+
             </div>
           </div>
-         
-      </div>
-      <div class="book-info d-flex align-items-center justify-content-between ">
-        <div>
-          <h4>Professional English Course</h4>
-          <p>sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Tincidunt eget nullam non nisi est</p>
         </div>
-      </div>
-      <span>
-        <a href="" class="read-more-text blog-text">Show more</a>
-      </span>
-      </div>
-  </div>
-  <div class="card-blog child-blog d-flex">
-    <div class="card-img position-relative">
-        <figure class="position-relative">
-            <img src="assets/img/blog-4.png" alt="" class="w-100">
-            <span class="blog-category bg-theme p-2 px-4 rounded-5 position-absolute">
-              Study
-            </span>
-        </figure>
-        
-    </div>
-    <div class="blog-data">
-      <div class="author-info-with-blog-category d-flex justify-content-between align-items-center ">
-        <div class="author-info d-flex gap-3">
-          <div class="avatar">
-            <img src="assets/img/user-avatar.png" alt="">
-          </div>
-          <div class="authar-data">
-            <h5>Olivia Rhye</h5>
-            <p>20 Jan 2022</p>
-          </div>
-        </div>
-       
-    </div>
-    <div class="book-info d-flex align-items-center justify-content-between ">
-      <div>
-        <h4>Professional English Course</h4>
-        <p>sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Tincidunt eget nullam non nisi est</p>
-      </div>
-    </div>
-    <span>
-      <a href="" class="read-more-text blog-text">Show more</a>
-    </span>
-    </div>
-</div>
-          </div>
-        </div>
-      </div>
       </div>
     </section>
 </main>
