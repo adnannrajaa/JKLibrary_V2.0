@@ -2,12 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { FooterComponent, TopbarComponent } from '../../layouts';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Subject, takeUntil, takeWhile } from 'rxjs';
-import { AccountData, FileData } from '../../../@core/data';
-import { FileReceiverResult } from '../../../@core/models';
+import { AccountData, BlogData, CategoryData, FileData } from '../../../@core/data';
+import { BaseRequestModel, FileReceiverResult, MiscellaneousDDL } from '../../../@core/models';
 import { CommonService } from '../../../@shared/common-service.service';
 import { FileHelper } from '../../../@shared/file-helper-service.service';
 import { MessageService } from '../../../@shared/message/message.service';
-import { RegexpPattern, FileType, MessageType, SizeUnit, Size, StrongPasswordRegx } from '../../../@shared/constants/constant';
+import { RegexpPattern, FileType, MessageType, SizeUnit, Size, StrongPasswordRegx, CategoryType } from '../../../@shared/constants/constant';
 import { CustomValidators } from '../../../@shared/CustomValidators';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
@@ -24,9 +24,12 @@ export class DashboardComponent implements OnInit {
   //Image Handling
   image: string = null;
   fileReceiverResult: FileReceiverResult[]
+  categoriesDDL: MiscellaneousDDL[]
+  blogPosts: any[] = [];
 
   //static prop
   email: string = null;
+  coverPageOrignalFileName: string;
 
   //Subscription 
   private alive = true;
@@ -35,6 +38,9 @@ export class DashboardComponent implements OnInit {
   //Personal Info Form
   personalInfoForm: FormGroup;
   personalInfoSubmitted: boolean = false
+
+  blogPostForm: FormGroup;
+  blogPostSubmitted: boolean = false
 
   //Change Password Form
   changePasswordForm: FormGroup;
@@ -76,6 +82,8 @@ export class DashboardComponent implements OnInit {
   constructor(private _accountData: AccountData,
     private _fileHelper: FileHelper,
     private _fileService: FileData,
+    private _categoryService: CategoryData,
+    private _blogService: BlogData,
     private _commonService: CommonService,
     private _messageService: MessageService) {
   }
@@ -83,6 +91,17 @@ export class DashboardComponent implements OnInit {
     // content header
     this.createForms();
     this.loadCurrentUser()
+    this.loadCategories()
+  }
+  loadCategories() {
+    this.categoriesDDL = []
+    this._categoryService.getCategoryDDL(CategoryType.Book)
+      .pipe(takeWhile(() => this.alive))
+      .subscribe(response => {
+        if (response.data != null)
+          this.categoriesDDL = response.data;
+      })
+
   }
   createForms() {
     // Personal Info Form Creation 
@@ -120,6 +139,18 @@ export class DashboardComponent implements OnInit {
         address2: new FormControl(''),
       },
     );
+
+    // Address Form Creation
+    this.blogPostForm = new FormGroup(
+      {
+        title: new FormControl('', [Validators.required]),
+        categoryId: new FormControl('', [Validators.required]),
+        coverPage: new FormControl('', [Validators.required]),
+        content: new FormControl('', [Validators.required]),
+        tags: new FormControl('', [Validators.required]),
+        isPublished: new FormControl(true),
+      },
+    );
   }
   get passwordFormField() {
     return this.changePasswordForm.get('newPassword');
@@ -140,6 +171,7 @@ export class DashboardComponent implements OnInit {
   }
   get changePassword() { return this.changePasswordForm.controls; }
   get personalInfo() { return this.personalInfoForm.controls; }
+  get blogPost() { return this.blogPostForm.controls; }
   get addressInfo() { return this.addressForm.controls; }
 
   /**
@@ -182,7 +214,7 @@ export class DashboardComponent implements OnInit {
 
 
 
-  onfileUpload(event: any) {
+  onfileUpload(event: any,type:string) {
     if (event != undefined && event != null) {
       this.fileReceiverResult = [];
       if (!this._fileHelper.isValidFile(event, FileType.image)) {
@@ -198,8 +230,14 @@ export class DashboardComponent implements OnInit {
         .subscribe(response => {
           if (response?.state == "DONE" && !this._commonService.isNullOrEmpty(response?.content)) {
             this.fileReceiverResult.push(response.content[0]);
-            this.image = this._commonService.getCompletePath(this.fileReceiverResult[0].filePath);
-            this.personalInfo.avatar.patchValue(this.fileReceiverResult[0].filePath);
+
+            if (type === 'Profile') {
+              this.image = this._commonService.getCompletePath(this.fileReceiverResult[0].filePath);
+              this.personalInfo.avatar.patchValue(this.fileReceiverResult[0].filePath);
+            } else {
+              this.coverPageOrignalFileName = this.fileReceiverResult[0].originalFileName;
+              this.blogPost.coverPage.patchValue(this.fileReceiverResult[0].filePath);
+            }
           }
 
 
@@ -245,6 +283,25 @@ export class DashboardComponent implements OnInit {
         }
       });
   }
+  onBlogPostSubmit() {
+    this.blogPostSubmitted = true;
+    // stop here if form is invalid
+    if (this.blogPostForm.invalid) {
+      return;
+    }
+    //var mySqlDate = this._commonService.sqlDateFormat(this.personalInfo.birthDate.value)
+    //this.personalInfo.birthDate.patchValue(mySqlDate);
+
+    this._blogService.saveBlog(this.blogPostForm.value)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((response) => {
+        if (response.success) {
+          this._messageService.Message(response.responseMessage, MessageType.success);
+        } else {
+          this._messageService.Message(response.responseMessage, MessageType.error);
+        }
+      });
+  }
   onAddressSubmit() {
     this.addressSubmitted = true;
     // stop here if form is invalid
@@ -260,6 +317,22 @@ export class DashboardComponent implements OnInit {
           this._messageService.Message(response.responseMessage, MessageType.error);
         }
       });
+  }
+  loadBlogPosts(type: string) {
+    this._blogService.getBlogsByUser(new BaseRequestModel(), type)
+      .pipe(takeWhile(() => this.alive))
+      .subscribe(response => {
+        if (response.success) {
+          this.blogPosts = response?.data?.items
+          if (this.blogPosts != null && this.blogPosts?.length > 0) {
+            this.blogPosts.map(s => {
+              s.coverPage = this._commonService.getCompletePath(s.coverPage);
+              return s;
+            });
+          }
+          console.log(this.blogPosts);
+        }
+      })
   }
   setLanguage(lang: string) {
     this.isUrdu = (lang === 'ur');

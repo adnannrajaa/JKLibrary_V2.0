@@ -5,3 +5,4 @@ export * from '../data/static-pages';
 export * from '../data/miscellaneous';
 export * from '../data/account';
 export * from '../data/category';
+export * from '../data/blogs';

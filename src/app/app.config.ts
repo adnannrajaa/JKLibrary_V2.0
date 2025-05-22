@@ -6,6 +6,7 @@ import { provideClientHydration } from '@angular/platform-browser';
 //data
 import {
   AccountData,
+  BlogData,
   BookData,
   CategoryData,
   FileData,
@@ -17,6 +18,7 @@ import {
 //Services
 import {
   AccountService,
+  BlogService,
   BookService,
   CategoryService,
   FileService,
@@ -39,6 +41,7 @@ const DATA_SERVICES = [
   { provide: MiscellaneousData, useClass: MiscellaneousService },
   { provide: AccountData, useClass: AccountService },
   { provide: CategoryData, useClass: CategoryService },
+  { provide: BlogData, useClass: BlogService },
 ]
 
 const ROOT_PROVIDERS = [
