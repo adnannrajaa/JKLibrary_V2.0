@@ -95,7 +95,7 @@ export class DashboardComponent implements OnInit {
   }
   loadCategories() {
     this.categoriesDDL = []
-    this._categoryService.getCategoryDDL(CategoryType.Book)
+    this._categoryService.getCategoryDDL(CategoryType.Blog)
       .pipe(takeWhile(() => this.alive))
       .subscribe(response => {
         if (response.data != null)
