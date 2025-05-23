@@ -86,6 +86,7 @@ export class HomeComponent implements OnInit {
       .pipe(takeWhile(() => this.alive))
       .subscribe((response) => {
         if (response.success) {
+          console.log(response?.data);
           this.homeBooks = response?.data?.books
           this.banners = response?.data?.banners
           this.blogs = response?.data?.blogs;
