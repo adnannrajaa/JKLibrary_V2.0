@@ -370,17 +370,17 @@
         </div>
         <div class="multiple-blog">
           <div class="row">
-            <div class="col-xl-4 col-md-6">
+            <div class="col-xl-4 col-md-6"  *ngFor="let newsObj of news">
               <div class="card-blog">
                 <div class="card-img position-relative">
                     <figure>
-                        <img src="assets/img/news-1.png" alt="" class="w-100">
+                        <img src="{{newsObj.bgImage}}" alt="" class="w-100">
                     </figure>
                 </div>
                 <div class="book-info d-flex align-items-center justify-content-between my-3">
                   <div>
-                    <h4>Great Books</h4>
-                    <p>With lots of unique blocks, you can easily build a page without coding. Build your next landing page.</p>
+                    <h4>{{newsObj.title}}</h4>
+                    <p [innerHtml]="newsObj.content  | truncateHtml:140"></p>
                   </div>
                 </div>
                 <span>
@@ -388,96 +388,7 @@
                 </span>
             </div>
             </div>
-            <div class="col-xl-4 col-md-6">
-              <div class="card-blog">
-                <div class="card-img position-relative">
-                    <figure>
-                        <img src="assets/img/news-2.png" alt="" class="w-100">
-                    </figure>
-                </div>
-                <div class="book-info d-flex align-items-center justify-content-between my-3">
-                  <div>
-                    <h4>Awesome Words</h4>
-                    <p>With lots of unique blocks, you can easily build a page without coding. Build your next landing page.</p>
-                  </div>
-                </div>
-                <span>
-                  <a href="" class="read-more-text">Learn more <i class="fa-solid fa-arrow-right"></i></a>
-                </span>
-            </div>
-            </div>
-            <div class="col-xl-4 col-md-6">
-              <div class="card-blog">
-                <div class="card-img position-relative">
-                    <figure>
-                        <img src="assets/img/news-3.png" alt="" class="w-100">
-                    </figure>
-                </div>
-                <div class="book-info d-flex align-items-center justify-content-between my-3">
-                  <div>
-                    <h4>Best Authors</h4>
-                    <p>With lots of unique blocks, you can easily build a page without coding. Build your next landing page.</p>
-                  </div>
-                </div>
-                <span>
-                  <a href="" class="read-more-text">Learn more <i class="fa-solid fa-arrow-right"></i></a>
-                </span>
-            </div>
-            </div>
-            <div class="col-xl-4 col-md-6">
-              <div class="card-blog">
-                <div class="card-img position-relative">
-                    <figure>
-                        <img src="assets/img/news-1.png" alt="" class="w-100">
-                    </figure>
-                </div>
-                <div class="book-info d-flex align-items-center justify-content-between my-3">
-                  <div>
-                    <h4>Great Books</h4>
-                    <p>With lots of unique blocks, you can easily build a page without coding. Build your next landing page.</p>
-                  </div>
-                </div>
-                <span>
-                  <a href="" class="read-more-text">Learn more <i class="fa-solid fa-arrow-right"></i></a>
-                </span>
-            </div>
-            </div>
-            <div class="col-xl-4 col-md-6">
-              <div class="card-blog">
-                <div class="card-img position-relative">
-                    <figure>
-                        <img src="assets/img/news-2.png" alt="" class="w-100">
-                    </figure>
-                </div>
-                <div class="book-info d-flex align-items-center justify-content-between my-3">
-                  <div>
-                    <h4>Awesome Words</h4>
-                    <p>With lots of unique blocks, you can easily build a page without coding. Build your next landing page.</p>
-                  </div>
-                </div>
-                <span>
-                  <a href="" class="read-more-text">Learn more <i class="fa-solid fa-arrow-right"></i></a>
-                </span>
-            </div>
-            </div>
-            <div class="col-xl-4 col-md-6">
-              <div class="card-blog">
-                <div class="card-img position-relative">
-                    <figure>
-                        <img src="assets/img/news-3.png" alt="" class="w-100">
-                    </figure>
-                </div>
-                <div class="book-info d-flex align-items-center justify-content-between my-3">
-                  <div>
-                    <h4>Best Authors</h4>
-                    <p>With lots of unique blocks, you can easily build a page without coding. Build your next landing page.</p>
-                  </div>
-                </div>
-                <span>
-                  <a href="" class="read-more-text">Learn more <i class="fa-solid fa-arrow-right"></i></a>
-                </span>
-            </div>
-            </div>
+   
           </div>
         </div>
     </div>
@@ -504,7 +415,7 @@
                 <div class="book-info d-flex align-items-center justify-content-between my-3">
                   <div>
                     <h4>{{book.title}}</h4>
-                    <p>{{book.description}}</p>
+                    <p>{{book.description  | truncateHtml:120}}</p>
                   </div>
                 </div>
                 <span>
@@ -539,7 +450,7 @@
                     <div class="employee-data">
                       <div class="member-info">
                         <h4 class="text-white">
-                          <span class="highlight">Kendrick</span><br/> Barlamaran.
+                          <span class="highlight">{{pinnedInterview?.author}}</span><br/>
                         </h4>
                         <p class="text-white fw-300 pt-2">Chief Executive Officer</p>
                       </div>
@@ -556,15 +467,15 @@
                 </div>
                 <div class="rating-with-language d-flex justify-content-between align-items-center my-2 flex-wrap gap-2">
                   <div class="langauge">
-                      <span class="bg-dark text-white">Suspense</span>
-                      <span class="bg-light-grey">English</span>
+                    <span class="bg-dark text-white">{{pinnedInterview?.category}}</span>
+                    <span class="bg-light-grey">{{pinnedInterview?.language}}</span>
                   </div>
-                  <span class="date">20 Jan 2022</span>
+                  <span class="date">{{pinnedInterview?.createdDate | date}}</span>
               </div>
                 <div class="book-info d-flex align-items-center justify-content-between my-3">
                   <div>
-                    <h4>Interview with Kendrick Barlamaran</h4>
-                    <p>With lots of unique blocks, you can easily build a page without coding. Build your next landing page.</p>
+                    <h4>{{pinnedInterview?.title}}</h4>
+                    <p>{{pinnedInterview?.description}}</p>
                   </div>
                 </div>
                 <span>
@@ -572,7 +483,7 @@
                 </span>
             </div>
             </li>
-            <li>
+            <li *ngFor="let interview of interviews">
               <div class="card-blog">
                 <div class="card-img position-relative">
                     <div class="employee-data">
@@ -590,15 +501,15 @@
                 </div>
                 <div class="rating-with-language d-flex justify-content-between align-items-center my-2">
                   <div class="langauge">
-                      <span class="bg-dark text-white">Suspense</span>
-                      <span class="bg-light-grey">English</span>
+                    <span class="bg-dark text-white">{{interview.category}}</span>
+                      <span class="bg-light-grey">{{interview.language}}</span>
                   </div>
-                  <span class="date">20 Jan 2022</span>
+                  <span class="date">{{interview?.createdDate | date}}</span>
               </div>
                 <div class="book-info d-flex align-items-center justify-content-between my-3">
                   <div>
-                    <h4>The Horror Book</h4>
-                    <p>With lots of unique blocks, you can easily build a page without coding. Build your next landing page.</p>
+                    <h4>{{interview.title}}</h4>
+                    <p>{{interview.description  | truncateHtml:120}}</p>
                   </div>
                 </div>
                 <span>
@@ -606,40 +517,7 @@
                 </span>
             </div>
             </li>
-            <li>
-              <div class="card-blog">
-                <div class="card-img position-relative">
-                    <div class="employee-data">
-                      <div class="member-info">
-                        <h4 class="text-white">
-                          <span class="highlight">Kendrick</span><br/> Barlamaran.
-                        </h4>
-                        <p class="text-white fw-300 pt-2">Chief Executive Officer</p>
-                      </div>
-                      <span class="water-mark-designation">CTO</span>
-                      <figure>
-                          <img src="assets/img/member-3.png" alt="" class="w-100">
-                      </figure>
-                    </div>
-                </div>
-                <div class="rating-with-language d-flex justify-content-between align-items-center my-2">
-                  <div class="langauge">
-                      <span class="bg-dark text-white">Suspense</span>
-                      <span class="bg-light-grey">English</span>
-                  </div>
-                  <span class="date">20 Jan 2022</span>
-              </div>
-                <div class="book-info d-flex align-items-center justify-content-between">
-                  <div>
-                    <h4>The Horror Book</h4>
-                    <p>With lots of unique blocks, you can easily build a page without coding. Build your next landing page.</p>
-                  </div>
-                </div>
-                <span>
-                  <a href="" class="read-more-text">Read more <i class="fa-solid fa-arrow-right"></i></a>
-                </span>
-            </div>
-            </li>
+          
           </ul>
         </div>
     </div>
@@ -679,7 +557,7 @@
               <div class="book-info our-blog-main-heading d-flex align-items-center justify-content-between">
                 <div>
                   <h4>{{pinnedBlog?.title}}</h4>
-                  <p [innerHtml]="pinnedBlog?.content"></p>
+                  <p [innerHtml]="pinnedBlog?.content  | truncateHtml:120"></p>
                 </div>
               </div>
               <span>
@@ -714,7 +592,7 @@
               <div class="book-info d-flex align-items-center justify-content-between">
                 <div>
                   <h4>{{blog.title}}</h4>
-                  <p [innerHtml]="blog.content"></p>
+                  <p [innerHtml]="blog.content  | truncateHtml:120"></p>
                 </div>
               </div>
               <span>

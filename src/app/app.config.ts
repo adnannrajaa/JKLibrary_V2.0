@@ -26,6 +26,7 @@ import {
   MiscellaneousService,
   StaticPagesService,
 } from '../@core/services';
+
 import { GlobalErrorHandler, HttpHandlerInterceptor, UtilsService } from '../@core/utils';
 import { HTTP_INTERCEPTORS, provideHttpClient, withFetch, withInterceptorsFromDi } from '@angular/common/http';
 import { DatePipe } from '@angular/common';

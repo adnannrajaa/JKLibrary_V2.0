@@ -11,11 +11,12 @@ import { FileType, MessageType, SizeUnit, Size, CategoryType } from '../../../@s
 import { NgbAlert, NgbPagination } from '@ng-bootstrap/ng-bootstrap';
 import { RouterModule } from '@angular/router';
 import { SwiperService } from '../../../@shared/Services';
+import { TruncateHtmlPipe } from '../../../@shared/pipes';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule,TopbarComponent, FooterComponent, FormsModule, ReactiveFormsModule, NgbAlert, RouterModule, NgbPagination],
+  imports: [CommonModule, TopbarComponent, FooterComponent, FormsModule, ReactiveFormsModule, NgbAlert, RouterModule, NgbPagination, TruncateHtmlPipe],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss'
 })  
@@ -37,12 +38,21 @@ export class HomeComponent implements OnInit {
   featuredBooks: any[] = [];
 
   pinnedBlog: any ;
+  pinnedInterview: any ;
+  pinnedNews: any ;
 
   banners: any[] = [];
   haveBanners: boolean = false;
 
   blogs: any[] = [];
   haveBlogs: boolean = false;
+
+
+  interviews: any[] = [];
+  haveInterview: boolean = false;
+
+  news: any[] = [];
+  haveNews: boolean = false;
 
   haveRecommendedBooks: boolean = false;
   recommendedBooksPagination: any[] = [];
@@ -86,49 +96,80 @@ export class HomeComponent implements OnInit {
       .pipe(takeWhile(() => this.alive))
       .subscribe((response) => {
         if (response.success) {
-          console.log(response?.data);
-          this.homeBooks = response?.data?.books
-          this.banners = response?.data?.banners
-          this.blogs = response?.data?.blogs;
-          if (this.homeBooks != null && this.homeBooks?.length > 0) {
-            this.homeBooks.map(s => {
-              s.coverPage = this._commonService.getCompletePath(s.coverPage);
-              if (s.isPinned) {
-                this.featuredBooks.push(s)
-              }
-              return s;
-            });
-          }
-          if (this.banners != null && this.banners?.length > 0) {
-            this.banners.map(s => {
-              s.displayBGImage = this._commonService.getCompletePath(s.displayBGImage);
-              return s;
-            });
-            this.haveBanners = true;
-          } else {
-            this.haveBanners = false;
-          }
-          if (this.blogs != null && this.blogs?.length > 0) {
-            this.blogs.map(s => {
-              s.coverPage = this._commonService.getCompletePath(s.coverPage);
-              s.avatar = this._commonService.getCompletePath(s.avatar);
-              if (s.isPinned) {
-                this.pinnedBlog = s;
-              }
-              return s;
-            });
-            if (this._commonService.isNullOrEmpty(this.pinnedBlog)) {
-              this.pinnedBlog = this.blogs[0];
-            }
-            this.haveBlogs = true;
-          } else {
-            this.haveBlogs = false;
-          }
+          const data = response?.data;
+          console.log(data);
 
-          console.log(this.blogs);
+          this.homeBooks = data?.books || [];
+          this.banners = data?.banners || [];
+          this.blogs = data?.blogs || [];
+          this.interviews = data?.interviews || [];
+          this.news = data?.news || [];
+
+          this.handleBooks(this.homeBooks);
+          this.handleBanners(this.banners);
+          this.handleBlogs(this.blogs);
+          this.handleInterviews(this.interviews);
+          this.handleNews(this.news);
         }
       })
   }
+
+  private handleBooks(books: any[]) {
+    this.featuredBooks = books.map(book => {
+      book.coverPage = this._commonService.getCompletePath(book.coverPage);
+      return book;
+    }).filter(book => book.isPinned);
+  }
+
+  private handleBanners(banners: any[]) {
+    banners.forEach(banner => {
+      banner.displayBGImage = this._commonService.getCompletePath(banner.displayBGImage);
+    });
+    this.haveBanners = banners.length > 0;
+  }
+
+  private handleBlogs(blogs: any[]) {
+    if (blogs.length > 0) {
+      blogs.forEach(blog => {
+        blog.coverPage = this._commonService.getCompletePath(blog.coverPage);
+        blog.avatar = this._commonService.getCompletePath(blog.avatar);
+      });
+
+      this.pinnedBlog = blogs.find(blog => blog.isPinned) || blogs[0];
+      this.blogs = blogs.filter(blog => blog !== this.pinnedBlog); // Remove pinned blog from list
+      this.haveBlogs = true;
+    } else {
+      this.pinnedBlog = null;
+      this.blogs = [];
+      this.haveBlogs = false;
+    }
+  }
+
+
+  private handleInterviews(interviews: any[]) {
+    if (interviews.length > 0) {
+      this.pinnedInterview = interviews.find(i => i.isPinned) || interviews[0];
+      this.interviews = interviews.filter(i => i !== this.pinnedInterview);
+      this.haveInterview = true;
+    } else {
+      this.haveInterview = false;
+    }
+  }
+
+  private handleNews(news: any[]) {
+    if (news.length > 0) {
+      news.forEach(n => {
+        n.bgImage = this._commonService.getCompletePath(n.bgImage);
+      });
+      this.pinnedNews = news.find(n => n.isPinned) || news[0];
+      this.haveNews = true;
+    } else {
+      this.haveNews = false;
+    }
+  }
+
+
+
   loadRecommendedBooksTbl(request: BaseRequestModel) {
     this._bookService.get(request)
       .pipe(takeWhile(() => this.alive))
