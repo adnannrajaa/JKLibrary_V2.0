@@ -59,7 +59,6 @@ export class FeaturedBooksComponent implements OnInit, OnDestroy {
         if (response.success) {
           this.recommendedBooks = response.data?.items;
           this.recommendedBooksPagination = response.data;
-          console.log(this.recommendedBooksPagination)
           if (this.recommendedBooks.length > 0) {
             this.recommendedBooks.map(s => {
               s.displayCoverPage = this.getCompletePath(s.displayCoverPage);
@@ -85,7 +84,6 @@ export class FeaturedBooksComponent implements OnInit, OnDestroy {
         if (response.success) {
           this.books = response.data?.items;
           this.booksPagination = response.data;
-          console.log(this.booksPagination)
           if (this.books.length > 0) {
             this.books.map(s => {
               s.displayCoverPage = this.getCompletePath(s.displayCoverPage);

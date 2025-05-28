@@ -97,7 +97,6 @@ export class HomeComponent implements OnInit {
       .subscribe((response) => {
         if (response.success) {
           const data = response?.data;
-          console.log(data);
 
           this.homeBooks = data?.books || [];
           this.banners = data?.banners || [];
@@ -184,6 +183,7 @@ export class HomeComponent implements OnInit {
               return s;
             });
             this.haveRecommendedBooks = true;
+            console.log(this.books)
           }
           else {
             this.haveRecommendedBooks = false;
@@ -229,6 +229,7 @@ export class HomeComponent implements OnInit {
       .subscribe(response => {
         if (response.data != null)
           this.categoriesDDL = response.data;
+        console.log(this.categoriesDDL)
       })
 
   }

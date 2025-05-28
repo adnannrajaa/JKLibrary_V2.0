@@ -330,7 +330,6 @@ export class DashboardComponent implements OnInit {
               return s;
             });
           }
-          console.log(this.blogPosts);
         }
       })
   }
