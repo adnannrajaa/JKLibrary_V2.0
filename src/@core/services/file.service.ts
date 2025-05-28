@@ -27,6 +27,6 @@ export class FileService extends FileData {
     return this._utilsServices.downloadFile(filePath, bookId, fileName);
   }
   getPdfFile(filePath: string): Observable<string> {
-    return this._utilsServices.loadPdf<string>("/web/FileManager/" + filePath);
+    return this._utilsServices.loadPdf<string>(filePath);
   }
 }

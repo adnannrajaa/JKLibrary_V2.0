@@ -59,8 +59,11 @@ export class UtilsService {
       { responseType: 'json' }
     ) as Observable<returnType>;
   }
-  loadPdf<T = string>(url: string): Observable<T> {
-    return this.http.get(url, {
+  loadPdf<T = string>(filePath: string): Observable<T> {
+    let customHeaders = new HttpHeaders();
+    customHeaders = customHeaders.set('FilePath', filePath);
+    return this.http.get('/web/FileManager/ReadPdf', {
+      headers: customHeaders,
       responseType: 'blob',
       reportProgress: true
     }).pipe(

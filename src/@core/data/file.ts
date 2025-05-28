@@ -6,5 +6,5 @@ import { Download, Upload } from '../models';
 export abstract class FileData {
   abstract uploadFile(event: any): Observable<Upload> 
   abstract downloadFile(filePath: string, bookId: string, fileName?: string): Observable<Download>
-  abstract getPdfFile(filePath: string, ): Observable<any>
+  abstract getPdfFile(filePath: string ): Observable<any>
 }
