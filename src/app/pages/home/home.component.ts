@@ -26,6 +26,9 @@ export class HomeComponent implements OnInit {
   private destroy$: Subject<void> = new Subject<void>();
   error = "";
   success = "";
+  showAdvancedSearch = false;
+  hasActiveFilters = false;
+  activeFilters: string[] = [];
 
   pageSizeChanged: number = 9;
   pageNoChanged: number = 1;
@@ -340,6 +343,34 @@ export class HomeComponent implements OnInit {
       'bookname': '50 Shades of Gray'
     },
   ]
+
+  toggleAdvancedSearch() {
+    this.showAdvancedSearch = !this.showAdvancedSearch;
+  }
+  
+  resetFilters() {
+    this.activeFilters = [];
+    this.hasActiveFilters = false;
+    // Reset your filter values here
+    this.reloadRecommendedBooksTbl('search', '');
+  }
+  
+  removeFilter(filter: string) {
+    this.activeFilters = this.activeFilters.filter(f => f !== filter);
+    this.hasActiveFilters = this.activeFilters.length > 0;
+    // Update your search results based on remaining filters
+  }
+  
+  filterByBadge(badge: string) {
+    // Implement badge filtering logic
+    this.activeFilters.push(badge);
+    this.hasActiveFilters = true;
+  }
+  
+  toggleFavorite(book: any) {
+    book.isFavorite = !book.isFavorite;
+    // Implement your favorite toggle logic
+  }
 
   ngAfterViewInit() {
     this.swiperService.initSwiper('.mySwiper', 1, 0, 3000, 1, 1, 1);

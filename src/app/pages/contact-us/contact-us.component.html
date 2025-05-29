@@ -56,44 +56,67 @@
                 </div>
             </div>
             <div class="contact-form rounded">
-                <form action="">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <div class="input-group">
-                                <label for="" class="d-block w-100 mb-1">First & Last Name</label>
-                                <input type="text" class="form-control common-input" name="" id="" placeholder="i.e. John Doe">
-                            </div>
+                <form  [formGroup]="contactInfoForm" (ngSubmit)="onSubmit()">
+                  <div class="row">
+                    <ngb-alert type="danger" *ngIf="error" [dismissible]="true">{{ error }}</ngb-alert>
+                    <ngb-alert type="success" *ngIf="success" [dismissible]="true">{{ success }}</ngb-alert>
+                    <div class="col-md-6">
+                      <div class="input-group">
+                        <label class="d-block w-100 mb-1">First & Last Name<span class="text-danger">*</span></label>
+                        <input type="text" name="name" formControlName="name"
+                               [ngClass]="{ 'is-invalid': submitted && f.name.errors }" class="form-control common-input"
+                               placeholder="i.e. John Doe">
+                        <div *ngIf="submitted && f.name.errors" class="invalid-feedback">
+                          <div *ngIf="f.name.errors.required">First & Last name is required </div>
                         </div>
-                        <div class="col-md-6">
-                            <div class="input-group">
-                                <label for="" class="d-block w-100 mb-1">Email</label>
-                                <input type="text" class="form-control common-input" name="" id="" placeholder="i.e. John Doe">
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="input-group">
-                                <label for="" class="d-block w-100 mb-1">Phone Number</label>
-                                <input type="text" class="form-control common-input" name="" id="" placeholder="i.e. +1-234-567-7890">
-                            </div>
-                        </div>
-                        <div class="col-md-6">
-                            <div class="input-group">
-                                <label for="" class="d-block w-100 mb-1">Subject</label>
-                                <input type="text" class="form-control common-input" name="" id="" placeholder="i.e. I need a help">
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="input-group">
-                                <label for="" class="d-block w-100 mb-1">Message</label>
-                                <input type="text" class="form-control common-input" name="" id="" placeholder="Type you message">
-                            </div>
-                        </div>
-                        <div class="col-md-12">
-                            <div class="text-end">
-                                <button class="theme-btn px-4">Submit</button>
-                            </div>
-                        </div>
+                      </div>
                     </div>
+                    <div class="col-md-6">
+                      <div class="input-group">
+                        <label class="d-block w-100 mb-1">Email<span class="text-danger">*</span></label>
+                        <input type="text" name="email" formControlName="email"
+                               [ngClass]="{ 'is-invalid': submitted && f.email.errors }" class="form-control common-input"
+                               placeholder="i.e. john@example.com">
+                        <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                          <div *ngIf="f.email.errors.required">Email is required </div>
+                          <div *ngIf="f.email.errors.email">Please enter valid email. </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="input-group">
+                        <label for="" class="d-block w-100 mb-1">Phone Number</label>
+                        <input type="text" class="form-control common-input" name="" id="" placeholder="i.e. +1-234-567-7890">
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="input-group">
+                        <label class="d-block w-100 mb-1">Subject<span class="text-danger">*</span></label>
+                        <input type="text" name="subject" formControlName="subject"
+                               [ngClass]="{ 'is-invalid': submitted && f.subject.errors }" class="form-control common-input"
+                               placeholder="i.e. I need a help">
+                        <div *ngIf="submitted && f.subject.errors" class="invalid-feedback">
+                          <div *ngIf="f.subject.errors.required">Subject is required </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-12">
+                      <div class="input-group">
+                        <label class="d-block w-100 mb-1">Message<span class="text-danger">*</span></label>
+                        <textarea rows="4" name="message" formControlName="message"
+                               [ngClass]="{ 'is-invalid': submitted && f.message.errors }" class="form-control common-input"
+                               placeholder="Type your message"> </textarea>
+                        <div *ngIf="submitted && f.message.errors" class="invalid-feedback">
+                          <div *ngIf="f.message.errors.required">Message is required </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-12">
+                      <div class="text-end">
+                        <button type="submit" class="theme-btn px-4">Submit</button>
+                      </div>
+                    </div>
+                  </div>
                 </form>
             </div>
         </div>
