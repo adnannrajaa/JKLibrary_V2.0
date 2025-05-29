@@ -94,7 +94,11 @@ export class FileHelper {
             case FileType.excel:
                 let excelSize = Size.excel;
                 fileSize <= excelSize ? isValid = true : isValid
-                break;
+            break;
+          case FileType.pdf:
+            let pdfSize = Size.pdf;
+            fileSize <= pdfSize ? isValid = true : isValid
+            break;
         }
         return isValid;
     }

@@ -14,7 +14,8 @@ export enum Extensions {
 }
 export enum Size {
     image = 800, //KB,
-    excel = 10 //MB
+  excel = 10, //MB
+    pdf = 400 //MB
 }
 
 export enum FileType {

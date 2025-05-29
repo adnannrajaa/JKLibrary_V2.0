@@ -272,6 +272,10 @@ export class HomeComponent implements OnInit {
           //this._messageService.Message("Invalid file selected", MessageType.error);
           return;
         }
+        if (!this._fileHelper.isValidSize(event, FileType.pdf,"MB")) {
+          //this._messageService.Message("Invalid file selected", MessageType.error);
+          return;
+        }
       }
 
       this._fileService.uploadFile(event)
